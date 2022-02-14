@@ -1,0 +1,78 @@
+@import "../../scss//variables";
+@import "../../scss/mixins";
+
+.auth-wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: -webkit-linear-gradient(171deg, #121212, #181818);
+  background: linear-gradient(171deg, #121212, #181818);
+}
+.registration {
+  border: 2px solid #dadce0;
+  display: flex;
+  flex-direction: column;
+  width: 30vh;
+  padding-bottom: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    margin: 20px auto;
+
+    a {
+      text-decoration: none;
+      color: white;
+      font-size: 0.75rem;
+      padding-top: 2px;
+      @include breakpoint(xs) {
+        font-size: 0.7rem;
+      }
+    }
+    a:hover {
+      color: red;
+    }
+    h5 {
+      color: white;
+      @include breakpoint(xs) {
+        font-size: 0.7rem;
+      }
+    }
+  }
+
+  &-body {
+    input {
+      background: $dark;
+      color: white;
+      display: block;
+      width: 80%;
+      margin: 15px auto;
+      padding: 10px;
+      border: 1px solid #dadce0;
+      border-radius: 5px;
+    }
+
+    input:focus-visible {
+      outline: 2px solid #3391ff;
+    }
+
+    button {
+      display: block;
+      width: 80%;
+      margin: 15px auto;
+      padding: 10px;
+      border: 1px solid #dadce0;
+      border-radius: 5px;
+      background-color: $important;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.7;
+    }
+  }
+}

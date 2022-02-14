@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import "./scss/Style.scss";
 import { Provider } from "react-redux";
 import { store } from "./store";
 const setupStore = store();

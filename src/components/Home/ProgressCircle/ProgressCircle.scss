@@ -1,0 +1,96 @@
+@keyframes render {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.progress_circle {
+  display: flex;
+  align-items: center;
+  // max-width: 500px;
+}
+
+.legend {
+  max-width: 260px;
+}
+
+.title {
+  font-family: "Verdana", sans-serif;
+  font-size: 18px;
+  line-height: 21px;
+  color: black;
+}
+
+.caption-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.caption-item {
+  position: relative;
+
+  margin: 20px 0;
+  padding-left: 30px;
+
+  font-family: "Verdana", sans-serif;
+  font-size: 16px;
+  line-height: 18px;
+  color: black;
+  cursor: pointer;
+}
+
+.caption-item:hover {
+  opacity: 0.8;
+}
+
+.caption-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+
+  border-radius: 8px;
+}
+
+.caption-item:nth-child(1)::before {
+  background-color: green;
+}
+
+.caption-item:nth-child(2)::before {
+  background-color: red;
+}
+
+.chart {
+  min-width: 280px;
+}
+
+.unit {
+  fill: none;
+  //Width section
+  stroke-width: 3;
+  cursor: pointer;
+  animation-name: render;
+  animation-duration: 1.5s;
+  transition-property: all;
+  transition-duration: 1.5s;
+}
+
+.unit:hover,
+.hovered {
+  opacity: 0.8;
+  stroke-width: 5;
+}
+
+.unit:nth-child(1) {
+  stroke: green;
+  // stroke-dasharray: 33 100;
+}
+
+.unit:nth-child(2) {
+  stroke: red;
+  // stroke-dasharray: 67 100;
+  stroke-dashoffset: -33;
+}

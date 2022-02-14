@@ -1,0 +1,74 @@
+.progress {
+  display: flex;
+  margin-top: 40px;
+  width: 100%;
+  & section {
+    width: 50%;
+  }
+}
+
+.tasks_for_day {
+  width: 90%;
+  margin: 40px auto;
+  h3 {
+    text-align: center;
+  }
+  .tasks__list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    &-item {
+      span {
+        margin-top: 10px;
+        font-size: 0.9rem;
+      }
+      display: flex;
+      justify-content: space-between;
+      margin: 15px 0;
+      padding: 15px;
+      &-current-tasks {
+        margin-left: 20px;
+        margin-top: 11px;
+        position: relative;
+        width: 85%;
+        font-size: 0.8rem;
+      }
+      &-buttons {
+        display: flex;
+        & button {
+          border: none;
+          background-color: transparent;
+          font-size: 0.6rem;
+          &:hover {
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+  }
+}
+
+.create-task-categories-buttons {
+  text-align: center;
+
+  .plus {
+    margin-right: 5px;
+  }
+  & button {
+    margin: 0 20px;
+    padding: 10px 20px;
+    font-weight: 900;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    border: 1px solid green;
+    background: transparent;
+    cursor: pointer;
+    color: rgb(36, 33, 33);
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
