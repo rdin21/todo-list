@@ -29,30 +29,25 @@
 
 .caption-item {
   position: relative;
-
   margin: 20px 0;
   padding-left: 30px;
-
   font-family: "Verdana", sans-serif;
   font-size: 16px;
   line-height: 18px;
   color: black;
-  cursor: pointer;
 }
 
-.caption-item:hover {
-  opacity: 0.8;
-}
-
-.caption-item::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 20px;
-  height: 20px;
-
-  border-radius: 8px;
+.percentage-progress {
+  font-size: 0.7rem;
+  padding: 5px;
+  width: 60px;
+  display: inline-block;
+  &.green {
+    color: green;
+  }
+  &.red {
+    color: red;
+  }
 }
 
 .caption-item:nth-child(1)::before {
@@ -69,7 +64,6 @@
 
 .unit {
   fill: none;
-  //Width section
   stroke-width: 3;
   cursor: pointer;
   animation-name: render;

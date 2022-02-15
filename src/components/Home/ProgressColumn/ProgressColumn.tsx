@@ -19,29 +19,34 @@ const ProgressColumn: FC = () => {
       }
     }
   }
-
   return (
     <section className="progress_column">
-      <h5>Categories</h5>
+      <h5>Категорий</h5>
       <div className="diagram">
         {isLoading ? (
           <Preloader2 />
         ) : (
-          data?.map((category: TCategoriesAndTask): JSX.Element => {
-            const height = category.tasks.length * 5;
-            return (
-              <div className="diagram-block" key={category.id}>
-                <span>{category?.tasks.length}</span>
-                <div
-                  style={{
-                    background: `${category.color}`,
-                    height: `calc(100% / 100 * ${height})`,
-                  }}
-                  className="diagram-block-column"
-                ></div>
-              </div>
-            );
-          })
+          <>
+            {data?.length === 0 ? (
+              <h2>На сегодня нет категорий</h2>
+            ) : (
+              data?.map((category: TCategoriesAndTask): JSX.Element => {
+                const height = category.tasks.length * 10;
+                return (
+                  <div className="diagram-block" key={category.id}>
+                    <span>{category?.tasks.length}</span>
+                    <div
+                      style={{
+                        background: `${category.color}`,
+                        height: `calc(100% / 100 * ${height})`,
+                      }}
+                      className="diagram-block-column"
+                    ></div>
+                  </div>
+                );
+              })
+            )}
+          </>
         )}
       </div>
       {error ? <b className="errorMessage">Не удалось загрузить компонент </b> : <></>}

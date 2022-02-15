@@ -1,5 +1,7 @@
 .progress_column {
   padding-bottom: 40px;
+  position: relative;
+  // overflow: hidden;
   & h5 {
     text-align: center;
     margin-top: 15px;
