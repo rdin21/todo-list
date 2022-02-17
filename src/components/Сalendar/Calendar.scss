@@ -5,11 +5,12 @@
   font-size: $defaultFontSize;
 }
 
-.calendarContainer {
+.calendar-container {
   width: 48%;
   height: 100vh;
   color: #eee;
   margin-top: 40px;
+
   h4 {
     margin-bottom: 40px;
     text-align: center;
@@ -21,6 +22,7 @@
     height: 600px;
     background-color: $calendarBackground;
     box-shadow: 0 0.8px 48px $calendarBackgroundShadow;
+
     .month {
       width: 100%;
       height: 100px;
@@ -31,10 +33,12 @@
       padding: 0 12px;
       text-align: center;
       text-shadow: 0 5px 8px $calendarBodyBackgroundShadow;
+
       & i {
         font-size: 1rem;
         cursor: pointer;
       }
+
       & h1 {
         font-size: 0.9rem;
         font-weight: 400;
@@ -43,10 +47,12 @@
         margin-bottom: 4px;
         margin-top: 4px;
       }
+
       & p {
         font-size: 0.7rem;
       }
     }
+
     .weekdays {
       width: 100%;
       height: 3rem;
@@ -66,12 +72,14 @@
         text-shadow: 0 4px 8px $calendarBodyBackgroundShadow;
       }
     }
+
     .days {
       width: 100%;
       display: flex;
       flex-wrap: wrap;
       padding: 2px;
     }
+
     .days div {
       font-size: 0.8rem;
       margin: 3px;
@@ -84,12 +92,14 @@
       text-shadow: 0 4px 8px $calendarBodyBackgroundShadow;
       transition: background-color 0.2s;
     }
+
     .days div:hover:not(.today) {
       background: $calendarHoverBackground;
       border: 3px solid $dark-gray;
       cursor: pointer;
     }
   }
+
   .prev-date,
   .next-date {
     opacity: 0.5;

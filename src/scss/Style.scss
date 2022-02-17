@@ -1,9 +1,17 @@
 @import "variables";
 @import "mixins";
+@import "fonts";
+
+.item {
+  width: 50%;
+}
 
 html {
   font-size: $defaultFontSize;
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
 }
+
 input {
   outline: none;
 }
@@ -35,6 +43,7 @@ body {
 .disabled {
   opacity: 0.5;
   cursor: none;
+
   &::before {
     content: "";
     width: 15px;
@@ -45,7 +54,8 @@ body {
     display: block;
   }
 }
-.errorMessage {
+
+.error-message {
   font-size: 0.8rem;
   color: red;
   text-align: center;
@@ -59,36 +69,44 @@ $category_shopping: yellow;
 $category_personal: #673ab7;
 $category_health: orange;
 $red: #f45e61;
+
 .color {
   &-green {
     color: #008000;
     background-color: #008000;
   }
+
   &-yellow {
-    color: #ffff00;
-    background-color: #ffff00;
+    color: #ff0;
+    background-color: #ff0;
   }
+
   &-blue {
-    color: #0000ff;
-    background-color: #0000ff;
+    color: #00f;
+    background-color: #00f;
   }
+
   &-orange {
     color: #ff3c00;
     background-color: #ff3c00;
   }
+
   &-gray {
     color: #545b5e;
     background-color: #545b5e;
   }
+
   &-red {
-    color: #ff0000;
-    background-color: #ff0000;
+    color: #f00;
+    background-color: #f00;
   }
+
   &-violet {
     color: #800080;
     background-color: #800080;
   }
 }
+
 .circle {
   border-radius: 50px;
   width: 15px;
@@ -96,18 +114,20 @@ $red: #f45e61;
   margin-top: 10px;
 }
 
-/*----------------------------*\
+/* ----------------------------*\
 	<NAV_COMPONENT>
-\*----------------------------*/
+\*---------------------------- */
 .nav {
   ul {
     margin: 0;
     padding: 0;
     list-style: none;
   }
+
   li {
     display: inline-block;
   }
+
   a {
     display: block;
     padding: 6px 12px;
@@ -115,17 +135,19 @@ $red: #f45e61;
     color: black;
     font-size: $fontSizeLink;
   }
+
   a:hover {
     color: red;
   }
 }
-/*----------------------------*\
-	</NAV_COMPONENT>
-\*----------------------------*/
 
-/*----------------------------*\
+/* ----------------------------*\
+	</NAV_COMPONENT>
+\*---------------------------- */
+
+/* ----------------------------*\
 	<HEADER_COMPONENT>
-\*----------------------------*/
+\*---------------------------- */
 .header-title {
   display: flex;
   justify-content: space-between;
@@ -147,23 +169,25 @@ $red: #f45e61;
   &-time {
     margin-top: 20px;
   }
+
   a:hover {
-    color: rgba(71, 126, 232, 0.7);
-    outline-color: rgba(71, 126, 232, 0);
+    color: #477ee8b3;
+    outline-color: #477ee800;
     outline-offset: 50px;
   }
 }
+
 .header-subtitle {
   font-size: 0.7rem;
 }
 
-/*----------------------------*\
+/* ----------------------------*\
 	</HEADER_COMPONENT>
-\*----------------------------*/
+\*---------------------------- */
 
-/*=========================================================
+/* =========================================================
 	<ADD_TASK_PAGE>
-===========================================================*/
+=========================================================== */
 // .add-tasks {
 //   margin: 20px auto;
 //   width: 95%;
@@ -231,9 +255,11 @@ $red: #f45e61;
 .crete-categories {
   // box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   padding: 50px;
+
   h3 {
     text-align: center;
   }
+
   &-input-group {
     margin-top: 20px;
     padding: 10px;
@@ -260,6 +286,7 @@ $red: #f45e61;
     margin-top: 9px;
     margin-right: 10px;
   }
+
   .crete-categories-color-item {
     width: 25px;
     height: 25px;
@@ -270,9 +297,11 @@ $red: #f45e61;
     border: none;
     transition: 0.3s linear;
   }
+
   .crete-categories-color-item:hover {
     opacity: 0.5;
   }
+
   .crete-categories-color-item.active {
     transform: translateY(-10px);
     transition: 0.5 linear;
@@ -280,31 +309,32 @@ $red: #f45e61;
 }
 
 .create-buttons {
-  &-btn {
-    background: none;
-    display: block;
-    margin: 0 auto;
-    border-radius: 5px;
-    border: 0;
-    padding: 1em 2em;
-    box-shadow: inset 0 0 0 1px $red;
-    color: black;
-    font-size: 0.8rem;
-    font-weight: 400;
+  // &-btn {
+  //   background: none;
+  //   display: block;
+  //   margin: 0 auto;
+  //   border-radius: 5px;
+  //   border: 0;
+  //   padding: 1em 2em;
+  //   box-shadow: inset 0 0 0 1px $red;
+  //   color: black;
+  //   font-size: 0.8rem;
+  //   font-weight: 400;
 
-    // Required, since we're setting absolute on pseudo-elements
-    position: relative;
-    // vertical-align: middle;
+  //   // Required, since we're setting absolute on pseudo-elements
+  //   position: relative;
+  //   // vertical-align: middle;
 
-    &::before,
-    &::after {
-      box-sizing: inherit;
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
-  }
+  //   &::before,
+  //   &::after {
+  //     box-sizing: inherit;
+  //     content: "";
+  //     position: absolute;
+  //     width: 100%;
+  //     height: 100%;
+  //   }
+  // }
+
   &-btn {
     transition: color 0.25s;
     margin-top: 20px;
@@ -361,9 +391,10 @@ $red: #f45e61;
     }
   }
 }
-/*=========================================================
+
+/* =========================================================
 	</ADD_TASK_PAGE>
-===========================================================*/
+=========================================================== */
 
 // .dropdown {
 //   width: 10.5em;
@@ -396,36 +427,6 @@ $red: #f45e61;
 //     }
 //   }
 // }
-
-//======================================================================================
-//DELETE__CATEGORIES\\
-//======================================================================================
-
-.delete__block {
-  .block__title {
-    text-align: center;
-  }
-
-  .delete__list {
-    display: flex;
-    list-style-type: none;
-    flex-wrap: wrap;
-    .list__item {
-      border: 1px solid black;
-      padding: 10px;
-      cursor: pointer;
-      border-radius: 10px;
-      margin: 10px;
-    }
-    .list__item:hover {
-      border-bottom: 1px solid red;
-    }
-  }
-}
-
-//======================================================================================
-//DELETE__CATEGORIES//
-//======================================================================================
 
 .ready {
   font-family: cursive;

@@ -52,7 +52,7 @@ const TimeLineItem: FC<TasksItemProps> = ({
 
   return (
     <li
-      className="tasks__list-item"
+      className="tasks-list-item"
       style={{
         boxShadow: `${status ? "green" : color} 2px 3px 5px 0px`,
       }}
@@ -62,16 +62,19 @@ const TimeLineItem: FC<TasksItemProps> = ({
         <br />
         {/* {status ? "true" : "false"} */}
       </span>
-      <div className="tasks__list-item-current-tasks" style={{ opacity: status ? "0.2" : "1" }}>
+      <div className="tasks-list-item-current-tasks" style={{ opacity: status ? "0.5" : "1" }}>
         {task}
       </div>
       <div className="ready" style={{ visibility: status ? "inherit" : "hidden" }}>
-        Выполнено
+        <FontAwesomeIcon icon={faCheck} />
       </div>
       <div style={{ display: upDateTask ? "block" : "none" }}>
         <Input value={upDateText} onChange={handlerUpDateText} />
       </div>
-      <div className="tasks__list-item-buttons">
+      <div
+        className="tasks-list-item-buttons"
+        style={{ opacity: status ? "0.5" : "1", pointerEvents: status ? "none" : "inherit" }}
+      >
         <button name="check" onClick={upDateStatus}>
           <FontAwesomeIcon icon={faCheck} color="green" title="Check" />
         </button>

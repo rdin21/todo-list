@@ -3,12 +3,14 @@
     text-align: center;
     margin-top: 20px;
   }
+
   margin: 20px auto;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+
   &-text {
     border: 1px solid black;
     margin-top: 20px;
@@ -17,10 +19,12 @@
     padding: 10px;
     border-radius: 3px;
   }
+
   .data-input-group {
     border-bottom: 1px solid lightgray;
     margin-top: 25px;
     width: 80%;
+
     &-date {
       width: 50%;
       height: 30px;
@@ -28,15 +32,17 @@
       text-align: center;
       border: none;
       display: inline-block;
-      // padding: 10px;
     }
+
     &-separator {
       margin-left: 5px;
     }
+
     &-time {
       display: inline-block;
       width: 40%;
       margin-left: 5px;
+
       input {
         display: inline-block;
         width: 45%;
@@ -49,14 +55,17 @@
     }
   }
 }
+
 .create-buttons {
   display: flex;
 }
+
 .categories-buttons-list {
   margin-top: 15px;
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
+
   button {
     margin-right: 15px;
     padding: 10px;
@@ -64,6 +73,7 @@
     background-color: transparent;
     font-size: 0.7rem;
     font-weight: 400;
+
     &:hover {
       opacity: 0.5;
     }

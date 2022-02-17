@@ -16,9 +16,9 @@ const TasksList = () => {
     // isLoading: getCategoriesLoading,
   } = categoriesApi.useGetCategoriesQuery(10);
   return (
-    <section className="tasks_for_day">
-      <h3>Tasks for today</h3>
-      <ul className="tasks__list">
+    <section className="tasks-for-day">
+      <h3>Задачи на сегодня</h3>
+      <ul className="tasks-list">
         {tasks !== undefined && tasks.length !== 0 ? (
           tasks?.map((date: DataTypeTasks) => {
             return date?.taskDate.map((task: Task) => {
@@ -37,7 +37,7 @@ const TasksList = () => {
             });
           })
         ) : (
-          <h1>Not tasks</h1>
+          <h4>На сегодняшний день нет задач</h4>
         )}
       </ul>
     </section>

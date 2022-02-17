@@ -34,7 +34,7 @@ const Index = (): JSX.Element => {
   console.log(data);
 
   return (
-    <section className="calendarContainer">
+    <section className="calendar-container">
       <h4>Calendar</h4>
       <div className="calendar">
         <div className="month">

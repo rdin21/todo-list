@@ -9,7 +9,7 @@ function useProgressCircle(tasks: DataTypeTasks[]): Array<number> {
     let tr = 0;
     let fl = 0;
     if (tasks) {
-      tasks[0].taskDate?.forEach((el) => {
+      tasks[0]?.taskDate?.forEach((el) => {
         el.status ? tr++ : fl++;
       });
     }
@@ -21,6 +21,7 @@ function useProgressCircle(tasks: DataTypeTasks[]): Array<number> {
     setNotReady(notReady);
     // console.log(tasks, "##3##");
   });
+
   return [ready, notReady];
 }
 

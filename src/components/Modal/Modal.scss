@@ -9,9 +9,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: #00000040;
   animation-name: appear;
   animation-duration: 300ms;
+
   &-dialog {
     width: 100%;
     max-width: 800px;
@@ -23,34 +24,38 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
+    box-shadow: 0 4px 8px 0 #0033, 0 6px 20px 0 #00000030;
     animation-name: slide-in;
     animation-duration: 0.5s;
   }
+
   &-header,
   &-footer {
     display: flex;
     align-items: center;
     padding: 1rem;
   }
+
   &-header {
     border-bottom: 1px solid #dbdbdb;
     justify-content: space-between;
   }
+
   &-footer {
     border-top: 1px solid #dbdbdb;
     justify-content: flex-end;
   }
+
   &-close {
     cursor: pointer;
     padding: 1rem;
     margin: -1rem -1rem -1rem auto;
   }
+
   &-body {
     overflow: auto;
   }
+
   &-content {
     padding: 1rem;
   }
@@ -62,6 +67,7 @@
     from {
       opacity: 0;
     }
+
     to {
       opacity: 1;
     }
@@ -70,6 +76,7 @@
     from {
       transform: translateY(-150px);
     }
+
     to {
       transform: translateY(0);
     }

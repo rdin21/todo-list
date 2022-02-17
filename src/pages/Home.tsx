@@ -8,14 +8,17 @@ import Modal from "../components/Modal/Modal";
 import CreateCategories from "../components/Categories/CreateCategories";
 import { Button } from "../components/BaseComponent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import DeleteCategories from "../components/Categories/DeleteCategories";
 
 const Home: FC = () => {
   const [createTask, setCreateTask] = useState<boolean>(false);
   const [createCategory, setCreateCategory] = useState<boolean>(false);
+  const [deleteCategory, setDeleteCategory] = useState<boolean>(false);
 
   const onCloseTaskModel = () => setCreateTask(false);
   const onCloseCategoryModel = () => setCreateCategory(false);
+  const onCloseDeleteCategoryModel = () => setDeleteCategory(false);
   return (
     <main className="main">
       <div className="container">
@@ -24,13 +27,26 @@ const Home: FC = () => {
           <Statistics />
         </section>
         <div className="create-task-categories-buttons">
-          <Button onClick={() => setCreateTask(true)} className="add-task-btn">
+          <Button
+            onClick={() => setCreateTask(true)}
+            className="create-task-categories-btns plus-btn"
+          >
             <FontAwesomeIcon icon={faPlus} className="plus" />
             task
           </Button>
-          <Button onClick={() => setCreateCategory(true)}>
+          <Button
+            onClick={() => setCreateCategory(true)}
+            className="create-task-categories-btns plus-btn"
+          >
             <FontAwesomeIcon icon={faPlus} className="plus" />
-            categories
+            category
+          </Button>
+          <Button
+            onClick={() => setDeleteCategory(true)}
+            className="create-task-categories-btns minus-btn"
+          >
+            <FontAwesomeIcon icon={faTrash} className="minus" />
+            category
           </Button>
         </div>
 
@@ -39,6 +55,9 @@ const Home: FC = () => {
         </Modal>
         <Modal show={createCategory} onClose={onCloseCategoryModel}>
           <CreateCategories />
+        </Modal>
+        <Modal show={deleteCategory} onClose={onCloseDeleteCategoryModel}>
+          <DeleteCategories />
         </Modal>
         <TasksList />
       </div>

@@ -4,7 +4,7 @@ import { useAppSelector } from "../../hooks/redux";
 import { TUserFromAccessToken } from "../../types/TypeUser";
 import { selectUser } from "../../store/selectors";
 import { IUserState } from "../../types/TypeState";
-import { ADD_TASK_ROUTE, HOME_ROUTE, USER_ROUTE, CALENDAR_ROUTE } from "../../routes/pathRoutes";
+import { HOME_ROUTE, USER_ROUTE, CALENDAR_ROUTE } from "../../routes/pathRoutes";
 import Clock from "./Clock";
 const Header: FC = () => {
   const { data } = useAppSelector<IUserState>(selectUser);
@@ -25,9 +25,6 @@ const Header: FC = () => {
           <ul className="nav">
             <li className="nav-link">
               <Link to={HOME_ROUTE}>Home</Link>
-            </li>
-            <li className="nav-link">
-              <Link to={ADD_TASK_ROUTE}>Categories</Link>
             </li>
 
             <li className="nav-link">

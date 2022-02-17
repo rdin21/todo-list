@@ -49,7 +49,7 @@ const ProgressColumn: FC = () => {
           </>
         )}
       </div>
-      {error ? <b className="errorMessage">Не удалось загрузить компонент </b> : <></>}
+      {error ? <b className="error-message">Не удалось загрузить компонент </b> : <></>}
     </section>
   );
 };
