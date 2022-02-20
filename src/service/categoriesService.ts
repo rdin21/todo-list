@@ -6,7 +6,12 @@ import {
 } from "@reduxjs/toolkit/dist/query/react";
 import { CATEGORIES_API_REDUCER_KEY } from "./constants";
 import { URL } from "../api";
-import { ICategories, TCategoriesAndTask, TCreateCategories } from "../types/TypeCategories";
+import {
+  ICategories,
+  TCategoriesAndTask,
+  TCreateCategories,
+  TUpDateCategory,
+} from "../types/TypeCategories";
 import { ErrorType } from "../types/TypeError";
 export const categoriesApi = createApi({
   reducerPath: CATEGORIES_API_REDUCER_KEY,
@@ -46,6 +51,14 @@ export const categoriesApi = createApi({
         url: "/categories",
         method: "DELETE",
         body: { id },
+      }),
+      invalidatesTags: ["Categories"],
+    }),
+    upDateCategories: build.mutation<TUpDateCategory, TUpDateCategory>({
+      query: (body) => ({
+        url: "/categories",
+        method: "PUT",
+        body,
       }),
       invalidatesTags: ["Categories"],
     }),

@@ -2,7 +2,7 @@
 //DELETE__CATEGORIES\\
 //======================================================================================
 
-.delete__block {
+.delete-block {
   padding: 50px;
 
   i {
@@ -12,16 +12,16 @@
     margin-top: 5px;
   }
 
-  .block__title {
+  .block-title {
     text-align: center;
   }
 
-  .delete__list {
+  .delete-list {
     display: flex;
     list-style-type: none;
     flex-wrap: wrap;
 
-    .list__item {
+    .list-item {
       border: 1px solid black;
       font-size: 0.7rem;
       padding: 12px;
@@ -29,7 +29,7 @@
       margin: 10px;
       position: relative;
 
-      &__delete-icon {
+      &-delete-icon {
         display: none;
         position: absolute;
         top: 10px;
@@ -42,7 +42,7 @@
         opacity: 0.7;
         transition: 0.4s linear;
 
-        .list__item__delete-icon {
+        .list-item-delete-icon {
           display: block;
         }
       }
@@ -50,9 +50,84 @@
   }
 }
 
-.delete-animate {
-}
+// .delete-animate {
+// }
 
 //======================================================================================
 //DELETE__CATEGORIES//
+//======================================================================================
+
+//======================================================================================
+//UPDATE__CATEGORIES//
+//======================================================================================
+.update-block {
+  padding: 50px;
+
+  .update-block-title {
+    text-align: center;
+  }
+
+  .update-list {
+    display: flex;
+    list-style-type: none;
+    flex-wrap: wrap;
+
+    &-item {
+      border-bottom: 1px solid black;
+      font-size: 0.7rem;
+      padding: 10px;
+      cursor: pointer;
+      margin: 10px;
+      position: relative;
+
+      &-icon {
+        display: none;
+        position: absolute;
+        top: 10px;
+        left: 40%;
+        color: green;
+      }
+
+      &:hover {
+        border: 1px solid greenyellow;
+        opacity: 0.7;
+        transition: 0.4s linear;
+
+        .update-list-item-icon {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .update-block-new-name {
+    text-align: center;
+
+    span {
+      font-size: 0.85rem;
+      margin-right: 30px;
+    }
+
+    input {
+      border: 1px solid black;
+      font-size: 0.75rem;
+      padding: 7px;
+    }
+  }
+
+  .update-block-button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 0.7rem;
+    border: 1px solid black;
+
+    &:hover {
+      border: 1px solid green;
+      transition: 0.4s linear;
+    }
+  }
+}
+//======================================================================================
+//UPDATE__CATEGORIES//
 //======================================================================================

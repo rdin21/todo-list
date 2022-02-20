@@ -62,7 +62,7 @@ export const taskApi = createApi({
       invalidatesTags: ["Task"],
     }),
 
-    updateTask: build.mutation<UpdateTask, number>({
+    updateTask: build.mutation<number, UpdateTask>({
       query: (body) => ({
         url: "/task",
         method: "PUT",
@@ -71,7 +71,15 @@ export const taskApi = createApi({
       invalidatesTags: ["Task"],
     }),
 
-    updateStatusTask: build.mutation<Task, UpdateStatus>({
+    setStatusTrue: build.mutation<Task, UpdateStatus>({
+      query: (body) => ({
+        url: "/task",
+        method: "PATCH",
+        body,
+      }),
+      invalidatesTags: ["Task"],
+    }),
+    setStatusFalse: build.mutation<Task, UpdateStatus>({
       query: (body) => ({
         url: "/task",
         method: "PATCH",

@@ -3,7 +3,7 @@ export interface Task {
   date: string;
   text: string;
   time: string;
-  status: boolean;
+  status: boolean | null;
   updateAt: string;
   createAt: string;
   taskDateId?: number;

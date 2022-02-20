@@ -10,15 +10,18 @@ import { Button } from "../components/BaseComponent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import DeleteCategories from "../components/Categories/DeleteCategories";
+import UpdateCategories from "../components/Categories/UpdateCategories";
 
 const Home: FC = () => {
   const [createTask, setCreateTask] = useState<boolean>(false);
   const [createCategory, setCreateCategory] = useState<boolean>(false);
   const [deleteCategory, setDeleteCategory] = useState<boolean>(false);
+  const [upDateCategory, setUpDateCategory] = useState<boolean>(false);
 
   const onCloseTaskModel = () => setCreateTask(false);
   const onCloseCategoryModel = () => setCreateCategory(false);
   const onCloseDeleteCategoryModel = () => setDeleteCategory(false);
+  const onCloseUpDateCategoryModel = () => setUpDateCategory(false);
   return (
     <main className="main">
       <div className="container">
@@ -48,16 +51,26 @@ const Home: FC = () => {
             <FontAwesomeIcon icon={faTrash} className="minus" />
             category
           </Button>
+          <Button
+            onClick={() => setUpDateCategory(true)}
+            className="create-task-categories-btns minus-btn"
+          >
+            <FontAwesomeIcon icon={faTrash} className="minus" />
+            update
+          </Button>
         </div>
 
         <Modal show={createTask} onClose={onCloseTaskModel}>
           <AddTask />
         </Modal>
         <Modal show={createCategory} onClose={onCloseCategoryModel}>
-          <CreateCategories />
+          <CreateCategories onCloseCategoryModel={onCloseCategoryModel} />
         </Modal>
         <Modal show={deleteCategory} onClose={onCloseDeleteCategoryModel}>
           <DeleteCategories />
+        </Modal>
+        <Modal show={upDateCategory} onClose={onCloseUpDateCategoryModel}>
+          <UpdateCategories />
         </Modal>
         <TasksList />
       </div>

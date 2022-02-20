@@ -40,6 +40,30 @@
         font-size: 0.8rem;
       }
 
+      &-update-input {
+        width: 680px;
+        max-width: 680px;
+
+        input {
+          font-size: 0.8rem;
+          padding: 10px;
+          width: 80%;
+          // border: 1px solid black;
+          border: none;
+        }
+
+        button {
+          display: inline-block;
+          border: none;
+          cursor: pointer;
+          font-size: 0.7rem;
+
+          &:hover {
+            color: greenyellow;
+          }
+        }
+      }
+
       &-buttons {
         display: flex;
 

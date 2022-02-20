@@ -16,3 +16,4 @@ export type TCreateCategories = Pick<ICategories, "color" | "name">;
 // };
 export type TColorsCategories = Pick<ICategories, "id" | "color" | "name">;
 export type TCategoriesAndTask = ICategories & { tasks: Task[] };
+export type TUpDateCategory = Pick<ICategories, "id" | "name" | "color">;
