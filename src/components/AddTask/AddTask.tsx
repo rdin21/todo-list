@@ -1,7 +1,7 @@
-import "./AddTask.scss";
-import { FC, useState, ChangeEvent } from "react";
+import s from "./AddTask.module.scss";
+import { useState, ChangeEvent } from "react";
 import { useAppSelector } from "../../hooks/redux";
-import { CreateTask } from "../../types/TypeTask";
+// import { CreateTask } from "../../types/TypeTask";
 import { TUserFromAccessToken } from "../../types/TypeUser";
 import { selectUser } from "../../store/selectors";
 import { taskApi } from "../../service/taskService";
@@ -9,127 +9,84 @@ import { taskApi } from "../../service/taskService";
 import { formatDate } from "../../utils/utils";
 import { Input, Button } from "../BaseComponent";
 import CategoriesList from "../Categories/CategoriesList";
+import DateInputs from "./DateInputs";
 
-const AddTask: FC = () => {
+interface AddTaskProps {
+  onCloseModal: () => void;
+}
+
+function AddTask({ onCloseModal }: AddTaskProps): JSX.Element {
   const { data } = useAppSelector(selectUser);
-  const {
-    data: dateData,
-    // , error: dateError
-  } = taskApi.useCheckCreateDateQuery(formatDate);
-
-  const [
-    createTask,
-    // , { error: createTaskError, isLoading: loadingTaskError }
-  ] = taskApi.useCreateTaskMutation();
+  const { data: dateData, error: dateError } = taskApi.useCheckCreateDateQuery(formatDate);
+  const [createTask, { error: createTaskError, isLoading: loadingTask }] =
+    taskApi.useCreateTaskMutation();
   const user = data as TUserFromAccessToken;
 
-  const [task, setTask] = useState<CreateTask>({
-    text: "",
-    date: "",
-    time: "",
-    status: null,
-    categoriesID: 0,
-    taskDateId: 0,
-    userId: 0,
-  });
-
+  const [text, setText] = useState<string>("");
+  const [date, setDate] = useState("");
   const [time, setTime] = useState({
     hour: "",
     minute: "",
   });
+
+  const [info, setInfo] = useState({
+    status: null,
+    categoriesID: 0,
+  });
+
   const onChangeTask = (e: ChangeEvent<HTMLInputElement>): void => {
-    const { name, value } = e.target;
-    setTask({
-      ...task,
-      [name]: value,
-    });
+    setText(e.target.value);
   };
-
-  const onChangeHour = (e: ChangeEvent<HTMLInputElement>) =>
-    setTime({ ...time, hour: e.target.value });
-  const onChangeMinute = (e: ChangeEvent<HTMLInputElement>) =>
-    setTime({ ...time, minute: e.target.value });
-
-  const onClickColor = (id: number) => setTask({ ...task, categoriesID: id });
-  const clickSetTask = (): void => {
-    const userId = user.id;
-    const resultDate = task.date.split("-").reverse().join(".");
-    setTask({
-      ...task,
-      userId,
-      time: `${time.hour}:${time.minute}`,
-      taskDateId: dateData?.id,
+  const onClickColor = (id: number) => setInfo({ ...info, categoriesID: id });
+  const createdTask = () => {
+    const { status, categoriesID } = info;
+    const resultDate = date.split("-").reverse().join(".");
+    const task = {
+      text,
       date: resultDate,
-    });
+      time: `${time.hour}:${time.minute}`,
+      status,
+      categoriesID,
+      taskDateId: dateData?.id,
+      userId: user.id,
+    };
+    createTask(task).then(() => onCloseModal());
   };
-  const createdTask = (): void => {
-    clickSetTask();
-    createTask(task);
-  };
+
+  // eslint-disable-next-line no-console
+  if (dateError) console.log("AadTaskDateError", dateError);
+  // eslint-disable-next-line no-console
+  if (createTaskError) console.log("CreateTaskError", createTaskError);
+
   return (
-    <div className="add-tasks">
+    <div className={s.add_tasks}>
       <h4>Create task</h4>
 
       <Input
-        className="add-tasks-text"
+        className={s.add_tasks_text}
         type="text"
         name="text"
-        placeholder="add task"
+        placeholder="Добавить задачу"
         onChange={onChangeTask}
-        value={task.text}
+        value={text}
       />
-      <div className="data-input-group">
-        <Input
-          type="date"
-          name="date"
-          onChange={onChangeTask}
-          className="data-input-group-date"
-          value={task.date}
-        />
 
-        <span className="data-input-group-separator">-</span>
-        <div className="data-input-group-time">
-          <Input
-            type="number"
-            placeholder="hour"
-            name="time"
-            onChange={onChangeHour}
-            value={time.hour}
-          />
-
-          <span>:</span>
-          <Input
-            type="number"
-            placeholder="minute"
-            name="time"
-            onChange={onChangeMinute}
-            value={time.minute}
-          />
-        </div>
-      </div>
-
+      <DateInputs date={date} setDate={setDate} time={time} setTime={setTime} />
       <div>
         <h4>Categories</h4>
-        <ul className="categories-buttons-list">
-          <CategoriesList
-            onClick={onClickColor}
-            classNameList="delete-list"
-            classNameItem="list-item"
-            classNameIcon="list-item-delete-icon"
-          />
-        </ul>
+        <CategoriesList
+          onClick={onClickColor}
+          classNameList={s.delete_list}
+          classNameItem={s.list_item}
+          classNameIcon={s.list_item_delete_icon}
+        />
       </div>
 
-      <div className="create-buttons">
-        <Button className="create-buttons-btn" onClick={clickSetTask}>
-          set task
-        </Button>
-        <Button className="create-buttons-btn" onClick={createdTask}>
-          Created task
-        </Button>
-      </div>
+      <Button className={s.create_btn} onClick={createdTask} isLoading={loadingTask}>
+        Created task
+      </Button>
     </div>
   );
-};
+}
 
 export default AddTask;

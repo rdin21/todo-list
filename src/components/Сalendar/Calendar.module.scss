@@ -1,11 +1,6 @@
 @import "./../../scss/variables";
 
-* {
-  box-sizing: border-box;
-  font-size: $defaultFontSize;
-}
-
-.calendar-container {
+.calendar__container {
   width: 48%;
   height: 100vh;
   color: #eee;

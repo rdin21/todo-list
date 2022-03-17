@@ -1,0 +1,39 @@
+.progress__column {
+  padding-bottom: 40px;
+  position: relative;
+
+  & h5 {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  &__item {
+    height: 130px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+
+    &__column {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+
+      span {
+        color: #fff;
+        font-weight: bold;
+        font-size: 1rem;
+        animation: app 3s 1;
+      }
+    }
+  }
+}

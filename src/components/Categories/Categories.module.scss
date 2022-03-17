@@ -2,8 +2,9 @@
 //DELETE__CATEGORIES\\
 //======================================================================================
 
-.delete-block {
+.delete_block {
   padding: 50px;
+  // width: 100%;
 
   i {
     text-align: center;
@@ -12,24 +13,27 @@
     margin-top: 5px;
   }
 
-  .block-title {
+  .block_title {
     text-align: center;
   }
 
-  .delete-list {
+  .delete_list {
     display: flex;
     list-style-type: none;
     flex-wrap: wrap;
+    justify-content: center;
 
-    .list-item {
+    .list_item {
       border: 1px solid black;
       font-size: 0.7rem;
       padding: 12px;
       cursor: pointer;
       margin: 10px;
       position: relative;
+      min-width: 75px;
+      text-align: center;
 
-      &-delete-icon {
+      &_delete_icon {
         display: none;
         position: absolute;
         top: 10px;
@@ -42,11 +46,16 @@
         opacity: 0.7;
         transition: 0.4s linear;
 
-        .list-item-delete-icon {
+        .list_item_delete_icon {
           display: block;
         }
       }
     }
+  }
+
+  .spinner_delete {
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -60,27 +69,30 @@
 //======================================================================================
 //UPDATE__CATEGORIES//
 //======================================================================================
-.update-block {
+.update_block {
   padding: 50px;
 
-  .update-block-title {
+  .update_block_title {
     text-align: center;
   }
 
-  .update-list {
+  .update_list {
     display: flex;
     list-style-type: none;
     flex-wrap: wrap;
+    justify-content: center;
 
-    &-item {
+    &_item {
       border-bottom: 1px solid black;
       font-size: 0.7rem;
       padding: 10px;
       cursor: pointer;
       margin: 10px;
       position: relative;
+      min-width: 75px;
+      text-align: center;
 
-      &-icon {
+      &_icon {
         display: none;
         position: absolute;
         top: 10px;
@@ -93,14 +105,14 @@
         opacity: 0.7;
         transition: 0.4s linear;
 
-        .update-list-item-icon {
+        .update_list_item_icon {
           display: block;
         }
       }
     }
   }
 
-  .update-block-new-name {
+  .update_block_new_name {
     text-align: center;
 
     span {
@@ -115,7 +127,7 @@
     }
   }
 
-  .update-block-button {
+  .update_block_button {
     display: block;
     margin: 0 auto;
     padding: 10px;
@@ -127,7 +139,84 @@
       transition: 0.4s linear;
     }
   }
+
+  .spinner_update {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
 }
 //======================================================================================
 //UPDATE__CATEGORIES//
+//======================================================================================
+
+//======================================================================================
+//COLORS__CATEGORIES//
+//======================================================================================
+
+.crete_categories_colors {
+  margin-right: 25px;
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+
+  &_name {
+    margin-top: 9px;
+    margin-right: 10px;
+  }
+
+  .crete_categories_color_item {
+    width: 25px;
+    height: 25px;
+    font-size: 0;
+    margin: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s linear;
+  }
+
+  .crete_categories_color_item:hover {
+    opacity: 0.5;
+  }
+
+  .crete_categories_color_item.active {
+    transform: translateY(-10px);
+    transition: 0.5 linear;
+  }
+}
+
+//======================================================================================
+//COLORS__CATEGORIES//
+//======================================================================================
+
+//======================================================================================
+//CREATE__CATEGORIES//
+//======================================================================================
+
+.crete_categories {
+  // box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  padding: 50px;
+
+  h3 {
+    text-align: center;
+  }
+
+  &_input_group {
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+
+    input {
+      height: 20px;
+      width: 45%;
+      font-size: 0.8rem;
+      border: 1px solid lightblue;
+      padding: 10px;
+      border-radius: 10px;
+    }
+  }
+}
+//======================================================================================
+//CREATE__CATEGORIES//
 //======================================================================================

@@ -2,19 +2,16 @@ import { categoriesApi } from "../../service/categoriesService";
 import { taskApi } from "../../service/taskService";
 import { formatDate } from "../../utils/utils";
 import { DataTypeTasks, Task } from "../../types/TypeTask";
-import TaskItem from "./TaskItem";
-const TasksList = () => {
-  const {
-    data: tasks,
-    // error: getTaskError,
-    // isLoading: getTaskLoading,
-  } = taskApi.useGetTaskQuery(formatDate);
+import TaskItem from "./Item/TaskItem";
+export default function TasksList(): JSX.Element {
+  const { data: tasks, error: getTaskError } = taskApi.useGetTaskQuery(formatDate);
+  const { data: categories, error: getCategoriesError } = categoriesApi.useGetCategoriesQuery(10);
 
-  const {
-    data: categories,
-    // error: getCategoriesError,
-    // isLoading: getCategoriesLoading,
-  } = categoriesApi.useGetCategoriesQuery(10);
+  // eslint-disable-next-line no-console
+  if (getTaskError) console.log("getTaskError", getTaskError);
+  // eslint-disable-next-line no-console
+  if (getCategoriesError) console.log("DeleteErrorTask", getCategoriesError);
+
   return (
     <section className="tasks-for-day">
       <h3>Задачи на сегодня</h3>
@@ -30,7 +27,6 @@ const TasksList = () => {
                   status={task.status}
                   time={`${task.time}`}
                   task={task.text}
-                  category={category?.name}
                   color={category?.color}
                 />
               );
@@ -42,6 +38,4 @@ const TasksList = () => {
       </ul>
     </section>
   );
-};
-
-export default TasksList;
+}

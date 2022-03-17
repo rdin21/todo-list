@@ -1,17 +1,17 @@
-import { FC, useState, ChangeEvent } from "react";
+import s from "./Categories.module.scss";
+import { useState, ChangeEvent } from "react";
 import { categoriesApi } from "../../service/categoriesService";
 import { TCreateCategories } from "../../types/TypeCategories";
+import { Button } from "../BaseComponent";
 import CategoriesColors from "./ColorsList";
 
 interface CreateCategoriesProps {
   onCloseCategoryModel: () => void;
 }
 
-const CreateCategories: FC<CreateCategoriesProps> = ({ onCloseCategoryModel }) => {
-  const [
-    createCategory,
-    // , { error, isLoading }
-  ] = categoriesApi.useCreateCategoriesMutation();
+function CreateCategories({ onCloseCategoryModel }: CreateCategoriesProps): JSX.Element {
+  const [createCategory, { error: createCategoryError, isLoading: createCategoryLoading }] =
+    categoriesApi.useCreateCategoriesMutation();
   // const [active, setActive] = useState<number | undefined>();
   const [category, setCategory] = useState<TCreateCategories>({
     name: "",
@@ -23,21 +23,20 @@ const CreateCategories: FC<CreateCategoriesProps> = ({ onCloseCategoryModel }) =
   };
   const createdCategory = (): void => {
     // console.log(category);
-    createCategory(category);
+    createCategory(category).then(() => onCloseCategoryModel());
     setCategory({
       name: "",
       color: "",
     });
     // setActive(undefined);
-    onCloseCategoryModel();
   };
   // console.log(error);
 
   return (
     <>
-      <div className="crete-categories">
+      <div className={s.crete_categories}>
         <h3>Create categories</h3>
-        <div className="crete-categories-input-group">
+        <div className={s.crete_categories_input_group}>
           <input
             type="text"
             onChange={onChangeCategoryName}
@@ -46,14 +45,18 @@ const CreateCategories: FC<CreateCategoriesProps> = ({ onCloseCategoryModel }) =
           />
         </div>
         <CategoriesColors state={category} setState={setCategory} />
-        <div className="create-buttons">
-          <button className="create-buttons-btn" onClick={createdCategory}>
+        <div className={s.create_buttons}>
+          <Button
+            className={s.create_buttons_btn}
+            onClick={createdCategory}
+            isLoading={createCategoryLoading}
+          >
             Add category
-          </button>
+          </Button>
         </div>
       </div>
     </>
   );
-};
+}
 
 export default CreateCategories;

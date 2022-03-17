@@ -1,10 +1,10 @@
-import "./Calendar.scss";
+import s from "./Calendar.module.scss";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { months, weekdays } from "./daysMonths";
 import useCalendar from "../../hooks/useCalendar";
-import { formatDate, formatFullDate } from "../../utils/utils";
+import { formatFullDate } from "../../utils/utils";
 import { taskApi } from "../../service/taskService";
 
 const Index = (): JSX.Element => {
@@ -34,35 +34,39 @@ const Index = (): JSX.Element => {
   console.log(data);
 
   return (
-    <section className="calendar-container">
+    <section className={s.calendar__container}>
       <h4>Calendar</h4>
-      <div className="calendar">
-        <div className="month">
-          <i className="prev" onClick={prevMonth}>
+      <div className={s.calendar}>
+        <div className={s.month}>
+          <i className={s.prev} onClick={prevMonth}>
             <FontAwesomeIcon icon={faAngleLeft} />
           </i>
-          <div className="date">
+          <div className={s.date}>
             <h1>{months[date.getMonth()]}</h1>
             <p>{date.toDateString()}</p>
           </div>
-          <i className="next" onClick={nextMonth}>
+          <i className={s.next} onClick={nextMonth}>
             <FontAwesomeIcon icon={faAngleRight} />
           </i>
         </div>
 
-        <div className="weekdays">
+        <div className={s.weekdays}>
           {weekdays.map((day) => (
             <div key={day}>{day}</div>
           ))}
         </div>
 
-        <div className="days">
+        <div className={s.days}>
           {days?.map((day: string | number) => {
             if (typeof day === "string") {
               if (day[1] === "|" || day[2] === "|") {
                 const numberAndClass = day.split("|");
                 return (
-                  <div key={day} className={numberAndClass[1]} onClick={() => onClickOnDay(day)}>
+                  <div
+                    key={day}
+                    className={`${s}.${numberAndClass[1]}`}
+                    onClick={() => onClickOnDay(day)}
+                  >
                     {numberAndClass[0]}
                   </div>
                 );

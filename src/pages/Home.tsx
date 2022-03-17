@@ -61,7 +61,7 @@ const Home: FC = () => {
         </div>
 
         <Modal show={createTask} onClose={onCloseTaskModel}>
-          <AddTask />
+          <AddTask onCloseModal={onCloseTaskModel} />
         </Modal>
         <Modal show={createCategory} onClose={onCloseCategoryModel}>
           <CreateCategories onCloseCategoryModel={onCloseCategoryModel} />

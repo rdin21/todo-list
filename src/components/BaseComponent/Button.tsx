@@ -1,10 +1,23 @@
-import { FC, ButtonHTMLAttributes, ReactNode } from "react";
+import "./BaseComponent.scss";
+import { ButtonHTMLAttributes, ReactNode } from "react";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   name?: string;
   children: ReactNode;
+  isLoading?: boolean;
 }
-const Input: FC<ButtonProps> = ({ children, ...props }) => {
-  return <button {...props}>{children}</button>;
-};
+function Input({ isLoading = false, children, ...props }: ButtonProps): JSX.Element {
+  return (
+    <button
+      {...props}
+      style={{
+        opacity: isLoading ? 0.3 : 1,
+        pointerEvents: isLoading ? "none" : "inherit",
+      }}
+    >
+      <span className={isLoading ? "spinner" : ""}></span>
+      {children}
+    </button>
+  );
+}
 
 export default Input;

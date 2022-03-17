@@ -1,35 +1,31 @@
-import "./Categories.scss";
-import { FC } from "react";
-import { categoriesApi } from "../../service/categoriesService";
+import React from "react";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import s from "./Categories.module.scss";
+import { categoriesApi } from "../../service/categoriesService";
 import CategoriesList from "./CategoriesList";
+import Spinner from "../Preloader/Spinner";
 
-const DeleteCategories: FC = () => {
-  const [deleteCategories, { error: deleteCategoriesError, isLoading: deleteLoading }] =
-    categoriesApi.useDeleteCategoriesMutation();
+export default function DeleteCategories(): JSX.Element {
+  const [deleteCategories, { error, isLoading }] = categoriesApi.useDeleteCategoriesMutation();
 
   const onClick = (id: number) => deleteCategories(id);
 
-  if (deleteCategoriesError) {
-    // eslint-disable-next-line no-console
-    console.log("DeleteCategories-DELETE", deleteCategoriesError);
-  }
+  // eslint-disable-next-line no-console
+  if (error) console.log("DeleteCategories-DELETE", error);
+
   return (
-    <section className="delete-block">
-      <h3 className="block-title">Удолить категорию</h3>
+    <section className={s.delete_block}>
+      <h3 className={s.block_title}>Удолить категорию</h3>
       <i>Нажмите 2 раза чтобы удалить категорию.</i>
-      <ul className="delete-list">
-        <CategoriesList
-          classNameList="delete-list"
-          classNameItem="list-item"
-          classNameIcon="list-item-delete-icon"
-          icon={<FontAwesomeIcon icon={faTrash} />}
-          onClick={onClick}
-        />
-      </ul>
+      <CategoriesList
+        classNameList={s.delete_list}
+        classNameItem={s.list_item}
+        classNameIcon={s.list_item_delete_icon}
+        icon={<FontAwesomeIcon icon={faTrash} />}
+        onClick={onClick}
+      />
+      {isLoading ? <Spinner text="Идет удаление..." spinnerBlock={s.spinner_delete} /> : ""}
     </section>
   );
-};
-
-export default DeleteCategories;
+}

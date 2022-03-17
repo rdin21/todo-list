@@ -1,4 +1,4 @@
-.add-tasks {
+.add_tasks {
   h4 {
     text-align: center;
     margin-top: 20px;
@@ -11,7 +11,7 @@
   align-items: center;
   padding: 20px;
 
-  &-text {
+  &_text {
     border: 1px solid black;
     margin-top: 20px;
     width: 80%;
@@ -20,12 +20,12 @@
     border-radius: 3px;
   }
 
-  .data-input-group {
+  .data_input_group {
     border-bottom: 1px solid lightgray;
     margin-top: 25px;
     width: 80%;
 
-    &-date {
+    &_date {
       width: 50%;
       height: 30px;
       font-size: 0.7rem;
@@ -34,11 +34,11 @@
       display: inline-block;
     }
 
-    &-separator {
+    &_separator {
       margin-left: 5px;
     }
 
-    &-time {
+    &_time {
       display: inline-block;
       width: 40%;
       margin-left: 5px;
@@ -56,11 +56,7 @@
   }
 }
 
-.create-buttons {
-  display: flex;
-}
-
-.categories-buttons-list {
+.categories_buttons_list {
   margin-top: 15px;
   display: flex;
   flex-wrap: wrap;
@@ -76,6 +72,41 @@
 
     &:hover {
       opacity: 0.5;
+    }
+  }
+}
+
+.delete_list {
+  display: flex;
+  list-style-type: none;
+  flex-wrap: wrap;
+
+  .list_item {
+    border: 1px solid black;
+    font-size: 0.7rem;
+    padding: 12px;
+    cursor: pointer;
+    margin: 10px;
+    position: relative;
+    min-width: 75px;
+    text-align: center;
+
+    &_delete_icon {
+      display: none;
+      position: absolute;
+      top: 10px;
+      left: 40%;
+      color: red;
+    }
+
+    &:hover {
+      border: 1px solid red;
+      opacity: 0.7;
+      transition: 0.4s linear;
+
+      .list_item_delete_icon {
+        display: block;
+      }
     }
   }
 }

@@ -1,0 +1,77 @@
+@keyframes render {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  // max-width: 500px;
+
+  &__circle {
+    min-width: 280px;
+
+    &__arc {
+      fill: none;
+      stroke-width: 3;
+      cursor: pointer;
+      animation-name: render;
+      animation-duration: 1.5s;
+      transition-property: all;
+      transition-duration: 1.5s;
+    }
+
+    &__arc:hover,
+    .hovered {
+      opacity: 0.8;
+      // stroke-width: 5;
+    }
+
+    &__arc:nth-child(1) {
+      stroke: green;
+      // stroke-dasharray: 33 100;
+    }
+
+    &__arc:nth-child(2) {
+      stroke: red;
+      // stroke-dasharray: 67 100;
+      stroke-dashoffset: -33;
+    }
+  }
+}
+
+.info {
+  max-width: 260px;
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    position: relative;
+    margin: 20px 0;
+    padding-left: 30px;
+    font-family: Verdana, sans-serif;
+    font-size: 0.7rem;
+    line-height: 18px;
+    color: black;
+  }
+
+  .percentage__progress {
+    font-size: 0.7rem;
+    padding: 5px;
+    width: 60px;
+    display: inline-block;
+
+    &_green {
+      color: green;
+    }
+
+    &_red {
+      color: red;
+    }
+  }
+}

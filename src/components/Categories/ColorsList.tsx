@@ -1,3 +1,4 @@
+import s from "./Categories.module.scss";
 import { useState, MouseEvent } from "react";
 import { categoriesApi } from "../../service/categoriesService";
 import { TCreateCategories, TColorsCategories, TUpDateCategory } from "../../types/TypeCategories";
@@ -31,8 +32,8 @@ function ColorsList({ state, setState }: CategoriesColorsProps): JSX.Element {
     setState({ ...state, color });
   };
   return (
-    <ul className="crete-categories-colors">
-      <li className="crete-categories-colors-name">Colors</li>
+    <ul className={s.crete_categories_colors}>
+      <li className={s.crete_categories_colors_name}>Colors</li>
       {colors.map((color: TColorsCategories): JSX.Element => {
         const findCategory = categories?.find((v) => v.color === color.name);
 
@@ -41,7 +42,7 @@ function ColorsList({ state, setState }: CategoriesColorsProps): JSX.Element {
             <button
               type="button"
               onClick={onClickColor}
-              className={`crete-categories-color-item ${color.color} ${
+              className={`${s.crete_categories_color_item} ${color.color} ${
                 color.id === active ? "active" : ""
               } ${findCategory ? "disabled" : ""}`}
               disabled={!!findCategory}

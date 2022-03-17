@@ -1,5 +1,6 @@
+import React from "react";
 import { categoriesApi } from "../../service/categoriesService";
-import Preloader2 from "../Preloader/Preloader2";
+import Loading from "../Preloader/Loading";
 
 interface CategoriesListProps {
   classNameList?: string;
@@ -9,22 +10,22 @@ interface CategoriesListProps {
   onClick: (id: number) => void;
 }
 
-export default function CategoriesList({
+function CategoriesList({
   classNameList,
   classNameItem,
   classNameIcon,
   icon,
   onClick,
 }: CategoriesListProps): JSX.Element {
-  const {
-    data: categories,
-    // error: getCategoriesError,
-    isLoading: loadingCategories,
-  } = categoriesApi.useGetCategoriesQuery(2);
+  const { data: categories, error, isLoading } = categoriesApi.useGetCategoriesQuery(2);
+
+  // eslint-disable-next-line no-console
+  if (error) console.log("CategoriesListError", error);
+
   return (
     <ul className={classNameList}>
-      {loadingCategories ? (
-        <Preloader2 />
+      {isLoading ? (
+        <Loading />
       ) : (
         <>
           {categories?.map(
@@ -46,3 +47,11 @@ export default function CategoriesList({
     </ul>
   );
 }
+
+function TopHeaderPropsAreEqual(prevProps: any, nextProps: any) {
+  return prevProps !== nextProps;
+}
+
+const MemoizedTopHeader = React.memo(CategoriesList, TopHeaderPropsAreEqual);
+
+export default MemoizedTopHeader;
