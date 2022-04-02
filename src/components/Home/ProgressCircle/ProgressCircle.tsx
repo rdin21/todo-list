@@ -22,9 +22,14 @@ export default function ProgressCircle(): JSX.Element {
         <Preloader2 />
       ) : (
         <>
-          <Circle ready={ready} notReady={notReady} />
-          <Info ready={ready} notReady={notReady} />
-          {error ? <b className="error-message">Не удалось загрузить компонент </b> : <></>}
+          {error ? (
+            <b className="error-message">Не удалось загрузить компонент </b>
+          ) : (
+            <>
+              <Circle ready={ready} notReady={notReady} />
+              <Info ready={ready} notReady={notReady} />
+            </>
+          )}
         </>
       )}
     </section>

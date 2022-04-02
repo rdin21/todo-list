@@ -18,6 +18,10 @@ const Clock = (): JSX.Element => {
     };
   }, []);
 
-  return <span>{`${date.hour}:${date.minute}`}</span>;
+  return (
+    <span>{`${date.hour}:${
+      String(date.minute).length === 1 ? "0" + date.minute : date.minute
+    }`}</span>
+  );
 };
 export default Clock;

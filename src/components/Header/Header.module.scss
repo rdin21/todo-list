@@ -1,0 +1,63 @@
+$fontSizeLink: 0.8rem;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &_title {
+    font-weight: 300;
+  }
+
+  &_time {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+  }
+
+  a:hover {
+    color: #477ee8b3;
+    outline-color: #477ee800;
+    outline-offset: 50px;
+  }
+
+  .header_subtitle {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+
+    &_tasks_count {
+      font-size: 0.75rem;
+      color: #fb0;
+    }
+  }
+}
+
+/* ----------------------------*\
+	<NAV_COMPONENT>
+\*---------------------------- */
+.nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: inline-block;
+  }
+
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+    color: black;
+    font-size: $fontSizeLink;
+  }
+
+  a:hover {
+    color: red;
+  }
+}
+
+/* ----------------------------*\
+	</NAV_COMPONENT>
+\*---------------------------- */

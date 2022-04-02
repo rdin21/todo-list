@@ -1,43 +1,45 @@
-import { FC } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import { useAppSelector } from "../../hooks/redux";
 import { TUserFromAccessToken } from "../../types/TypeUser";
 import { selectUser } from "../../store/selectors";
 import { IUserState } from "../../types/TypeState";
-import { HOME_ROUTE, USER_ROUTE, CALENDAR_ROUTE } from "../../routes/pathRoutes";
+import { formatDate } from "../../utils/utils";
 import Clock from "./Clock";
-const Header: FC = () => {
+import { taskApi } from "../../service/taskService";
+import s from "./Header.module.scss";
+import Navigation from "./Navigation";
+
+function Header(): JSX.Element {
   const { data } = useAppSelector<IUserState>(selectUser);
   const date = new Date();
   const user = data as TUserFromAccessToken;
+  const { data: tasks, error } = taskApi.useGetTaskQuery(formatDate);
+  let length = 0;
+
+  if (tasks) {
+    if (tasks[0]?.taskDate?.length > 0) {
+      length = tasks[0]?.taskDate?.length;
+    }
+  }
+
+  // eslint-disable-next-line no-console
+  if (error) console.log("TaskError__Header", error);
 
   return (
-    <header>
-      <div className="header-title">
-        <div>
-          <h3>Hey {user.name}</h3>
-          <span className="header-subtitle">Today you have 12 task</span>
-        </div>
-        <div className="header-title-time">
-          Today: {date.toLocaleDateString()} <Clock />
-        </div>
-        <nav>
-          <ul className="nav">
-            <li className="nav-link">
-              <Link to={HOME_ROUTE}>Home</Link>
-            </li>
-
-            <li className="nav-link">
-              <Link to={USER_ROUTE}>User</Link>
-            </li>
-            <li className="nav-link">
-              <Link to={CALENDAR_ROUTE}>Calendar</Link>
-            </li>
-          </ul>
-        </nav>
+    <header className={s.header}>
+      <div>
+        <h3 className={s.header_title}>Привет {user?.name}</h3>
+        <span className={s.header_subtitle}>
+          Задач на сегодня{" "}
+          <b className={s.header_subtitle_tasks_count}>{length === 0 ? "нет" : length}</b>
+        </span>
       </div>
+      <div className={s.header_time}>
+        Сегодня: {date.toLocaleDateString()} - <Clock />
+      </div>
+      <Navigation />
     </header>
   );
-};
+}
 
 export default Header;

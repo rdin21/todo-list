@@ -1,13 +1,13 @@
-import { FC } from "react";
+import React from "react";
 import ProgressCircle from "./ProgressCircle/ProgressCircle";
 import ProgressColumn from "./ProgressColumn/ProgressColumn";
-const Statistics: FC = () => {
+import s from "./Home.module.scss";
+
+export default function Statistics(): JSX.Element {
   return (
-    <div className="progress">
+    <div className={s.progress}>
       <ProgressCircle />
       <ProgressColumn />
     </div>
   );
-};
-
-export default Statistics;
+}

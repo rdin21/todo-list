@@ -2,7 +2,8 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faPencilAlt, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { taskApi } from "../../../service/taskService";
-
+import s from "../Home.module.scss";
+import classNames from "classnames";
 interface ItemButtonsProps {
   status: null | boolean;
   upDate: (id: number) => void;
@@ -39,7 +40,7 @@ export default function ItemButtons({ status, upDate, color, id }: ItemButtonsPr
 
   return (
     <div
-      className="tasks-list-item-buttons"
+      className={s.tasks_list_item_buttons}
       style={{
         opacity: status !== null ? "0.5" : "1",
         pointerEvents: status !== null ? "none" : "inherit",
@@ -57,8 +58,6 @@ export default function ItemButtons({ status, upDate, color, id }: ItemButtonsPr
       <button name="delete" onClick={() => deleteTaskHook(id)}>
         <FontAwesomeIcon icon={faTrashAlt} color="red" title="Удалить" />
       </button>
-
-      <div className={`circle color-${color}`}></div>
     </div>
   );
 }

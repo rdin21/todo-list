@@ -1,7 +1,7 @@
 @import "../../scss//variables";
 @import "../../scss/mixins";
 
-.auth-wrapper {
+.auth_wrapper {
   height: 100vh;
   display: flex;
   align-items: center;
@@ -19,7 +19,7 @@
   padding-left: 15px;
   padding-right: 15px;
 
-  &-header {
+  &_header {
     display: flex;
     justify-content: space-between;
     width: 85%;
@@ -41,40 +41,43 @@
 
     h5 {
       color: white;
+      font-weight: 300;
+      font-size: 0.85rem;
       @include breakpoint(xs) {
         font-size: 0.7rem;
       }
     }
   }
 
-  &-body {
+  &_body {
     input {
       background: $dark;
       color: white;
       display: block;
-      width: 80%;
+      width: 90%;
       margin: 15px auto;
       padding: 10px;
       border: 1px solid #dadce0;
       border-radius: 5px;
+      font-size: 0.8rem;
     }
 
     input:focus-visible {
       outline: 2px solid #3391ff;
     }
+  }
 
-    button {
-      display: block;
-      width: 80%;
-      margin: 15px auto;
-      padding: 10px;
-      border: 1px solid #dadce0;
-      border-radius: 5px;
-      background-color: $important;
-      color: white;
-    }
+  .submit_btn {
+    display: block;
+    width: 80%;
+    margin: 15px auto;
+    padding: 10px;
+    border: 1px solid #dadce0;
+    border-radius: 5px;
+    background-color: green;
+    color: white;
 
-    button:hover {
+    &:hover {
       opacity: 0.7;
     }
   }

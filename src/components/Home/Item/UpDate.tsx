@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent } from "react";
 import { taskApi } from "../../../service/taskService";
 import { Button, Input } from "../../BaseComponent";
-
+import s from "../Home.module.scss";
 interface UpDateTaskProps {
   setUpDateTask: (bol: boolean) => void;
   upDateTask: boolean;
@@ -32,7 +32,7 @@ export default function UpDateTask({
   return (
     <div
       style={{ display: upDateTask ? "block" : "none" }}
-      className="tasks-list-item-update-input"
+      className={s.tasks_list_item_update_input}
     >
       <Input value={upDateText} onChange={handlerUpDateText} placeholder="Новая задача" />
       <Button onClick={submitUpDateTask}>Изменить</Button>

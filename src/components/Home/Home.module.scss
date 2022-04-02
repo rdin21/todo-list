@@ -2,13 +2,14 @@
   display: flex;
   margin-top: 40px;
   width: 100%;
+  height: 200px;
 
   & section {
     width: 50%;
   }
 }
 
-.tasks-for-day {
+.tasks_for_day {
   width: 90%;
   margin: 40px auto;
 
@@ -16,12 +17,12 @@
     text-align: center;
   }
 
-  .tasks-list {
+  .tasks_list {
     list-style-type: none;
     display: flex;
     flex-direction: column;
 
-    &-item {
+    &_item {
       span {
         margin-top: 10px;
         font-size: 0.9rem;
@@ -32,7 +33,7 @@
       margin: 15px 0;
       padding: 15px;
 
-      &-current-tasks {
+      &_current_tasks {
         margin-left: 20px;
         margin-top: 11px;
         position: relative;
@@ -40,7 +41,7 @@
         font-size: 0.8rem;
       }
 
-      &-update-input {
+      &_update_input {
         width: 680px;
         max-width: 680px;
 
@@ -64,7 +65,7 @@
         }
       }
 
-      &-buttons {
+      &_buttons {
         display: flex;
 
         & button {
@@ -81,14 +82,14 @@
   }
 }
 
-.create-task-categories-buttons {
+.create_task_categories_buttons {
   text-align: center;
 
-  .plus-btn {
+  .plus_btn {
     border: 1px solid green;
   }
 
-  .minus-btn {
+  .minus_btn {
     border: 1px solid red;
   }
 
@@ -97,7 +98,7 @@
     margin-right: 5px;
   }
 
-  .create-task-categories-btns {
+  .create_task_categories_btns {
     margin: 0 20px;
     padding: 10px 20px;
     font-weight: 400;
@@ -113,4 +114,32 @@
       opacity: 0.7;
     }
   }
+}
+
+.not_task {
+  margin: 50px auto;
+
+  &_title {
+    font-weight: 300;
+  }
+}
+
+.ready {
+  font-family: cursive;
+  color: #008000;
+  position: absolute;
+  left: 50%;
+  font-size: 24px;
+  font-weight: 900;
+  z-index: 2;
+}
+
+.not_ready {
+  font-family: cursive;
+  color: red;
+  position: absolute;
+  left: 50%;
+  font-size: 30px;
+  font-weight: 900;
+  z-index: 2;
 }

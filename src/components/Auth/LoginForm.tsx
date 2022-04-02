@@ -1,91 +1,107 @@
-import * as Yup from "yup";
-import { withFormik, FormikProps, Form, Field } from "formik";
-import { Link } from "react-router-dom";
-import "../Auth/Auth.scss";
-// Shape of form values
-interface FormValues {
-  email: string;
-  password: string;
-}
+import React, { ChangeEvent, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../hooks/redux";
+import { HOME_ROUTE } from "../../routes/pathRoutes";
+import { login } from "../../service/userService";
+import { TLoginUser } from "../../types/TypeUser";
+import { Button, Input } from "../BaseComponent";
+import Loading from "../Preloader/Loading";
+import s from "./Auth.module.scss";
 
-interface OtherProps {
-  message: string;
-}
-const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
-  const {
-    touched,
-    errors,
-    // , isSubmitting
-    message,
-  } = props;
+let count = 0;
+export default function LoginForm(): JSX.Element {
+  console.log("RENDER LOGIN_FORM", count++);
+
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [loading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState<any>({});
+
+  const [signIn, setSignIn] = useState<TLoginUser>({
+    email: "",
+    password: "",
+  });
+
+  const onChangeSignUp = (e: ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target;
+    setSignIn({
+      ...signIn,
+      [name]: value,
+    });
+  };
+
+  const onSubmit = (): void => {
+    setErrors({});
+    setIsLoading(true);
+    const obj: any = {};
+
+    dispatch(login(signIn))
+      .then((res: any) => {
+        setIsLoading(false);
+        if (res.payload.statusCode || Array.isArray(res.payload)) {
+          if (Array.isArray(res.payload)) {
+            // console.log(res.payload, "////////");
+            res.payload.forEach((el: string) => {
+              const msg = el.split("-");
+              obj[msg[0].trim()] = msg[1].trim();
+            });
+            // console.log(obj, "[[[[[[[[");
+            setErrors(obj);
+          } else {
+            obj["message"] = res.payload.message;
+            setErrors(obj);
+          }
+        } else {
+          navigate(HOME_ROUTE);
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+  // console.log(errorMessages, loading);
+
+  const onSubmitKeyEvent = ({ key }: KeyboardEvent): void => {
+    if (key === "Enter") onSubmit();
+  };
+  // console.log(errors, "$$$$$$$$$");
+
+  useEffect(() => {
+    document.addEventListener("keydown", onSubmitKeyEvent);
+    return () => document.removeEventListener("keydown", onSubmitKeyEvent);
+  });
+
   return (
-    <Form>
-      <h1>{message}</h1>
-      <div className="auth-wrapper">
-        <div className="registration">
-          <div className="registration-header">
-            <h5>Войти</h5>
-            <Link to="/registration">Регистрация</Link>
-          </div>
-
-          <div className="registration-body">
-            <Field type="email" name="email" />
-            {touched.email && errors.email && <div>{errors.email}</div>}
-            <Field type="password" name="password" />
-            {touched.password && errors.password && (
-              <div>{errors.password}</div>
-            )}
-          </div>
-          <button type="submit">Войти</button>
-        </div>
-      </div>
-    </Form>
+    <form>
+      <Input
+        type="email"
+        name="email"
+        placeholder="Email"
+        value={signIn.email}
+        onChange={onChangeSignUp}
+        errorMessage={errors ? errors["email"] : ""}
+      />
+      <Input
+        type="password"
+        name="password"
+        placeholder="Пароль"
+        value={signIn.password}
+        onChange={onChangeSignUp}
+        errorMessage={errors ? errors["password"] || errors["message"] : ""}
+      />
+      {loading ? (
+        <Loading />
+      ) : (
+        <Button
+          className={s.submit_btn}
+          onClick={onSubmit}
+          name="Войти"
+          title="Войти"
+          isLoading={loading}
+        >
+          Войти
+        </Button>
+      )}
+    </form>
   );
-};
-
-// The type of props MyForm receives
-interface MyFormProps {
-  initialEmail?: string;
-  message: string; // if this passed all the way through you might do this or make a union type
 }
-
-// Wrap our form with the withFormik HoC
-const MyForm = withFormik<MyFormProps, FormValues>({
-  // Transform outer props into form values
-  mapPropsToValues: (props) => {
-    return {
-      email: props.initialEmail || "",
-      password: "",
-    };
-  },
-  validationSchema: Yup.object().shape({
-    email: Yup.string().email("Email not valid").required("Email is required"),
-    password: Yup.string()
-      .length(4, "Not length")
-      .required("Password is required"),
-  }),
-  // Add a custom validation function (this can be async too!)
-  //    validate: (values: FormValues) => {
-  //      let errors: FormikErrors<FormValues> = {};
-  //      if (!values.email) {
-  //        errors.email = 'Required';
-  //      } else if (!isValidEmail(values.email)) {
-  //        errors.email = 'Invalid email address';
-  //      }
-  //      return errors;
-  //    },
-
-  handleSubmit: (values) => {
-    // do submitting things
-    console.log(values);
-  },
-})(InnerForm);
-
-// Use <MyForm /> wherevs
-const Basic = (): JSX.Element => (
-  <>
-    <MyForm message="" />
-  </>
-);
-
-export default Basic;

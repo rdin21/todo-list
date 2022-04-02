@@ -1,5 +1,5 @@
-import React, { ReactElement, FC } from "react";
-import "./Modal.scss";
+import React, { ReactElement, memo, useEffect } from "react";
+import s from "./Modal.module.scss";
 
 interface ModalProps {
   show: boolean;
@@ -8,7 +8,7 @@ interface ModalProps {
   onClose: () => void;
 }
 
-const Modal: FC<ModalProps> = ({ show = false, children, onClose, footer }) => {
+function Modal({ show = false, children, onClose, footer }: ModalProps): JSX.Element | null {
   const handlerOnKeyDown = ({ key }: KeyboardEvent) => {
     switch (key) {
       case "Escape":
@@ -17,7 +17,7 @@ const Modal: FC<ModalProps> = ({ show = false, children, onClose, footer }) => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.addEventListener("keydown", handlerOnKeyDown);
     return () => document.removeEventListener("keydown", handlerOnKeyDown);
   });
@@ -25,19 +25,19 @@ const Modal: FC<ModalProps> = ({ show = false, children, onClose, footer }) => {
   if (!show) return null;
 
   return (
-    <div className="modal" onClick={onClose}>
-      <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
-          <span className="modal-close" onClick={onClose}>
+    <div className={s.modal} onClick={onClose}>
+      <div className={s.modal_dialog} onClick={(e) => e.stopPropagation()}>
+        <div className={s.modal_header}>
+          <span className={s.modal_close} onClick={onClose}>
             &times;
           </span>
         </div>
-        <div className="modal-body">
-          <div className="modal-content">{children}</div>
+        <div className={s.modal_body}>
+          <div className={s.modal_content}>{children}</div>
         </div>
-        {footer && <div className="modal-footer">{footer}</div>}
+        {footer && <div className={s.modal_footer}>{footer}</div>}
       </div>
     </div>
   );
-};
-export default Modal;
+}
+export default memo(Modal);

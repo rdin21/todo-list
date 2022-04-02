@@ -13,7 +13,7 @@
   animation-name: appear;
   animation-duration: 300ms;
 
-  &-dialog {
+  &_dialog {
     width: 100%;
     max-width: 800px;
     background: white;
@@ -29,38 +29,38 @@
     animation-duration: 0.5s;
   }
 
-  &-header,
-  &-footer {
+  &_header,
+  &_footer {
     display: flex;
     align-items: center;
     padding: 1rem;
   }
 
-  &-header {
+  &_header {
     border-bottom: 1px solid #dbdbdb;
     justify-content: space-between;
   }
 
-  &-footer {
+  &_footer {
     border-top: 1px solid #dbdbdb;
     justify-content: flex-end;
   }
 
-  &-close {
+  &_close {
     cursor: pointer;
     padding: 1rem;
     margin: -1rem -1rem -1rem auto;
   }
 
-  &-body {
+  &_body {
     overflow: auto;
   }
 
-  &-content {
+  &_content {
     padding: 1rem;
   }
 
-  &-title {
+  &_title {
     margin: 0;
   }
   @keyframes appear {

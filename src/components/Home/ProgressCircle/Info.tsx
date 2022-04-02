@@ -14,15 +14,15 @@ export default function Info({ ready = 0, notReady = 0 }: InfoProps): JSX.Elemen
           <div
             className={classNames(`${s.percentage__progress}`, `${s.percentage__progress_green}`)}
           >
-            {Math.round(ready) + "%"}
+            {Number.isNaN(ready) ? 0 : Math.round(ready) + "%"}
           </div>
-          Ready
+          Выполнено
         </li>
         <li className={s.info__item}>
           <div className={classNames(`${s.percentage__progress}`, `${s.percentage__progress_red}`)}>
-            {Math.round(notReady) + "%"}
+            {Number.isNaN(notReady) ? 0 : Math.round(notReady) + "%"}
           </div>
-          Not done
+          Не выполнено
         </li>
       </ul>
     </div>

@@ -3,6 +3,8 @@ import { taskApi } from "../../service/taskService";
 import { formatDate } from "../../utils/utils";
 import { DataTypeTasks, Task } from "../../types/TypeTask";
 import TaskItem from "./Item/TaskItem";
+import s from "./Home.module.scss";
+
 export default function TasksList(): JSX.Element {
   const { data: tasks, error: getTaskError } = taskApi.useGetTaskQuery(formatDate);
   const { data: categories, error: getCategoriesError } = categoriesApi.useGetCategoriesQuery(10);
@@ -13,9 +15,9 @@ export default function TasksList(): JSX.Element {
   if (getCategoriesError) console.log("DeleteErrorTask", getCategoriesError);
 
   return (
-    <section className="tasks-for-day">
+    <section className={s.tasks_for_day}>
       <h3>Задачи на сегодня</h3>
-      <ul className="tasks-list">
+      <ul className={s.tasks_list}>
         {tasks !== undefined && tasks.length !== 0 ? (
           tasks?.map((date: DataTypeTasks) => {
             return date?.taskDate.map((task: Task) => {
@@ -33,7 +35,9 @@ export default function TasksList(): JSX.Element {
             });
           })
         ) : (
-          <h4>На сегодняшний день нет задач</h4>
+          <div className={s.not_task}>
+            <h4 className={s.not_task_title}>На сегодняшний день нет задач</h4>
+          </div>
         )}
       </ul>
     </section>

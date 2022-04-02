@@ -1,21 +1,24 @@
-import { FC } from "react";
-// import { useAppSelector } from "../hooks/redux";
-// import { IUserState } from "../models/TypeState";
-// import { TUserFromAccessToken } from "../models/TypeUser";
-// import { selectUser } from "../store/selectors";
+import React from "react";
+import { useAppSelector } from "../hooks/redux";
+import { IUserState } from "../types/TypeState";
+import { TUserFromAccessToken } from "../types/TypeUser";
+import { selectUser } from "../store/selectors";
+import Header from "../components/Header/Header";
 
-const User: FC = () => {
-  // const { user }: { user: TUserFromAccessToken } =
-  //   useAppSelector<IUserState>(selectUser);
+function User(): JSX.Element {
+  const { data } = useAppSelector<IUserState>(selectUser);
+  const user = data as TUserFromAccessToken;
+  console.log(user);
 
-  // const { name, age }: { name: string; age: number } = body.value
   return (
-    <div>
-      {/* <h1>{user.name}</h1>
+    <div className="container">
+      <Header />
+      <h1>{user.id}</h1>
+      <h1>{user.name}</h1>
       <h1>{user.lastname}</h1>
-      <h1>{user.email}</h1> */}
+      <h1>{user.email}</h1>
     </div>
   );
-};
+}
 
 export default User;

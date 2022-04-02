@@ -2,6 +2,7 @@ import { useState } from "react";
 import Buttons from "./Buttons";
 import Status from "./Status";
 import UpDate from "./UpDate";
+import s from "../Home.module.scss";
 type TasksItemProps = {
   id: number;
   status: boolean | null;
@@ -28,14 +29,14 @@ export default function TimeLineItem({
   const trueAndFalseColor = status ? "green" : "red";
   return (
     <li
-      className="tasks-list-item"
+      className={s.tasks_list_item}
       style={{
         boxShadow: `${status !== null ? trueAndFalseColor : color} 2px 3px 5px 0px`,
       }}
     >
       <span>{time}</span>
       <div
-        className="tasks-list-item-current-tasks"
+        className={s.tasks_list_item_current_tasks}
         style={{ opacity: status !== null ? "0.5" : "1", display: upDateTask ? "none" : "block" }}
       >
         {task}

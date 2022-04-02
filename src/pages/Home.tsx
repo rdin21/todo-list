@@ -1,5 +1,4 @@
-import "../components/Home/Home.scss";
-import { FC, useState } from "react";
+import React, { useState } from "react";
 import Header from "../components/Header/Header";
 import Statistics from "../components/Home/Statistics";
 import TasksList from "../components/Home/TasksList";
@@ -11,8 +10,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import DeleteCategories from "../components/Categories/DeleteCategories";
 import UpdateCategories from "../components/Categories/UpdateCategories";
-
-const Home: FC = () => {
+import s from "../components/Home/Home.module.scss";
+import classNames from "classnames";
+function Home(): JSX.Element {
   const [createTask, setCreateTask] = useState<boolean>(false);
   const [createCategory, setCreateCategory] = useState<boolean>(false);
   const [deleteCategory, setDeleteCategory] = useState<boolean>(false);
@@ -29,34 +29,34 @@ const Home: FC = () => {
         <section className="statistics__block">
           <Statistics />
         </section>
-        <div className="create-task-categories-buttons">
+        <div className={s.create_task_categories_buttons}>
           <Button
             onClick={() => setCreateTask(true)}
-            className="create-task-categories-btns plus-btn"
+            className={classNames(s.create_task_categories_btns, s.plus_btn)}
           >
-            <FontAwesomeIcon icon={faPlus} className="plus" />
-            task
+            <FontAwesomeIcon icon={faPlus} className={s.plus} />
+            задачу
           </Button>
           <Button
             onClick={() => setCreateCategory(true)}
-            className="create-task-categories-btns plus-btn"
+            className={classNames(s.create_task_categories_btns, s.plus_btn)}
           >
-            <FontAwesomeIcon icon={faPlus} className="plus" />
-            category
+            <FontAwesomeIcon icon={faPlus} className={s.plus} />
+            категорию
           </Button>
-          <Button
+          {/* <Button
             onClick={() => setDeleteCategory(true)}
-            className="create-task-categories-btns minus-btn"
+            className={classNames(s.create_task_categories_btns, s.plus_btn)}
           >
-            <FontAwesomeIcon icon={faTrash} className="minus" />
-            category
-          </Button>
+            <FontAwesomeIcon icon={faTrash} className={s.minus} />
+            категорию
+          </Button> */}
           <Button
             onClick={() => setUpDateCategory(true)}
-            className="create-task-categories-btns minus-btn"
+            className={classNames(s.create_task_categories_btns, s.plus_btn)}
           >
-            <FontAwesomeIcon icon={faTrash} className="minus" />
-            update
+            <FontAwesomeIcon icon={faTrash} className={s.minus} />
+            категорию
           </Button>
         </div>
 
@@ -76,6 +76,6 @@ const Home: FC = () => {
       </div>
     </main>
   );
-};
+}
 
 export default Home;
