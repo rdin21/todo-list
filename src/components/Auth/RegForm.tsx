@@ -1,43 +1,45 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../hooks/redux";
 import { HOME_ROUTE } from "../../routes/pathRoutes";
-import { login } from "../../service/userService";
-import { TLoginUser } from "../../types/TypeUser";
+import { registration } from "../../service/userService";
+import { TRegisterUser } from "../../types/TypeUser";
 import { Button, InputGroup } from "../BaseComponent";
 import Loading from "../Preloader/Loading";
 import s from "./Auth.module.scss";
-
 let count = 0;
-export default function LoginForm(): JSX.Element {
-  console.log("RENDER LOGIN_FORM", count++);
+function RegForm(): JSX.Element {
+  console.log("RENDER_REG_FORM", count++);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [loading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<any>({});
 
-  const [signIn, setSignIn] = useState<TLoginUser>({
+  const [signUp, setSignUp] = useState<TRegisterUser>({
+    name: "",
+    lastname: "",
     email: "",
     password: "",
   });
 
   const onChangeSignUp = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
-    setSignIn({
-      ...signIn,
+    setSignUp({
+      ...signUp,
       [name]: value,
     });
   };
 
   const onSubmit = (): void => {
     setErrors({});
-    setIsLoading(true);
+    setLoading(true);
     const obj: any = {};
 
-    dispatch(login(signIn))
+    dispatch(registration(signUp))
       .then((res: any) => {
-        setIsLoading(false);
+        setLoading(false);
+
         if (res.payload.statusCode || Array.isArray(res.payload)) {
           if (Array.isArray(res.payload)) {
             // console.log(res.payload, "////////");
@@ -55,29 +57,34 @@ export default function LoginForm(): JSX.Element {
           navigate(HOME_ROUTE);
         }
       })
-      .finally(() => {
-        setIsLoading(false);
-      });
+      .finally(() => setLoading(false));
   };
-  // console.log(errorMessages, loading);
 
-  const onSubmitKeyEvent = ({ key }: KeyboardEvent): void => {
-    if (key === "Enter") onSubmit();
-  };
-  // console.log(errors, "$$$$$$$$$");
-
-  useEffect(() => {
-    document.addEventListener("keydown", onSubmitKeyEvent);
-    return () => document.removeEventListener("keydown", onSubmitKeyEvent);
-  });
+  console.log(errors, "**********");
 
   return (
     <form>
       <InputGroup
+        type="text"
+        name="name"
+        placeholder="Имя"
+        value={signUp.name}
+        onChange={onChangeSignUp}
+        errorMessage={errors ? errors["name"] : ""}
+      />
+      <InputGroup
+        type="text"
+        name="lastname"
+        placeholder="Фамилия"
+        value={signUp.lastname}
+        onChange={onChangeSignUp}
+        errorMessage={errors ? errors["lastname"] : ""}
+      />
+      <InputGroup
         type="email"
         name="email"
         placeholder="Email"
-        value={signIn.email}
+        value={signUp.email}
         onChange={onChangeSignUp}
         errorMessage={errors ? errors["email"] : ""}
       />
@@ -85,23 +92,24 @@ export default function LoginForm(): JSX.Element {
         type="password"
         name="password"
         placeholder="Пароль"
-        value={signIn.password}
+        value={signUp.password}
         onChange={onChangeSignUp}
-        errorMessage={errors ? errors["password"] || errors["message"] : ""}
+        errorMessage={errors ? errors["password"] : ""}
       />
+
       {loading ? (
         <Loading />
       ) : (
         <Button
-          className={s.submit_btn}
           onClick={onSubmit}
-          name="Войти"
-          title="Войти"
-          isLoading={loading}
+          name="Зарегистрировать"
+          title="Зарегистрировать"
+          className={s.submit_btn}
         >
-          Войти
+          Зарегистрировать
         </Button>
       )}
     </form>
   );
 }
+export default RegForm;

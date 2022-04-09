@@ -1,3 +1,5 @@
+@import "../../../scss//variables";
+
 @keyframes render {
   0% {
     stroke-dasharray: 0 100;
@@ -29,12 +31,12 @@
     }
 
     &__arc:nth-child(1) {
-      stroke: green;
+      stroke: $green;
       // stroke-dasharray: 33 100;
     }
 
     &__arc:nth-child(2) {
-      stroke: red;
+      stroke: $red;
       // stroke-dasharray: 67 100;
       stroke-dashoffset: -33;
     }
@@ -54,10 +56,7 @@
     position: relative;
     margin: 20px 0;
     padding-left: 30px;
-    font-family: Verdana, sans-serif;
     font-size: 0.7rem;
-    line-height: 18px;
-    color: black;
   }
 
   .percentage__progress {
@@ -67,11 +66,11 @@
     display: inline-block;
 
     &_green {
-      color: green;
+      color: $red;
     }
 
     &_red {
-      color: red;
+      color: $green;
     }
   }
 }

@@ -12,16 +12,17 @@ import DeleteCategories from "../components/Categories/DeleteCategories";
 import UpdateCategories from "../components/Categories/UpdateCategories";
 import s from "../components/Home/Home.module.scss";
 import classNames from "classnames";
+
 function Home(): JSX.Element {
   const [createTask, setCreateTask] = useState<boolean>(false);
   const [createCategory, setCreateCategory] = useState<boolean>(false);
   const [deleteCategory, setDeleteCategory] = useState<boolean>(false);
   const [upDateCategory, setUpDateCategory] = useState<boolean>(false);
 
-  const onCloseTaskModel = () => setCreateTask(false);
-  const onCloseCategoryModel = () => setCreateCategory(false);
-  const onCloseDeleteCategoryModel = () => setDeleteCategory(false);
-  const onCloseUpDateCategoryModel = () => setUpDateCategory(false);
+  const onCloseTaskModel = (): void => setCreateTask(false);
+  const onCloseCategoryModel = (): void => setCreateCategory(false);
+  const onCloseDeleteCategoryModel = (): void => setDeleteCategory(false);
+  const onCloseUpDateCategoryModel = (): void => setUpDateCategory(false);
   return (
     <main className="main">
       <div className="container">
@@ -44,19 +45,19 @@ function Home(): JSX.Element {
             <FontAwesomeIcon icon={faPlus} className={s.plus} />
             категорию
           </Button>
-          {/* <Button
+          <Button
             onClick={() => setDeleteCategory(true)}
             className={classNames(s.create_task_categories_btns, s.plus_btn)}
           >
             <FontAwesomeIcon icon={faTrash} className={s.minus} />
             категорию
-          </Button> */}
+          </Button>
           <Button
             onClick={() => setUpDateCategory(true)}
             className={classNames(s.create_task_categories_btns, s.plus_btn)}
           >
-            <FontAwesomeIcon icon={faTrash} className={s.minus} />
-            категорию
+            {/* <FontAwesomeIcon icon={faTrash} className={s.minus} /> */}
+            обновить категорию
           </Button>
         </div>
 

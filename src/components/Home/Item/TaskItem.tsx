@@ -31,7 +31,7 @@ export default function TimeLineItem({
     <li
       className={s.tasks_list_item}
       style={{
-        boxShadow: `${status !== null ? trueAndFalseColor : color} 2px 3px 5px 0px`,
+        boxShadow: `${status !== null ? trueAndFalseColor : color} 0px 2px 0px 0px`,
       }}
     >
       <span>{time}</span>

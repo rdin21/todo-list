@@ -35,7 +35,7 @@ function CategoriesList({
                 key={category.id}
                 onClick={() => onClick(category.id)}
                 title="Обновить"
-                style={{ border: `1px solid ${category.color}` }}
+                style={{ border: `2px solid ${category.color}` }}
               >
                 {category.name}
                 <span className={classNameIcon}>{icon}</span>

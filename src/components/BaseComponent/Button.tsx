@@ -17,10 +17,10 @@ function Button({ className, isLoading = false, children, ...props }: ButtonProp
   );
 }
 
-function ButtonPropsAreEqual(prevProps: any, nextProps: any) {
-  return prevProps !== nextProps;
-}
+// function ButtonPropsAreEqual(prevProps: any, nextProps: any) {
+//   return prevProps !== nextProps;
+// }
 
-const MemoizedButton = React.memo(Button, ButtonPropsAreEqual);
+// const MemoizedButton = React.memo(Button, ButtonPropsAreEqual);
 
-export default MemoizedButton;
+export default Button;

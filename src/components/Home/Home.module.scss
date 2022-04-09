@@ -1,3 +1,5 @@
+@import "../../scss//variables";
+
 .progress {
   display: flex;
   margin-top: 40px;
@@ -49,7 +51,6 @@
           font-size: 0.8rem;
           padding: 10px;
           width: 80%;
-          // border: 1px solid black;
           border: none;
         }
 
@@ -84,13 +85,14 @@
 
 .create_task_categories_buttons {
   text-align: center;
+  margin: 20px;
 
   .plus_btn {
-    border: 1px solid green;
+    border: 1px solid $green;
   }
 
   .minus_btn {
-    border: 1px solid red;
+    border: 1px solid $red;
   }
 
   .plus,
@@ -108,7 +110,7 @@
     letter-spacing: 1px;
     background: transparent;
     cursor: pointer;
-    color: #242121;
+    color: $fontColor;
 
     &:hover {
       opacity: 0.7;
@@ -126,7 +128,7 @@
 
 .ready {
   font-family: cursive;
-  color: #008000;
+  color: $green;
   position: absolute;
   left: 50%;
   font-size: 24px;
@@ -136,7 +138,7 @@
 
 .not_ready {
   font-family: cursive;
-  color: red;
+  color: $red;
   position: absolute;
   left: 50%;
   font-size: 30px;

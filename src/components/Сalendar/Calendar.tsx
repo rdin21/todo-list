@@ -6,13 +6,16 @@ import { months, weekdays } from "./daysMonths";
 import useCalendar from "../../hooks/useCalendar";
 import { formatFullDate } from "../../utils/utils";
 import { taskApi } from "../../service/taskService";
+import Modal from "../Modal/Modal";
+import AnyDay from "./AnyDay";
 
 const Index = (): JSX.Element => {
   const [date, setDate] = useState<Date>(new Date());
   const days = useCalendar(date);
   const [getTasks, { data, isLoading, error }] = taskApi.useLazyGetTaskQuery();
+  const [anyDay, setAnyDay] = useState<boolean>(false);
 
-  // console.log(days);
+  const onCloseAnyDayModel = (): void => setAnyDay(false);
 
   const prevMonth = (): void => {
     const newDate = date.setMonth(date.getMonth() - 1);
@@ -30,12 +33,16 @@ const Index = (): JSX.Element => {
     else numberDay = String(day);
     const searchDate = formatFullDate(+numberDay, +date.getMonth() + 1, +date.getFullYear());
     getTasks(searchDate);
+    setAnyDay(true);
   };
-  console.log(data);
+  // console.log(data);
+
+  // eslint-disable-next-line no-console
+  if (error) console.log("ErrorCalendar", error);
 
   return (
     <section className={s.calendar__container}>
-      <h4>Calendar</h4>
+      <h4>Календарь</h4>
       <div className={s.calendar}>
         <div className={s.month}>
           <i className={s.prev} onClick={prevMonth}>
@@ -79,6 +86,9 @@ const Index = (): JSX.Element => {
             );
           })}
         </div>
+        <Modal show={anyDay} onClose={onCloseAnyDayModel}>
+          <AnyDay data={data} />
+        </Modal>
       </div>
     </section>
   );

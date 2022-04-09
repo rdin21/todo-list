@@ -2,6 +2,7 @@ import s from "./Categories.module.scss";
 import { useState, MouseEvent } from "react";
 import { categoriesApi } from "../../service/categoriesService";
 import { TCreateCategories, TColorsCategories, TUpDateCategory } from "../../types/TypeCategories";
+import { Button } from "../BaseComponent";
 
 const colors: TColorsCategories[] = [
   { id: 1, color: "color-green", name: "green" },
@@ -19,11 +20,7 @@ interface CategoriesColorsProps {
 }
 
 function ColorsList({ state, setState }: CategoriesColorsProps): JSX.Element {
-  const {
-    data: categories,
-    // error: getCategoriesError,
-    // isLoading: loadingCategoriesError,
-  } = categoriesApi.useGetCategoriesQuery(2);
+  const { data: categories, error, isLoading } = categoriesApi.useGetCategoriesQuery(2);
   const [active, setActive] = useState<number | undefined>();
   const onClickColor = (e: MouseEvent<HTMLButtonElement>): void => {
     const { innerText } = e.currentTarget;
@@ -31,6 +28,10 @@ function ColorsList({ state, setState }: CategoriesColorsProps): JSX.Element {
     setActive(Number(id));
     setState({ ...state, color });
   };
+
+  // eslint-disable-next-line no-console
+  if (error) console.log(error);
+
   return (
     <ul className={s.crete_categories_colors}>
       <li className={s.crete_categories_colors_name}>Colors</li>
@@ -39,14 +40,15 @@ function ColorsList({ state, setState }: CategoriesColorsProps): JSX.Element {
 
         return (
           <li key={color.id}>
-            <button
+            <Button
               type="button"
+              isLoading={isLoading}
               onClick={onClickColor}
               className={`${s.crete_categories_color_item} ${color.color} ${
-                color.id === active ? "active" : ""
+                color.id === active ? s.active : ""
               } ${findCategory ? "disabled" : ""}`}
               disabled={!!findCategory}
-            >{`${color.id}|${color.name}`}</button>
+            >{`${color.id}|${color.name}`}</Button>
           </li>
         );
       })}

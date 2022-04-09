@@ -2,7 +2,7 @@ import s from "./Categories.module.scss";
 import { useState, ChangeEvent } from "react";
 import { categoriesApi } from "../../service/categoriesService";
 import { TCreateCategories } from "../../types/TypeCategories";
-import { Button } from "../BaseComponent";
+import { Button, Input } from "../BaseComponent";
 import CategoriesColors from "./ColorsList";
 
 interface CreateCategoriesProps {
@@ -10,9 +10,7 @@ interface CreateCategoriesProps {
 }
 
 function CreateCategories({ onCloseCategoryModel }: CreateCategoriesProps): JSX.Element {
-  const [createCategory, { error: createCategoryError, isLoading: createCategoryLoading }] =
-    categoriesApi.useCreateCategoriesMutation();
-  // const [active, setActive] = useState<number | undefined>();
+  const [createCategory, { error, isLoading }] = categoriesApi.useCreateCategoriesMutation();
   const [category, setCategory] = useState<TCreateCategories>({
     name: "",
     color: "",
@@ -22,36 +20,32 @@ function CreateCategories({ onCloseCategoryModel }: CreateCategoriesProps): JSX.
     setCategory({ ...category, name: e.target.value });
   };
   const createdCategory = (): void => {
-    // console.log(category);
     createCategory(category).then(() => onCloseCategoryModel());
     setCategory({
       name: "",
       color: "",
     });
-    // setActive(undefined);
   };
-  // console.log(error);
+
+  // eslint-disable-next-line no-console
+  if (error) console.log("createCategoryError", error);
 
   return (
     <>
       <div className={s.crete_categories}>
-        <h3>Create categories</h3>
+        <h3>Создать категорию</h3>
         <div className={s.crete_categories_input_group}>
-          <input
+          <Input
             type="text"
             onChange={onChangeCategoryName}
             value={category.name}
-            placeholder="category"
+            placeholder="Имя категории"
           />
         </div>
         <CategoriesColors state={category} setState={setCategory} />
         <div className={s.create_buttons}>
-          <Button
-            className={s.create_buttons_btn}
-            onClick={createdCategory}
-            isLoading={createCategoryLoading}
-          >
-            Add category
+          <Button className={s.create_button} onClick={createdCategory} isLoading={isLoading}>
+            Создать
           </Button>
         </div>
       </div>

@@ -214,6 +214,25 @@
       border: 1px solid lightblue;
       padding: 10px;
       border-radius: 10px;
+      height: 40px;
+      text-align: center;
+    }
+  }
+
+  .create_button {
+    padding: 7px;
+    cursor: pointer;
+    border: none;
+    background-color: green;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    margin: 0 auto;
+    display: block;
+    width: 150px;
+    max-width: 150px;
+
+    &:hover {
+      opacity: 0.5;
     }
   }
 }

@@ -1,3 +1,7 @@
+//==================================================
+//Add-Tasks
+//==================================================
+
 .add_tasks {
   h4 {
     text-align: center;
@@ -12,26 +16,40 @@
   padding: 20px;
 
   &_text {
-    border: 1px solid black;
+    margin: 15px auto;
+    border: 1px solid lightblue;
     margin-top: 20px;
     width: 80%;
     font-size: 0.7rem;
     padding: 10px;
     border-radius: 3px;
+    text-align: center;
   }
 
   .data_input_group {
+    margin-top: 10px;
     border-bottom: 1px solid lightgray;
-    margin-top: 25px;
     width: 80%;
+    display: flex;
 
     &_date {
       width: 50%;
       height: 30px;
       font-size: 0.7rem;
       text-align: center;
-      border: none;
       display: inline-block;
+      border: none;
+
+      &::-webkit-calendar-picker-indicator {
+        background: url("../../images/icons/calendar.ico");
+        width: 28px;
+        height: 28px;
+        margin-right: 10px;
+      }
+
+      &::-webkit-datetime-edit {
+        color: red;
+      }
     }
 
     &_separator {
@@ -51,30 +69,55 @@
         padding: 10px;
         margin-left: 5px;
         font-size: 0.7rem;
+        text-align: center;
+
+        &::-webkit-inner-spin-button {
+          display: none;
+        }
       }
     }
   }
-}
 
-.categories_buttons_list {
-  margin-top: 15px;
-  display: flex;
-  flex-wrap: wrap;
-  list-style-type: none;
-
-  button {
-    margin-right: 15px;
+  .create_btn {
     padding: 10px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 300;
+    border-radius: 5px;
+    background-color: green;
+    max-width: 150px;
+    width: 150px;
     border: none;
-    background-color: transparent;
-    font-size: 0.7rem;
-    font-weight: 400;
 
     &:hover {
-      opacity: 0.5;
+      opacity: 0.8;
     }
   }
 }
+//\\================//\\================//\\================//\\
+// .categories_buttons_list {
+//   margin-top: 15px;
+//   display: flex;
+//   flex-wrap: wrap;
+//   list-style-type: none;
+
+//   button {
+//     margin-right: 15px;
+//     padding: 10px;
+//     border: none;
+//     background-color: transparent;
+//     font-size: 0.7rem;
+//     font-weight: 400;
+
+//     &:hover {
+//       opacity: 0.5;
+//     }
+//   }
+// }
+
+//==================================================
+//Delete-List
+//==================================================
 
 .delete_list {
   display: flex;
@@ -90,6 +133,7 @@
     position: relative;
     min-width: 75px;
     text-align: center;
+    border-radius: 10px;
 
     &_delete_icon {
       display: none;
@@ -110,3 +154,4 @@
     }
   }
 }
+//\\================//\\================//\\================//\\

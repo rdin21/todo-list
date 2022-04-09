@@ -38,11 +38,15 @@ export const categoriesApi = createApi({
     }),
 
     createCategories: build.mutation<ICategories, TCreateCategories>({
-      query: (post) => ({
-        url: "/categories",
-        method: "POST",
-        body: post,
-      }),
+      query: (post) => {
+        console.log(post);
+
+        return {
+          url: "/categories",
+          method: "POST",
+          body: post,
+        };
+      },
       invalidatesTags: ["Categories"],
     }),
 

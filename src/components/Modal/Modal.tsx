@@ -3,12 +3,19 @@ import s from "./Modal.module.scss";
 
 interface ModalProps {
   show: boolean;
+  header?: ReactElement | string;
   footer?: ReactElement | string;
   children: ReactElement;
   onClose: () => void;
 }
 
-function Modal({ show = false, children, onClose, footer }: ModalProps): JSX.Element | null {
+function Modal({
+  show = false,
+  children,
+  onClose,
+  footer,
+  header,
+}: ModalProps): JSX.Element | null {
   const handlerOnKeyDown = ({ key }: KeyboardEvent) => {
     switch (key) {
       case "Escape":
@@ -28,6 +35,7 @@ function Modal({ show = false, children, onClose, footer }: ModalProps): JSX.Ele
     <div className={s.modal} onClick={onClose}>
       <div className={s.modal_dialog} onClick={(e) => e.stopPropagation()}>
         <div className={s.modal_header}>
+          {header && <div className={s.modal_footer}>{header}</div>}
           <span className={s.modal_close} onClick={onClose}>
             &times;
           </span>

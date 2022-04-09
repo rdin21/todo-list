@@ -1,7 +1,5 @@
-import s from "./AddTask.module.scss";
 import { useState, ChangeEvent } from "react";
 import { useAppSelector } from "../../hooks/redux";
-// import { CreateTask } from "../../types/TypeTask";
 import { TUserFromAccessToken } from "../../types/TypeUser";
 import { selectUser } from "../../store/selectors";
 import { taskApi } from "../../service/taskService";
@@ -10,6 +8,8 @@ import { formatDate } from "../../utils/utils";
 import { Input, Button } from "../BaseComponent";
 import CategoriesList from "../Categories/CategoriesList";
 import DateInputs from "./DateInputs";
+import s from "./AddTask.module.scss";
+import { IDateTask } from "./Types";
 
 interface AddTaskProps {
   onCloseModal: () => void;
@@ -23,8 +23,8 @@ function AddTask({ onCloseModal }: AddTaskProps): JSX.Element {
   const user = data as TUserFromAccessToken;
 
   const [text, setText] = useState<string>("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState({
+  const [date, setDate] = useState<string>("");
+  const [time, setTime] = useState<IDateTask>({
     hour: "",
     minute: "",
   });
@@ -60,7 +60,7 @@ function AddTask({ onCloseModal }: AddTaskProps): JSX.Element {
 
   return (
     <div className={s.add_tasks}>
-      <h4>Create task</h4>
+      <h1>Создать задачу</h1>
 
       <Input
         className={s.add_tasks_text}
@@ -73,7 +73,6 @@ function AddTask({ onCloseModal }: AddTaskProps): JSX.Element {
 
       <DateInputs date={date} setDate={setDate} time={time} setTime={setTime} />
       <div>
-        <h4>Categories</h4>
         <CategoriesList
           onClick={onClickColor}
           classNameList={s.delete_list}
@@ -83,7 +82,7 @@ function AddTask({ onCloseModal }: AddTaskProps): JSX.Element {
       </div>
 
       <Button className={s.create_btn} onClick={createdTask} isLoading={loadingTask}>
-        Created task
+        Создать
       </Button>
     </div>
   );

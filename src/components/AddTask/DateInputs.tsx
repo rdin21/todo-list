@@ -1,11 +1,11 @@
 import React, { ChangeEvent } from "react";
-import { CreateTask } from "../../types/TypeTask";
 import s from "./AddTask.module.scss";
 import { Input } from "../BaseComponent";
+import { IDateTask } from "./Types";
 
 interface DateInputsProps {
-  date: any;
-  time: any;
+  date: string;
+  time: IDateTask;
   setDate: any;
   setTime: any;
 }
@@ -13,8 +13,10 @@ let render = 0;
 function DateInputs({ date, time, setDate, setTime }: DateInputsProps): JSX.Element {
   console.log("renderDateInputs", render++);
 
-  const onChangeHour = (e: ChangeEvent<HTMLInputElement>) =>
+  const onChangeHour = (e: ChangeEvent<HTMLInputElement>) => {
     setTime({ ...time, hour: e.target.value });
+  };
+
   const onChangeMinute = (e: ChangeEvent<HTMLInputElement>) =>
     setTime({ ...time, minute: e.target.value });
   return (

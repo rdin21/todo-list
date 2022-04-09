@@ -1,4 +1,4 @@
-$fontSizeLink: 0.8rem;
+@import "../../scss/variables";
 
 .header {
   display: flex;
@@ -9,25 +9,19 @@ $fontSizeLink: 0.8rem;
     font-weight: 300;
   }
 
-  &_time {
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-  }
-
-  a:hover {
-    color: #477ee8b3;
-    outline-color: #477ee800;
-    outline-offset: 50px;
-  }
-
   .header_subtitle {
-    font-size: 0.7rem;
-    letter-spacing: 2px;
+    font-size: 0.65rem;
+    letter-spacing: 1px;
 
     &_tasks_count {
       font-size: 0.75rem;
-      color: #fb0;
+      color: f4f4f4;
     }
+  }
+
+  &_time {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
   }
 }
 
@@ -49,12 +43,12 @@ $fontSizeLink: 0.8rem;
     display: block;
     padding: 6px 12px;
     text-decoration: none;
-    color: black;
     font-size: $fontSizeLink;
+    color: $fontColor;
   }
 
   a:hover {
-    color: red;
+    color: 1px solid $important;
   }
 }
 
