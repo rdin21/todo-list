@@ -3,7 +3,7 @@ import Header from "../components/Header/Header";
 import Statistics from "../components/Home/Statistics";
 import TasksList from "../components/Home/TasksList";
 import AddTask from "../components/AddTask/AddTask";
-import Modal from "../components/Modal/Modal";
+import Modal from "../components/UI/Modal/Modal";
 import CreateCategories from "../components/Categories/CreateCategories";
 import DeleteCategories from "../components/Categories/DeleteCategories";
 import UpdateCategories from "../components/Categories/UpdateCategories";

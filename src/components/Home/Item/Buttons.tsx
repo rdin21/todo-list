@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faPencilAlt, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { taskApi } from "../../../service/taskService";
 import s from "../Home.module.scss";
-import { Button } from "../../BaseComponent";
+import { Button } from "../../UI/BaseComponent";
 import { categoriesApi } from "../../../service/categoriesService";
 interface ItemButtonsProps {
   status: null | boolean;

@@ -2,7 +2,7 @@ import s from "./ProgressCircle.module.scss";
 import { DataTypeTasks } from "../../../types/TypeTask";
 import { taskApi } from "../../../service/taskService";
 import useProgressCircle from "../../../hooks/useProgressCircle";
-import Preloader2 from "../../Preloader/Loading";
+import Preloader2 from "../../UI/Preloader/Loading";
 import { formatDate } from "../../../utils/utils";
 import Info from "./Info";
 import Circle from "./Circle";

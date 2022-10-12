@@ -5,7 +5,7 @@ import { selectUser } from "../../store/selectors";
 import { taskApi } from "../../service/taskService";
 
 import { formatDate } from "../../utils/utils";
-import { Input, Button } from "../BaseComponent";
+import { Input, Button } from "../UI/BaseComponent";
 import CategoriesList from "../Categories/CategoriesList";
 import DateInputs from "./DateInputs";
 import s from "./AddTask.module.scss";

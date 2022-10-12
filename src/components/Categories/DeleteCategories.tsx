@@ -3,7 +3,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { categoriesApi } from "../../service/categoriesService";
 import CategoriesList from "./CategoriesList";
-import Spinner from "../Preloader/Spinner";
+import Spinner from "../UI/Preloader/Spinner";
 import s from "./Categories.module.scss";
 
 export default function DeleteCategories(): JSX.Element {

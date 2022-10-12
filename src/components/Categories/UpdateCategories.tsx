@@ -5,9 +5,9 @@ import s from "./Categories.module.scss";
 import { categoriesApi } from "../../service/categoriesService";
 import { TCreateCategories, TUpDateCategory } from "../../types/TypeCategories";
 import ColorsList from "./ColorsList";
-import { Button, Input } from "../BaseComponent";
+import { Button, Input } from "../UI/BaseComponent";
 import CategoriesList from "./CategoriesList";
-import Spinner from "../Preloader/Spinner";
+import Spinner from "../UI/Preloader/Spinner";
 
 function UpdateCategories(): JSX.Element {
   const [id, setIdCategory] = useState<number | null>(null);

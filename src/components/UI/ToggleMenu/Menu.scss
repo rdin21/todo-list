@@ -1,4 +1,4 @@
-@import "../../scss/mixins";
+@import "../../../scss/mixins";
 
 //vars
 $fg: #f90000f7;
@@ -23,10 +23,6 @@ $open-distance: 105px;
 
 .menu-open {
   display: none;
-}
-
-.menu-item {
-  @extend %ball;
 }
 
 .hamburger {
@@ -82,6 +78,8 @@ $hamburger-spacing: 5px;
 }
 
 .menu-item {
+  @extend %ball;
+
   & svg {
     position: absolute;
     left: 7px;

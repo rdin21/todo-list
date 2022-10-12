@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import classNames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "../BaseComponent";
+import { Button } from "../UI/BaseComponent";
 import s from "./Home.module.scss";
 
 interface IButtonsProps {

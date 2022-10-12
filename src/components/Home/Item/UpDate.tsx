@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent } from "react";
 import { taskApi } from "../../../service/taskService";
-import { Button, Input } from "../../BaseComponent";
+import { Button, Input } from "../../UI/BaseComponent";
 import s from "../Home.module.scss";
 interface UpDateTaskProps {
   setUpDateTask: (bol: boolean) => void;

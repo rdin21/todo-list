@@ -1,7 +1,7 @@
 import { useState, MouseEvent, memo } from "react";
 import { categoriesApi } from "../../service/categoriesService";
 import { TCreateCategories, TColorsCategories, TUpDateCategory } from "../../types/TypeCategories";
-import { Button } from "../BaseComponent";
+import { Button } from "../UI/BaseComponent";
 import s from "./Categories.module.scss";
 
 const colors: TColorsCategories[] = [

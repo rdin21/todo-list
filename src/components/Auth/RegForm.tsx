@@ -4,8 +4,8 @@ import { useAppDispatch } from "../../hooks/redux";
 import { HOME_ROUTE } from "../../routes/pathRoutes";
 import { registration } from "../../service/userService";
 import { TRegisterUser } from "../../types/TypeUser";
-import { Button, InputGroup } from "../BaseComponent";
-import Loading from "../Preloader/Loading";
+import { Button, InputGroup } from "../UI/BaseComponent";
+import Loading from "../UI/Preloader/Loading";
 import s from "./Auth.module.scss";
 let count = 0;
 function RegForm(): JSX.Element {

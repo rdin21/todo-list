@@ -6,7 +6,7 @@ import { months, weekdays } from "./daysMonths";
 import useCalendar from "../../hooks/useCalendar";
 import { formatFullDate } from "../../utils/utils";
 import { taskApi } from "../../service/taskService";
-import Modal from "../Modal/Modal";
+import Modal from "../UI/Modal/Modal";
 import AnyDay from "./AnyDay";
 
 const Index = (): JSX.Element => {

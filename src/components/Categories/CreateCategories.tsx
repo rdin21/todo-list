@@ -2,7 +2,7 @@ import s from "./Categories.module.scss";
 import { useState, ChangeEvent } from "react";
 import { categoriesApi } from "../../service/categoriesService";
 import { TCreateCategories } from "../../types/TypeCategories";
-import { Button, Input } from "../BaseComponent";
+import { Button, Input } from "../UI/BaseComponent";
 import CategoriesColors from "./ColorsList";
 
 interface CreateCategoriesProps {

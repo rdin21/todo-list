@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import s from "./ProgressColumn.module.scss";
 import { TCategoriesAndTask } from "../../../types/TypeCategories";
-import Preloader2 from "../../Preloader/Loading";
+import Preloader2 from "../../UI/Preloader/Loading";
 import Item from "./Item";
 
 interface ColumnsProps {

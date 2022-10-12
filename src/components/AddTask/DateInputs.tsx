@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from "react";
-import { Input } from "../BaseComponent";
+import { Input } from "../UI/BaseComponent";
 import { IDateTask } from "./Types";
 import s from "./AddTask.module.scss";
 

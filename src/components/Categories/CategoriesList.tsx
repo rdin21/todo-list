@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { categoriesApi } from "../../service/categoriesService";
-import Loading from "../Preloader/Loading";
+import Loading from "../UI/Preloader/Loading";
 import s from "./Categories.module.scss";
 interface CategoriesListProps {
   classNameList?: string;

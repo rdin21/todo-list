@@ -4,8 +4,8 @@ import { useAppDispatch } from "../../hooks/redux";
 import { HOME_ROUTE } from "../../routes/pathRoutes";
 import { login } from "../../service/userService";
 import { TLoginUser } from "../../types/TypeUser";
-import { Button, InputGroup } from "../BaseComponent";
-import Loading from "../Preloader/Loading";
+import { Button, InputGroup } from "../UI/BaseComponent";
+import Loading from "../UI/Preloader/Loading";
 import s from "./Auth.module.scss";
 
 let count = 0;

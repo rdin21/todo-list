@@ -5,8 +5,8 @@ import { formatDate } from "../../utils/utils";
 import { Task } from "../../types/TypeTask";
 import TaskItem from "./Item/TaskItem";
 import s from "./Home.module.scss";
-import Loading from "../Preloader/Loading";
-import LoadingCircle from "../Preloader/LoaderCircle";
+import Loading from "../UI/Preloader/Loading";
+import LoadingCircle from "../UI/Preloader/LoaderCircle";
 
 function TasksList(): JSX.Element {
   const {

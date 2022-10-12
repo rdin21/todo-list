@@ -8,7 +8,7 @@ import {
 } from "../routes/pathRoutes";
 import { Reg, Login } from "../components/Auth";
 import { Home, Calendar } from "../pages";
-import NotFoundRoute from "../components/NotFoundRoute/Index";
+import NotFoundRoute from "../components/UI/NotFoundRoute/Index";
 interface RoutesTypes {
   path: string;
   Component: FC;

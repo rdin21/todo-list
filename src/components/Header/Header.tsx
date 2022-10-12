@@ -8,7 +8,7 @@ import Clock from "./Clock";
 import { taskApi } from "../../service/taskService";
 import s from "./Header.module.scss";
 import Navigation from "./Navigation";
-import MobileMenu from "../ToggleMenu/Menu";
+import MobileMenu from "../UI/ToggleMenu/Menu";
 
 function Header(): JSX.Element {
   const { data } = useAppSelector<IUserState>(selectUser);
