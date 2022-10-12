@@ -8,6 +8,9 @@
     "source.fixAll.stylelint": true
   },
 
+  "jest.autoRun": "off",
+  "jest.showTerminalOnLaunch": false,
+
   "cSpell.language": "en,ru",
 
   "stylelint.validate": ["css", "scss"],
@@ -16,9 +19,7 @@
   "less.validate": false,
   "scss.validate": false,
 
-
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-
 
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -42,7 +43,6 @@
     "editor.wordSeparators": "`!%&()[{]}|;'\",?#"
   },
   "[css]": {
-
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "editor.wordSeparators": "`~!%^&*()=+[{]}\\|;:'\",.<>/?$"
@@ -51,6 +51,5 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "editor.wordSeparators": "`~!%^&*()=+[{]}\\|;:'\",.<>/?"
-  },
-
+  }
 }
