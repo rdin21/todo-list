@@ -3,12 +3,12 @@ import {
   REGISTRATION_ROUTE,
   LOGIN_ROUTE,
   HOME_ROUTE,
-  USER_ROUTE,
   CALENDAR_ROUTE,
+  ALL_ROUTES,
 } from "../routes/pathRoutes";
 import { Reg, Login } from "../components/Auth";
-import { Home, User, Calendar } from "../pages";
-
+import { Home, Calendar } from "../pages";
+import NotFoundRoute from "../components/NotFoundRoute/Index";
 interface RoutesTypes {
   path: string;
   Component: FC;
@@ -28,11 +28,11 @@ export const allRoutes: RoutesTypes[] = [
     Component: Home,
   },
   {
-    path: USER_ROUTE,
-    Component: User,
-  },
-  {
     path: CALENDAR_ROUTE,
     Component: Calendar,
+  },
+  {
+    path: ALL_ROUTES,
+    Component: NotFoundRoute,
   },
 ];
