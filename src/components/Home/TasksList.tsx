@@ -1,13 +1,14 @@
+import React, { useMemo, useState, memo } from "react";
 import { categoriesApi } from "../../service/categoriesService";
 import { taskApi } from "../../service/taskService";
 import { formatDate } from "../../utils/utils";
 import { Task } from "../../types/TypeTask";
 import TaskItem from "./Item/TaskItem";
 import s from "./Home.module.scss";
-import { useMemo, useState } from "react";
 import Loading from "../Preloader/Loading";
+import LoadingCircle from "../Preloader/LoaderCircle";
 
-export default function TasksList(): JSX.Element {
+function TasksList(): JSX.Element {
   const {
     data: tasks,
     error: getTaskError,
@@ -67,3 +68,5 @@ export default function TasksList(): JSX.Element {
     </section>
   );
 }
+
+export default memo(TasksList);

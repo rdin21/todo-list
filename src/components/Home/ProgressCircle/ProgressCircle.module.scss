@@ -1,4 +1,4 @@
-@import "../../../scss//variables";
+@import "../../../scss/variables";
 
 @keyframes render {
   0% {
@@ -12,7 +12,7 @@
   // max-width: 500px;
 
   &__circle {
-    min-width: 280px;
+    max-width: 280px;
 
     &__arc {
       fill: none;

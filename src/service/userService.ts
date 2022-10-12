@@ -9,6 +9,7 @@ export const login = createAsyncThunk("USER/LOGIN", async (user: TLoginUser, thu
     const { access_token }: TAccessToken = response.data;
     localStorage.setItem("access_token", access_token);
     return jwtDecode<TUserFromAccessToken>(access_token);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     return thunkApi.rejectWithValue(err?.response?.data);
   }
@@ -24,6 +25,7 @@ export const registration = createAsyncThunk(
       const { access_token }: TAccessToken = response.data;
       localStorage.setItem("access_token", access_token);
       return jwtDecode<TUserFromAccessToken>(access_token);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       return thunkApi.rejectWithValue(err?.response?.data);
     }
@@ -42,6 +44,7 @@ export const check = createAsyncThunk("USER/CHECK", async (_, thunkApi) => {
       localStorage.setItem("access_token", access_token);
       return jwtDecode<TUserFromAccessToken>(access_token);
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     return thunkApi.rejectWithValue(err?.response?.data);
   }

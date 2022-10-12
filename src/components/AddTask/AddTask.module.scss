@@ -1,50 +1,54 @@
 //==================================================
 //Add-Tasks
 //==================================================
+@import "../../scss/variables";
 
 .add_tasks {
-  h4 {
+  h1 {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    font-family: "Roboto sans-serif";
   }
 
-  margin: 20px auto;
+  margin: 1rem auto;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 1rem;
 
   &_text {
-    margin: 15px auto;
-    border: 1px solid lightblue;
-    margin-top: 20px;
+    margin: 0.75rem auto;
+    margin-top: 1rem;
     width: 80%;
     font-size: 0.7rem;
-    padding: 10px;
+    padding: 0.5rem;
     border-radius: 3px;
     text-align: center;
   }
 
   .data_input_group {
-    margin-top: 10px;
-    border-bottom: 1px solid lightgray;
+    margin-top: 0.5rem;
+    border-bottom: 1px solid #32393c;
     width: 80%;
     display: flex;
 
     &_date {
       width: 50%;
-      height: 30px;
+      height: 1.6rem;
       font-size: 0.7rem;
       text-align: center;
       display: inline-block;
       border: none;
+      cursor: pointer;
 
       &::-webkit-calendar-picker-indicator {
         background: url("../../images/icons/calendar.ico");
         width: 28px;
         height: 28px;
         margin-right: 10px;
+        cursor: pointer;
       }
 
       &::-webkit-datetime-edit {
@@ -79,15 +83,17 @@
   }
 
   .create_btn {
-    padding: 10px;
+    padding: 0.5rem;
     cursor: pointer;
     font-size: 0.85rem;
     font-weight: 300;
     border-radius: 5px;
-    background-color: green;
-    max-width: 150px;
-    width: 150px;
+    background-color: #024c02;
+    max-width: 8rem;
+    width: 8rem;
     border: none;
+    color: $fontColor;
+    transition: 0.2s linear;
 
     &:hover {
       opacity: 0.8;

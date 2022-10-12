@@ -9,6 +9,7 @@ const rootReducer = combineReducers({
   [taskApi.reducerPath]: taskApi.reducer,
 });
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const store = () => {
   return configureStore({
     reducer: rootReducer,

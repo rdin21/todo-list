@@ -39,8 +39,6 @@ export const categoriesApi = createApi({
 
     createCategories: build.mutation<ICategories, TCreateCategories>({
       query: (post) => {
-        console.log(post);
-
         return {
           url: "/categories",
           method: "POST",

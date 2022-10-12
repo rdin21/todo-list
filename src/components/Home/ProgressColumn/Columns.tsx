@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import s from "./ProgressColumn.module.scss";
 import { TCategoriesAndTask } from "../../../types/TypeCategories";
 import Preloader2 from "../../Preloader/Loading";
@@ -9,7 +9,7 @@ interface ColumnsProps {
   isLoading: boolean;
 }
 
-export default function Columns({ data, isLoading }: ColumnsProps): JSX.Element {
+function Columns({ data, isLoading }: ColumnsProps): JSX.Element {
   return (
     <div className={s.list}>
       {isLoading ? (
@@ -17,7 +17,7 @@ export default function Columns({ data, isLoading }: ColumnsProps): JSX.Element 
       ) : (
         <>
           {data?.length === 0 ? (
-            <h2>На сегодня нет категорий</h2>
+            <b>На сегодня нет категорий</b>
           ) : (
             data?.map((category: TCategoriesAndTask): JSX.Element => {
               const height = category.tasks.length * 10;
@@ -29,3 +29,4 @@ export default function Columns({ data, isLoading }: ColumnsProps): JSX.Element 
     </div>
   );
 }
+export default Columns;

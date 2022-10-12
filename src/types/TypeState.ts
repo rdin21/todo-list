@@ -2,23 +2,11 @@ import { TUserFromAccessToken } from "./TypeUser";
 import { DataTypeTasks } from "./TypeTask";
 import { ICategories } from "./TypeCategories";
 
-// interface UserState {
-//   data: {} | TUserFromAccessToken;
-// }
-// export interface IUserState {
-//   data: {} | TUserFromAccessToken;
-//   isLoading: boolean;
-//   error: string | string[];
-// }
-
-// const a: TUserFromAccessToken = {
-//   id: 2,
-//   name: "s",
-//   lastname: "s",
-//   email: "s",
-//   iat: 1,
-//   exp: 3,
-// };
+export interface IRootState {
+  user: IUserState;
+  category: any;
+  task: any;
+}
 
 export interface ITaskState {
   data: [] | DataTypeTasks[];
@@ -40,6 +28,4 @@ interface State {
   error: string | string[];
 }
 
-// export type ITaskState = State<TaskState>;
 export type IUserState = State & UserState;
-// export type ICategoriesState = State<CategoryState>;

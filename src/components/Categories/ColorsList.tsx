@@ -1,17 +1,21 @@
-import s from "./Categories.module.scss";
-import { useState, MouseEvent } from "react";
+import { useState, MouseEvent, memo } from "react";
 import { categoriesApi } from "../../service/categoriesService";
 import { TCreateCategories, TColorsCategories, TUpDateCategory } from "../../types/TypeCategories";
 import { Button } from "../BaseComponent";
+import s from "./Categories.module.scss";
 
 const colors: TColorsCategories[] = [
-  { id: 1, color: "color-green", name: "green" },
   { id: 2, color: "color-yellow", name: "yellow" },
-  { id: 3, color: "color-red", name: "red" },
   { id: 4, color: "color-blue", name: "blue" },
   { id: 5, color: "color-orange", name: "orange" },
   { id: 6, color: "color-gray", name: "gray" },
   { id: 7, color: "color-violet", name: "violet" },
+  { id: 8, color: "color-gold", name: "gold" },
+  { id: 9, color: "color-tomato", name: "tomato" },
+  { id: 10, color: "color-teal", name: "teal" },
+  { id: 11, color: "color-brown", name: "brown" },
+  { id: 12, color: "color-pink", name: "pink" },
+  { id: 13, color: "color-lime", name: "lime" },
 ];
 
 interface CategoriesColorsProps {
@@ -34,7 +38,7 @@ function ColorsList({ state, setState }: CategoriesColorsProps): JSX.Element {
 
   return (
     <ul className={s.crete_categories_colors}>
-      <li className={s.crete_categories_colors_name}>Colors</li>
+      <li className={s.crete_categories_colors_name}>Цвет</li>
       {colors.map((color: TColorsCategories): JSX.Element => {
         const findCategory = categories?.find((v) => v.color === color.name);
 
@@ -46,7 +50,7 @@ function ColorsList({ state, setState }: CategoriesColorsProps): JSX.Element {
               onClick={onClickColor}
               className={`${s.crete_categories_color_item} ${color.color} ${
                 color.id === active ? s.active : ""
-              } ${findCategory ? "disabled" : ""}`}
+              } ${findCategory ? s.disabled : ""}`}
               disabled={!!findCategory}
             >{`${color.id}|${color.name}`}</Button>
           </li>
@@ -56,4 +60,4 @@ function ColorsList({ state, setState }: CategoriesColorsProps): JSX.Element {
   );
 }
 
-export default ColorsList;
+export default memo(ColorsList);

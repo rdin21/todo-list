@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useAppSelector } from "../../hooks/redux";
 import { TUserFromAccessToken } from "../../types/TypeUser";
 import { selectUser } from "../../store/selectors";
@@ -8,9 +8,11 @@ import Clock from "./Clock";
 import { taskApi } from "../../service/taskService";
 import s from "./Header.module.scss";
 import Navigation from "./Navigation";
+import MobileMenu from "../ToggleMenu/Menu";
 
 function Header(): JSX.Element {
   const { data } = useAppSelector<IUserState>(selectUser);
+  const mediaQuery = window.matchMedia("(max-width: 992px)");
   const date = new Date();
   const user = data as TUserFromAccessToken;
   const { data: tasks, error } = taskApi.useGetTaskQuery(formatDate);
@@ -21,7 +23,9 @@ function Header(): JSX.Element {
       length = tasks[0]?.taskDate?.length;
     }
   }
-
+  if (mediaQuery.matches) {
+    console.log("Media Query Matched!");
+  }
   // eslint-disable-next-line no-console
   if (error) console.log("TaskError__Header", error);
 
@@ -38,8 +42,9 @@ function Header(): JSX.Element {
         Сегодня: {date.toLocaleDateString()} - <Clock />
       </div>
       <Navigation />
+      <MobileMenu />
     </header>
   );
 }
 
-export default Header;
+export default memo(Header);

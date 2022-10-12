@@ -13,7 +13,7 @@ export default function ProgressColumn(): JSX.Element {
 
   return (
     <section className={s.progress__column}>
-      <h5>Категорий</h5>
+      <h1>Категорий</h1>
       <Columns data={categories} isLoading={isLoading} />
       {error ? <b className="error-message">Не удалось загрузить компонент </b> : <></>}
     </section>

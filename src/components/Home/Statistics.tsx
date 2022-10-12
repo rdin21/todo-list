@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import ProgressCircle from "./ProgressCircle/ProgressCircle";
 import ProgressColumn from "./ProgressColumn/ProgressColumn";
 import s from "./Home.module.scss";
 
-export default function Statistics(): JSX.Element {
+function Statistics(): JSX.Element {
   return (
     <div className={s.progress}>
       <ProgressCircle />
@@ -11,3 +11,5 @@ export default function Statistics(): JSX.Element {
     </div>
   );
 }
+
+export default memo(Statistics);

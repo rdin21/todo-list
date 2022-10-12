@@ -18,7 +18,7 @@ export default function UpDateTask({
   const [upDateTaskHook, { error: upDateErrorTask, isLoading: upDateLoading }] =
     taskApi.useUpdateTaskMutation();
 
-  const handlerUpDateText = (e: ChangeEvent<HTMLInputElement>) => {
+  const handlerUpDateText = (e: ChangeEvent<HTMLInputElement>): void => {
     setUpDateText(e.target.value);
   };
 

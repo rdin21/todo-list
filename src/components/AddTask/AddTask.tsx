@@ -10,18 +10,20 @@ import CategoriesList from "../Categories/CategoriesList";
 import DateInputs from "./DateInputs";
 import s from "./AddTask.module.scss";
 import { IDateTask } from "./Types";
+import { categoriesApi } from "../../service/categoriesService";
 
 interface AddTaskProps {
   onCloseModal: () => void;
 }
 
 function AddTask({ onCloseModal }: AddTaskProps): JSX.Element {
+  const currentDate = new Date().toLocaleDateString();
   const { data } = useAppSelector(selectUser);
   const { data: dateData, error: dateError } = taskApi.useCheckCreateDateQuery(formatDate);
   const [createTask, { error: createTaskError, isLoading: loadingTask }] =
     taskApi.useCreateTaskMutation();
+  const updateCategory = categoriesApi.endpoints.getAllCategoriesAndTask.useQuery(currentDate);
   const user = data as TUserFromAccessToken;
-
   const [text, setText] = useState<string>("");
   const [date, setDate] = useState<string>("");
   const [time, setTime] = useState<IDateTask>({
@@ -50,7 +52,10 @@ function AddTask({ onCloseModal }: AddTaskProps): JSX.Element {
       taskDateId: dateData?.id,
       userId: user.id,
     };
-    createTask(task).then(() => onCloseModal());
+    createTask(task).then(() => {
+      onCloseModal();
+      updateCategory.refetch();
+    });
   };
 
   // eslint-disable-next-line no-console

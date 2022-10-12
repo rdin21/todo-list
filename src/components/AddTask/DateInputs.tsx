@@ -1,30 +1,29 @@
 import React, { ChangeEvent } from "react";
-import s from "./AddTask.module.scss";
 import { Input } from "../BaseComponent";
 import { IDateTask } from "./Types";
+import s from "./AddTask.module.scss";
 
 interface DateInputsProps {
   date: string;
   time: IDateTask;
-  setDate: any;
-  setTime: any;
+  setDate: (e: string) => void;
+  setTime: (e: IDateTask) => void;
 }
-let render = 0;
 function DateInputs({ date, time, setDate, setTime }: DateInputsProps): JSX.Element {
-  console.log("renderDateInputs", render++);
-
-  const onChangeHour = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChangeHour = (e: ChangeEvent<HTMLInputElement>) =>
     setTime({ ...time, hour: e.target.value });
-  };
 
   const onChangeMinute = (e: ChangeEvent<HTMLInputElement>) =>
     setTime({ ...time, minute: e.target.value });
+
+  const onChangeDate = (e: ChangeEvent<HTMLInputElement>) => setDate(e.target.value);
+
   return (
     <div className={s.data_input_group}>
       <Input
         type="date"
         name="date"
-        onChange={(e) => setDate(e.target.value)}
+        onChange={onChangeDate}
         className={s.data_input_group_date}
         value={date}
       />

@@ -3,20 +3,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faPencilAlt, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { taskApi } from "../../../service/taskService";
 import s from "../Home.module.scss";
-import classNames from "classnames";
+import { Button } from "../../BaseComponent";
+import { categoriesApi } from "../../../service/categoriesService";
 interface ItemButtonsProps {
   status: null | boolean;
   upDate: (id: number) => void;
-  color: string;
   id: number;
 }
 
-export default function ItemButtons({ status, upDate, color, id }: ItemButtonsProps): JSX.Element {
+export default function ItemButtons({ status, upDate, id }: ItemButtonsProps): JSX.Element {
+  const currentDate = new Date().toLocaleDateString();
+  const updateCategory = categoriesApi.endpoints.getAllCategoriesAndTask.useQuery(currentDate);
   const [deleteTaskHook, { error: deleteErrorTask }] = taskApi.useDeleteTaskMutation();
   const [setStatusTrueHook, { error: upDateStatusTrueError }] = taskApi.useSetStatusTrueMutation();
   const [setStatusFalseHook, { error: upDateStatusFalseError }] =
     taskApi.useSetStatusFalseMutation();
-
   const upDateStatusTrue = () => {
     setStatusTrueHook({
       id,
@@ -29,6 +30,10 @@ export default function ItemButtons({ status, upDate, color, id }: ItemButtonsPr
       id,
       status: false,
     });
+  };
+
+  const deleteTask = () => {
+    deleteTaskHook(id).then(() => updateCategory.refetch());
   };
 
   // eslint-disable-next-line no-console
@@ -46,18 +51,28 @@ export default function ItemButtons({ status, upDate, color, id }: ItemButtonsPr
         pointerEvents: status !== null ? "none" : "inherit",
       }}
     >
-      <button name="check" onClick={upDateStatusTrue}>
+      <Button name="Готово" onClick={upDateStatusTrue}>
         <FontAwesomeIcon icon={faCheck} color="green" title="Готово" />
-      </button>
-      <button name="edit">
-        <FontAwesomeIcon icon={faPencilAlt} title="Редактировать" onClick={() => upDate(id)} />
-      </button>
-      <button name="fail" onClick={upDateStatusFalse} style={{ fontSize: "20px" }} title="Провал">
+      </Button>
+      <Button name="edit">
+        <FontAwesomeIcon
+          icon={faPencilAlt}
+          title="Редактировать"
+          onClick={() => upDate(id)}
+          color="white"
+        />
+      </Button>
+      <Button
+        name="Провал"
+        onClick={upDateStatusFalse}
+        style={{ fontSize: "20px", color: "white" }}
+        title="Провал"
+      >
         &times;
-      </button>
-      <button name="delete" onClick={() => deleteTaskHook(id)}>
+      </Button>
+      <Button name="Удалить" onClick={deleteTask}>
         <FontAwesomeIcon icon={faTrashAlt} color="red" title="Удалить" />
-      </button>
+      </Button>
     </div>
   );
 }

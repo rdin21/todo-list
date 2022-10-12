@@ -1,6 +1,3 @@
-import {
-  IUserState,
-  // RootState,
-} from "../types/TypeState";
+import { IRootState, IUserState } from "../types/TypeState";
 
-export const selectUser = (s: any): IUserState => s?.user;
+export const selectUser = (s: any): IUserState => s.user;

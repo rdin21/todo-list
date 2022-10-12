@@ -38,7 +38,7 @@ export default function LoginForm(): JSX.Element {
     dispatch(login(signIn))
       .then((res: any) => {
         setIsLoading(false);
-        if (res.payload.statusCode || Array.isArray(res.payload)) {
+        if (res?.payload?.statusCode || Array.isArray(res.payload)) {
           if (Array.isArray(res.payload)) {
             // console.log(res.payload, "////////");
             res.payload.forEach((el: string) => {

@@ -1,12 +1,12 @@
+import React, { memo } from "react";
 import s from "./ProgressCircle.module.scss";
-import React from "react";
 
 interface CircleProps {
   ready: number;
   notReady: number;
 }
 
-export default function Circle({ ready = 0, notReady = 0 }: CircleProps): JSX.Element {
+function Circle({ ready = 0, notReady = 0 }: CircleProps): JSX.Element {
   return (
     <svg className={s.progress__circle} width="150" height="150" viewBox="0 0 50 50">
       <circle
@@ -29,3 +29,5 @@ export default function Circle({ ready = 0, notReady = 0 }: CircleProps): JSX.El
     </svg>
   );
 }
+
+export default memo(Circle);

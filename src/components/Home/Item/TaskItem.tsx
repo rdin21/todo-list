@@ -18,6 +18,7 @@ export default function TimeLineItem({
   color,
   status,
 }: TasksItemProps): JSX.Element {
+  const currentTime = new Date().toLocaleTimeString();
   const [upDateTask, setUpDateTask] = useState<boolean>(false);
   const [upDateTaskId, setUpDateTaskId] = useState<number | null>(null);
 
@@ -25,16 +26,24 @@ export default function TimeLineItem({
     setUpDateTask(true);
     setUpDateTaskId(id);
   };
+  console.log(currentTime);
 
   const trueAndFalseColor = status ? "green" : "red";
   return (
     <li
       className={s.tasks_list_item}
-      style={{
-        boxShadow: `${status !== null ? trueAndFalseColor : color} 0px 2px 0px 0px`,
-      }}
+      // style={{
+      //   boxShadow: `${status !== null ? trueAndFalseColor : color} 0px 2px 0px 0px`,
+      // }}
     >
+      <div
+        className={s.tasks_list_item_circle}
+        style={{
+          background: status !== null ? trueAndFalseColor : color,
+        }}
+      ></div>
       <span>{time}</span>
+
       <div
         className={s.tasks_list_item_current_tasks}
         style={{ opacity: status !== null ? "0.5" : "1", display: upDateTask ? "none" : "block" }}
@@ -43,7 +52,7 @@ export default function TimeLineItem({
       </div>
       <Status status={status} />
       <UpDate upDateTask={upDateTask} upDateTaskId={upDateTaskId} setUpDateTask={setUpDateTask} />
-      <Buttons id={id} color={color ? color : ""} status={status} upDate={upDate} />
+      <Buttons id={id} status={status} upDate={upDate} />
     </li>
   );
 }

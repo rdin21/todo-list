@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { CALENDAR_ROUTE, HOME_ROUTE, LOGIN_ROUTE, USER_ROUTE } from "../../routes/pathRoutes";
+import { CALENDAR_ROUTE, HOME_ROUTE, LOGIN_ROUTE } from "../../routes/pathRoutes";
 import s from "./Header.module.scss";
 
-export default function Navigation(): JSX.Element {
+function Navigation(): JSX.Element {
   const navigate = useNavigate();
   const exit = (): void => {
     localStorage.removeItem("access_token");
@@ -17,9 +17,6 @@ export default function Navigation(): JSX.Element {
         </li>
 
         <li className={s.nav_link}>
-          <Link to={USER_ROUTE}>Пользователь</Link>
-        </li>
-        <li className={s.nav_link}>
           <Link to={CALENDAR_ROUTE}>Календарь</Link>
         </li>
         <li className={s.nav_link}>
@@ -29,3 +26,5 @@ export default function Navigation(): JSX.Element {
     </nav>
   );
 }
+
+export default memo(Navigation);
