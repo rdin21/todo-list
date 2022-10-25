@@ -13,6 +13,7 @@ import {
   TUpDateCategory,
 } from "../types/TypeCategories";
 import { ErrorType } from "../types/TypeError";
+import { CategoriesPaths } from "./endpoints";
 export const categoriesApi = createApi({
   reducerPath: CATEGORIES_API_REDUCER_KEY,
   baseQuery: fetchBaseQuery({
@@ -25,14 +26,14 @@ export const categoriesApi = createApi({
   endpoints: (build) => ({
     getCategories: build.query<ICategories[], number>({
       query: () => ({
-        url: "/categories",
+        url: CategoriesPaths.categoriesCRUD,
       }),
       providesTags: () => ["Categories"],
     }),
 
     getAllCategoriesAndTask: build.query<TCategoriesAndTask[], string>({
       query: (date: string) => ({
-        url: "/categories/all_task",
+        url: CategoriesPaths.getCategoriesAndTasks,
         params: { date },
       }),
     }),
@@ -40,7 +41,7 @@ export const categoriesApi = createApi({
     createCategories: build.mutation<ICategories, TCreateCategories>({
       query: (post) => {
         return {
-          url: "/categories",
+          url: CategoriesPaths.categoriesCRUD,
           method: "POST",
           body: post,
         };
@@ -50,7 +51,7 @@ export const categoriesApi = createApi({
 
     deleteCategories: build.mutation<number, number>({
       query: (id: number) => ({
-        url: "/categories",
+        url: CategoriesPaths.categoriesCRUD,
         method: "DELETE",
         body: { id },
       }),
@@ -58,7 +59,7 @@ export const categoriesApi = createApi({
     }),
     upDateCategories: build.mutation<TUpDateCategory, TUpDateCategory>({
       query: (body) => ({
-        url: "/categories",
+        url: CategoriesPaths.categoriesCRUD,
         method: "PUT",
         body,
       }),

@@ -15,6 +15,7 @@ import {
 import { URL } from "../api";
 import { ErrorType } from "../types/TypeError";
 import { TASKS_API_REDUCER_KEY } from "./constants";
+import { TasksPaths } from "./endpoints";
 
 export const taskApi = createApi({
   reducerPath: TASKS_API_REDUCER_KEY,
@@ -29,7 +30,7 @@ export const taskApi = createApi({
   endpoints: (build) => ({
     getTask: build.query<DataTypeTasks[], string>({
       query: (date) => ({
-        url: "/date",
+        url: TasksPaths.getTask,
         params: {
           date,
         },
@@ -39,7 +40,7 @@ export const taskApi = createApi({
     }),
     createTask: build.mutation<CreateTask, CreateTask>({
       query: (task: CreateTask) => ({
-        url: "/task",
+        url: TasksPaths.tasksCUD,
         method: "POST",
         body: task,
       }),
@@ -47,7 +48,7 @@ export const taskApi = createApi({
     }),
     checkCreateDate: build.query<CheckDate, string>({
       query: (date: string) => ({
-        url: "date/check_date",
+        url: TasksPaths.checkCreateDate,
         params: {
           date,
         },
@@ -56,7 +57,7 @@ export const taskApi = createApi({
 
     deleteTask: build.mutation<number, number>({
       query: (id: number) => ({
-        url: "/task",
+        url: TasksPaths.tasksCUD,
         method: "DELETE",
         body: { id },
       }),
@@ -65,7 +66,7 @@ export const taskApi = createApi({
 
     updateTask: build.mutation<number, UpdateTask>({
       query: (body) => ({
-        url: "/task",
+        url: TasksPaths.tasksCUD,
         method: "PUT",
         body,
       }),
@@ -74,7 +75,7 @@ export const taskApi = createApi({
 
     setStatusTrue: build.mutation<Task, UpdateStatus>({
       query: (body) => ({
-        url: "/task",
+        url: TasksPaths.taskSetStatusPatch,
         method: "PATCH",
         body,
       }),
@@ -82,7 +83,7 @@ export const taskApi = createApi({
     }),
     setStatusFalse: build.mutation<Task, UpdateStatus>({
       query: (body) => ({
-        url: "/task",
+        url: TasksPaths.taskSetStatusPatch,
         method: "PATCH",
         body,
       }),
