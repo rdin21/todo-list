@@ -1,6 +1,11 @@
-import { useEffect, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 
-const Clock = (): JSX.Element => {
+interface IClockProps {
+  className?: string;
+  style?: CSSProperties;
+}
+
+const Clock = ({ className, style }: IClockProps): JSX.Element => {
   const [date, setDate] = useState({
     hour: new Date().getHours(),
     minute: new Date().getMinutes(),
@@ -19,9 +24,9 @@ const Clock = (): JSX.Element => {
   }, []);
 
   return (
-    <span>{`${date.hour}:${
+    <div className={className} style={style}>{`${date.hour}:${
       String(date.minute).length === 1 ? "0" + date.minute : date.minute
-    }`}</span>
+    }`}</div>
   );
 };
 export default Clock;

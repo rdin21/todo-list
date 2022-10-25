@@ -1,0 +1,36 @@
+.time_line {
+  display: inline-block;
+  border-right: 5px solid red;
+  position: relative;
+
+  &_current_time {
+    position: absolute;
+    left: -80px;
+    width: 120px;
+    transition: 1s linear;
+    height: 0;
+    border: 2px solid red;
+  }
+
+  &_hours {
+    width: 10px;
+    position: relative;
+
+    &_hour {
+      position: absolute;
+      left: -20px;
+      top: -4px;
+    }
+
+    &::before {
+      content: "";
+      width: 15px;
+      height: 15px;
+      display: block;
+      background-color: red;
+      border-radius: 50%;
+      position: absolute;
+      left: 5px;
+    }
+  }
+}
