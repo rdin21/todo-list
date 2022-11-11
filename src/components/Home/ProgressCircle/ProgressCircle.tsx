@@ -1,11 +1,11 @@
-import s from "./ProgressCircle.module.scss";
 import { DataTypeTasks } from "../../../types/TypeTask";
 import { taskApi } from "../../../service/taskService";
-import useProgressCircle from "../../../hooks/useProgressCircle";
-import Preloader2 from "../../UI/Preloader/Loading";
 import { formatDate } from "../../../utils/utils";
+import useProgressCircle from "../../../hooks/useProgressCircle";
+import Spinner from "../../UI/Loaders/LoaderSpinner";
 import Info from "./Info";
 import Circle from "./Circle";
+import s from "./ProgressCircle.module.scss";
 
 export default function ProgressCircle(): JSX.Element {
   const { data, isLoading, error } = taskApi.useGetTaskQuery(formatDate);
@@ -14,12 +14,11 @@ export default function ProgressCircle(): JSX.Element {
   const [ready, notReady] = useProgressCircle(tasks);
 
   // eslint-disable-next-line no-console
-  if (error) console.log("ProgressCircleError", error);
-
+  if (error) console.error("ProgressCircle.tsx", error);
   return (
     <section className={s.progress}>
       {isLoading ? (
-        <Preloader2 />
+        <Spinner />
       ) : (
         <>
           {error ? (

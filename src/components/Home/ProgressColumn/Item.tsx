@@ -17,6 +17,7 @@ export default function Item({ category, height }: ItemProps): JSX.Element {
           height: `calc(100% / 100 * ${height})`,
         }}
         className={s.list__item__column}
+        title={category.name}
       ></div>
     </div>
   );

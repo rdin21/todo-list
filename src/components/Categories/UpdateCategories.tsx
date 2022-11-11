@@ -1,21 +1,23 @@
 import { useState, ChangeEvent } from "react";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import s from "./Categories.module.scss";
 import { categoriesApi } from "../../service/categoriesService";
 import { TCreateCategories, TUpDateCategory } from "../../types/TypeCategories";
-import ColorsList from "./ColorsList";
 import { Button, Input } from "../UI/BaseComponent";
+import ColorsList from "./ColorsList";
 import CategoriesList from "./CategoriesList";
-import Spinner from "../UI/Preloader/Spinner";
+import Spinner from "../UI/Loaders/LoaderSpinner";
+import ErrorMessage from "../UI/Error/ErrorMessage";
+import s from "./Categories.module.scss";
 
 function UpdateCategories(): JSX.Element {
   const [id, setIdCategory] = useState<number | null>(null);
+  const [messageError, setMessageError] = useState<string>("");
+  const [updateCategoryHook, { error, isLoading }] = categoriesApi.useUpDateCategoriesMutation();
   const [updateCategory, setUpDateCategory] = useState<TCreateCategories>({
     color: "",
     name: "",
   });
-  const [updateCategoryHook, { error, isLoading }] = categoriesApi.useUpDateCategoriesMutation();
 
   const onClick = (id: number): void => setIdCategory(id);
 
@@ -23,16 +25,25 @@ function UpdateCategories(): JSX.Element {
     setUpDateCategory({ ...updateCategory, name: e.target.value });
   };
 
-  const submitCategory = (): void => {
-    updateCategoryHook({ id, ...updateCategory } as TUpDateCategory);
+  // eslint-disable-next-line consistent-return
+  const onClickUpdateCategory = (): void | string => {
+    setMessageError("");
+    const { name, color } = updateCategory;
+    if (name.length < 2) {
+      return setMessageError("Название категории должно быть не меньше 1 символов");
+    }
+    if (!id) {
+      return setMessageError("Категория не выбрана");
+    }
+
+    updateCategoryHook({ id, name, color: color ? color : "white" } as TUpDateCategory);
     setUpDateCategory({ color: "", name: "" });
   };
   // eslint-disable-next-line no-console
-  if (error) console.log("UpDateCategoryError", error);
+  if (error) console.error("UpdateCategory.tsx file", error);
 
   return (
     <section className={s.update_block}>
-      <h3 className={s.update_block_title}>Обновить категорию</h3>
       <CategoriesList
         classNameList={s.update_list}
         classNameItem={s.update_list_item}
@@ -42,15 +53,20 @@ function UpdateCategories(): JSX.Element {
       />
 
       <div className={s.update_block_new_name}>
-        <span>New name</span>
-        <Input value={updateCategory.name} onChange={upDateName} />
+        <span className={s.update_block_new_name_span}>Новое название</span>
+        <Input
+          className={s.update_block_new_name_inp}
+          value={updateCategory.name}
+          onChange={upDateName}
+        />
       </div>
       <ColorsList state={updateCategory} setState={setUpDateCategory} />
 
-      <Button className={s.update_block_button} onClick={submitCategory}>
-        Update
+      {messageError ? <ErrorMessage message={messageError} /> : ""}
+      <Button className={s.update_block_button} onClick={onClickUpdateCategory}>
+        Обновить
       </Button>
-      {isLoading ? <Spinner text="Идет обновление..." spinnerBlock={s.spinner_update} /> : ""}
+      {isLoading ? <Spinner /> : ""}
     </section>
   );
 }

@@ -8,11 +8,12 @@ import Clock from "./Clock";
 import { taskApi } from "../../service/taskService";
 import s from "./Header.module.scss";
 import Navigation from "./Navigation";
-import MobileMenu from "../UI/ToggleMenu/Menu";
+
+const days = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
 
 function Header(): JSX.Element {
   const { data } = useAppSelector<IUserState>(selectUser);
-  const mediaQuery = window.matchMedia("(max-width: 992px)");
+  // const mediaQuery = window.matchMedia("(max-width: 992px)");
   const date = new Date();
   const user = data as TUserFromAccessToken;
   const { data: tasks, error } = taskApi.useGetTaskQuery(formatDate);
@@ -23,11 +24,9 @@ function Header(): JSX.Element {
       length = tasks[0]?.taskDate?.length;
     }
   }
-  if (mediaQuery.matches) {
-    console.log("Media Query Matched!");
-  }
+
   // eslint-disable-next-line no-console
-  if (error) console.log("TaskError__Header", error);
+  if (error) console.error("Header.tsx file", error);
 
   return (
     <header className={s.header}>
@@ -36,13 +35,14 @@ function Header(): JSX.Element {
         <span className={s.header_subtitle}>
           Задач на сегодня{" "}
           <b className={s.header_subtitle_tasks_count}>{length === 0 ? "нет" : length}</b>
+          {error ? <span className="error_text"> Ошибка загрузки</span> : ""}
         </span>
       </div>
-      <div className={s.header_time}>
-        Сегодня: {date.toLocaleDateString()} - <Clock />
+      <div className={s.header_time} title={date.toLocaleDateString()}>
+        {days[date.getDay()] + ": "}
+        <Clock style={{ display: "inline-block", fontSize: "0.8rem", color: "gray" }} />
       </div>
       <Navigation />
-      <MobileMenu />
     </header>
   );
 }

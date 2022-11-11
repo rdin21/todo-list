@@ -8,25 +8,16 @@
 
   &_title {
     font-weight: 300;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .header_subtitle {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     letter-spacing: 1px;
 
     &_tasks_count {
       font-size: 0.8rem;
       color: $fontColor;
-    }
-  }
-
-  &_time {
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-
-    span {
-      font-size: inherit;
     }
   }
 }

@@ -1,15 +1,14 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faUser, faCalendarCheck, faDoorClosed } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faCalendarCheck, faDoorClosed } from "@fortawesome/free-solid-svg-icons";
 import "./Menu.scss";
-import { Link, useNavigate } from "react-router-dom";
-import { CALENDAR_ROUTE, HOME_ROUTE, LOGIN_ROUTE } from "../../../routes/pathRoutes";
+import { Link } from "react-router-dom";
+import { CALENDAR_ROUTE, HOME_ROUTE } from "../../../routes/pathRoutes";
 export default function StringMenu(): JSX.Element {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const exit = (): void => {
     // localStorage.removeItem("access_token");
     // navigate(LOGIN_ROUTE);
-    console.log("click");
   };
   return (
     <div className="mobile-menu">

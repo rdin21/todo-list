@@ -4,19 +4,20 @@
 @import "../../scss/variables";
 
 .add_tasks {
-  h1 {
-    text-align: center;
-    margin-top: 1rem;
-    font-size: 1.1rem;
-    font-family: "Roboto sans-serif";
-  }
-
-  margin: 1rem auto;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1rem;
+
+  &_error_message {
+    font-size: 0.7rem;
+    color: white;
+    background-color: red;
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
 
   &_text {
     margin: 0.75rem auto;
@@ -42,17 +43,35 @@
       display: inline-block;
       border: none;
       cursor: pointer;
+      position: relative;
 
       &::-webkit-calendar-picker-indicator {
-        background: url("../../images/icons/calendar.ico");
-        width: 28px;
-        height: 28px;
+        width: 30px;
+        height: 30px;
         margin-right: 10px;
         cursor: pointer;
+        z-index: 2;
+        background: transparent;
+      }
+
+      &::after {
+        content: attr(data-date);
+        width: 22px;
+        height: 22px;
+        font-size: 0.7rem;
+        position: absolute;
+        right: 16px;
+        border: 2px solid grey;
+        border-radius: 50%;
+        padding: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
       }
 
       &::-webkit-datetime-edit {
-        color: red;
+        color: white;
       }
     }
 
@@ -60,10 +79,20 @@
       margin-left: 5px;
     }
 
+    &_clear_time {
+      margin-left: 5px;
+      cursor: pointer;
+
+      &:hover {
+        color: red;
+      }
+    }
+
     &_time {
-      display: inline-block;
       width: 40%;
       margin-left: 5px;
+      display: inline-flex;
+      align-items: center;
 
       input {
         display: inline-block;
@@ -83,43 +112,24 @@
   }
 
   .create_btn {
-    padding: 0.5rem;
+    padding: 0.2rem;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.6rem;
     font-weight: 300;
     border-radius: 5px;
     background-color: #024c02;
-    max-width: 8rem;
-    width: 8rem;
+    max-width: 6rem;
+    width: 6rem;
     border: none;
     color: $fontColor;
     transition: 0.2s linear;
+    text-transform: uppercase;
 
     &:hover {
       opacity: 0.8;
     }
   }
 }
-//\\================//\\================//\\================//\\
-// .categories_buttons_list {
-//   margin-top: 15px;
-//   display: flex;
-//   flex-wrap: wrap;
-//   list-style-type: none;
-
-//   button {
-//     margin-right: 15px;
-//     padding: 10px;
-//     border: none;
-//     background-color: transparent;
-//     font-size: 0.7rem;
-//     font-weight: 400;
-
-//     &:hover {
-//       opacity: 0.5;
-//     }
-//   }
-// }
 
 //==================================================
 //Delete-List
@@ -129,11 +139,12 @@
   display: flex;
   list-style-type: none;
   flex-wrap: wrap;
+  justify-content: center;
 
   .list_item {
     border: 1px solid black;
     font-size: 0.7rem;
-    padding: 12px;
+    padding: 6px;
     cursor: pointer;
     margin: 10px;
     position: relative;
@@ -160,4 +171,4 @@
     }
   }
 }
-//\\================//\\================//\\================//\\
+//================================

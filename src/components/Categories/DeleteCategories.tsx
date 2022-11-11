@@ -3,7 +3,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { categoriesApi } from "../../service/categoriesService";
 import CategoriesList from "./CategoriesList";
-import Spinner from "../UI/Preloader/Spinner";
+import Spinner from "../UI/Loaders/LoaderSpinner";
 import s from "./Categories.module.scss";
 
 export default function DeleteCategories(): JSX.Element {
@@ -24,7 +24,7 @@ export default function DeleteCategories(): JSX.Element {
         icon={<FontAwesomeIcon icon={faTrash} />}
         onClick={onClick}
       />
-      {isLoading ? <Spinner text="Идет удаление..." spinnerBlock={s.spinner_delete} /> : ""}
+      {isLoading ? <Spinner /> : ""}
     </section>
   );
 }

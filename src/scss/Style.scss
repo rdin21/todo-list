@@ -60,11 +60,16 @@ main {
   // height: 100vh;
 }
 
+.error_text {
+  color: red;
+  font-weight: 700;
+  font-size: 0.6rem;
+}
+
 .error-message {
   font-size: 0.75rem;
-  font-family: "Roboto" sans-serif;
-  font-weight: 300;
-  color: red;
+  font-weight: 600;
+  color: gray;
   display: block;
   margin: 0 auto;
   text-align: center;

@@ -4,6 +4,7 @@ import { categoriesApi } from "../../service/categoriesService";
 import { TCreateCategories } from "../../types/TypeCategories";
 import { Button, Input } from "../UI/BaseComponent";
 import CategoriesColors from "./ColorsList";
+import ErrorMessage from "../UI/Error/ErrorMessage";
 
 interface CreateCategoriesProps {
   onCloseCategoryModel: () => void;
@@ -15,12 +16,23 @@ function CreateCategories({ onCloseCategoryModel }: CreateCategoriesProps): JSX.
     name: "",
     color: "",
   });
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const onChangeCategoryName = (e: ChangeEvent<HTMLInputElement>): void => {
     setCategory({ ...category, name: e.target.value });
   };
+  // eslint-disable-next-line consistent-return
   const createdCategory = (): void => {
-    createCategory(category).then(() => onCloseCategoryModel());
+    setErrorMessage("");
+    if (category.name.length <= 3) {
+      return setErrorMessage("Длина имени должна быть больше 3 символов");
+    }
+    if (category.color === "") {
+      return setErrorMessage("Категория не выбрана");
+    }
+    createCategory(category).then(() => {
+      onCloseCategoryModel();
+    });
     setCategory({
       name: "",
       color: "",
@@ -28,12 +40,11 @@ function CreateCategories({ onCloseCategoryModel }: CreateCategoriesProps): JSX.
   };
 
   // eslint-disable-next-line no-console
-  if (error) console.log("createCategoryError", error);
+  if (error) console.error("CreateCategories.tsx file", error);
 
   return (
     <>
       <div className={s.crete_categories}>
-        <h3>Создать категорию</h3>
         <div className={s.crete_categories_input_group}>
           <Input
             type="text"
@@ -43,6 +54,7 @@ function CreateCategories({ onCloseCategoryModel }: CreateCategoriesProps): JSX.
           />
         </div>
         <CategoriesColors state={category} setState={setCategory} />
+        {errorMessage ? <ErrorMessage message={errorMessage} /> : ""}
         <div className={s.create_buttons}>
           <Button className={s.create_button} onClick={createdCategory} isLoading={isLoading}>
             Создать

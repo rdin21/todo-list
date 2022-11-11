@@ -1,14 +1,16 @@
 import React from "react";
+import classNames from "classnames";
 import s from "./Error.module.scss";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function ErrorMessage({ errorObject }: { errorObject: any }): JSX.Element | null {
-  if (errorObject) {
-    if ("message" in errorObject.data) {
-      // eslint-disable-next-line no-console
-      console.error(errorObject);
-      return <div className={s.error_message}>{errorObject.data.message}</div>;
-    }
+interface IErrorMessageProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  message?: any;
+  classNameError?: string;
+}
+
+function ErrorMessage({ message, classNameError }: IErrorMessageProps): JSX.Element | null {
+  if (message) {
+    return <div className={classNames(s.error_message, classNameError)}>{message}</div>;
   }
   return null;
 }

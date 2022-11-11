@@ -1,8 +1,6 @@
 @import "../../../scss/mixins";
 
 .progress__column {
-  padding-bottom: 40px;
-  position: relative;
   @include breakpoint(sm) {
     display: none;
   }
@@ -12,7 +10,6 @@
     margin-top: 0.75rem;
     margin-bottom: 1.3rem;
     font-size: 1rem;
-    font-family: "Roboto sans-serif";
   }
 }
 
@@ -21,11 +18,12 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-right: 100px;
 
   b {
-    margin-top: 1rem;
-    font-size: 0.8rem;
-    font-family: "Roboto sans-serif";
+    margin-top: 3rem;
+    font-size: 0.7rem;
+    color: gray;
   }
 
   &__item {
@@ -34,19 +32,21 @@
     justify-content: flex-end;
     align-items: center;
     flex-direction: column;
-    transition: 1s linear;
+    transition: 0.5s linear;
 
     &__column {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 50px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      margin-left: 5px;
 
       span {
         color: #fff;
         font-weight: bold;
         font-size: 1rem;
-        animation: app 3s 1;
       }
     }
   }

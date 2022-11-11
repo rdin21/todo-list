@@ -6,34 +6,52 @@ import {
   Task,
   UpdateTask,
 } from "../types/TypeTask";
-import {
-  createApi,
-  fetchBaseQuery,
-  BaseQueryFn,
-  FetchArgs,
-} from "@reduxjs/toolkit/dist/query/react";
+import { createApi, BaseQueryFn } from "@reduxjs/toolkit/dist/query/react";
 import { URL } from "../api";
-import { ErrorType } from "../types/TypeError";
 import { TASKS_API_REDUCER_KEY } from "./constants";
 import { TasksPaths } from "./endpoints";
+import axios, { AxiosError, AxiosRequestConfig } from "axios";
+
+const axiosBaseQuery =
+  (
+    { baseUrl }: { baseUrl: string } = { baseUrl: "" }
+  ): BaseQueryFn<
+    {
+      url: string;
+      method: AxiosRequestConfig["method"];
+      data?: AxiosRequestConfig["data"];
+    },
+    unknown,
+    unknown
+  > =>
+  async ({ url, method, data }) => {
+    try {
+      const result = await axios({ url: baseUrl + url, method, data });
+      return { data: result.data };
+    } catch (axiosError) {
+      const err = axiosError as AxiosError;
+      return { error: err.response?.data[0] };
+    }
+  };
 
 export const taskApi = createApi({
   reducerPath: TASKS_API_REDUCER_KEY,
-  baseQuery: fetchBaseQuery({
-    baseUrl: URL,
-    prepareHeaders: (headers) => {
-      // headers.set("Authorization", `Bearer ${localStorage.getItem("access_token")}`);
-      return headers;
-    },
-  }) as BaseQueryFn<string | FetchArgs, unknown, ErrorType, Record<string, unknown>>,
+  baseQuery: axiosBaseQuery({
+    baseUrl: URL ? URL : "",
+  }),
+  // baseQuery: fetchBaseQuery({
+  //   baseUrl: URL,
+  //   prepareHeaders: (headers) => {
+  //     // headers.set("Authorization", `Bearer ${localStorage.getItem("access_token")}`);
+  //     return headers;
+  //   },
+  // }) as BaseQueryFn<string | FetchArgs, unknown, ErrorType, Record<string, unknown>>,
   tagTypes: ["Task"],
   endpoints: (build) => ({
     getTask: build.query<DataTypeTasks[], string>({
       query: (date) => ({
-        url: TasksPaths.getTask,
-        params: {
-          date,
-        },
+        url: TasksPaths.getTask + `?date=${date}`,
+        method: "GET",
       }),
 
       providesTags: () => ["Task"],
@@ -42,16 +60,14 @@ export const taskApi = createApi({
       query: (task: CreateTask) => ({
         url: TasksPaths.tasksCUD,
         method: "POST",
-        body: task,
+        data: task,
       }),
       invalidatesTags: [{ type: "Task" }],
     }),
     checkCreateDate: build.query<CheckDate, string>({
       query: (date: string) => ({
-        url: TasksPaths.checkCreateDate,
-        params: {
-          date,
-        },
+        url: TasksPaths.checkCreateDate + `?date=${date}`,
+        method: "GET",
       }),
     }),
 
@@ -59,7 +75,7 @@ export const taskApi = createApi({
       query: (id: number) => ({
         url: TasksPaths.tasksCUD,
         method: "DELETE",
-        body: { id },
+        data: { id },
       }),
       invalidatesTags: ["Task"],
     }),
@@ -68,7 +84,7 @@ export const taskApi = createApi({
       query: (body) => ({
         url: TasksPaths.tasksCUD,
         method: "PUT",
-        body,
+        data: body,
       }),
       invalidatesTags: ["Task"],
     }),
@@ -77,7 +93,7 @@ export const taskApi = createApi({
       query: (body) => ({
         url: TasksPaths.taskSetStatusPatch,
         method: "PATCH",
-        body,
+        data: body,
       }),
       invalidatesTags: ["Task"],
     }),
@@ -85,7 +101,7 @@ export const taskApi = createApi({
       query: (body) => ({
         url: TasksPaths.taskSetStatusPatch,
         method: "PATCH",
-        body,
+        data: body,
       }),
       invalidatesTags: ["Task"],
     }),

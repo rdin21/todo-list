@@ -3,14 +3,14 @@ import { useAppSelector } from "../../hooks/redux";
 import { TUserFromAccessToken } from "../../types/TypeUser";
 import { selectUser } from "../../store/selectors";
 import { taskApi } from "../../service/taskService";
-
 import { formatDate } from "../../utils/utils";
 import { Input, Button } from "../UI/BaseComponent";
+import { IDateTask } from "./Types";
+import { categoriesApi } from "../../service/categoriesService";
+import ErrorMessage from "../UI/Error/ErrorMessage";
 import CategoriesList from "../Categories/CategoriesList";
 import DateInputs from "./DateInputs";
 import s from "./AddTask.module.scss";
-import { IDateTask } from "./Types";
-import { categoriesApi } from "../../service/categoriesService";
 
 interface AddTaskProps {
   onCloseModal: () => void;
@@ -30,7 +30,7 @@ function AddTask({ onCloseModal }: AddTaskProps): JSX.Element {
     hour: "",
     minute: "",
   });
-
+  const [validateError, setValidateError] = useState<string>("");
   const [info, setInfo] = useState({
     status: null,
     categoriesID: 0,
@@ -39,9 +39,21 @@ function AddTask({ onCloseModal }: AddTaskProps): JSX.Element {
   const onChangeTask = (e: ChangeEvent<HTMLInputElement>): void => {
     setText(e.target.value);
   };
-  const onClickColor = (id: number) => setInfo({ ...info, categoriesID: id });
-  const createdTask = () => {
+  const onClickColor = (id: number): void => setInfo({ ...info, categoriesID: id });
+  // eslint-disable-next-line consistent-return
+  const createdTask = (): void | "" => {
+    setValidateError("");
     const { status, categoriesID } = info;
+
+    if (text.length === 0) {
+      return setValidateError("Длина задачи должна быть больше 0");
+    }
+    if (date === "" || time.hour === "" || time.minute === "") {
+      return setValidateError("Дата или время не установлены");
+    }
+    if (!categoriesID) {
+      return setValidateError("Комната не выбрана");
+    }
     const resultDate = date.split("-").reverse().join(".");
     const task = {
       text,
@@ -50,7 +62,7 @@ function AddTask({ onCloseModal }: AddTaskProps): JSX.Element {
       status,
       categoriesID,
       taskDateId: dateData?.id,
-      userId: user.id,
+      userId: +user.id,
     };
     createTask(task).then(() => {
       onCloseModal();
@@ -59,14 +71,10 @@ function AddTask({ onCloseModal }: AddTaskProps): JSX.Element {
   };
 
   // eslint-disable-next-line no-console
-  if (dateError) console.log("AadTaskDateError", dateError);
-  // eslint-disable-next-line no-console
-  if (createTaskError) console.log("CreateTaskError", createTaskError);
+  if (dateError) console.error("AddTask.tsx file", dateError);
 
   return (
     <div className={s.add_tasks}>
-      <h1>Создать задачу</h1>
-
       <Input
         className={s.add_tasks_text}
         type="text"
@@ -86,6 +94,8 @@ function AddTask({ onCloseModal }: AddTaskProps): JSX.Element {
         />
       </div>
 
+      {createTaskError ? <ErrorMessage message={createTaskError} /> : ""}
+      {validateError ? <ErrorMessage message={validateError} /> : ""}
       <Button className={s.create_btn} onClick={createdTask} isLoading={loadingTask}>
         Создать
       </Button>

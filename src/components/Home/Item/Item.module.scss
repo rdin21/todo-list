@@ -1,0 +1,96 @@
+.item {
+  background-color: #120608;
+  border-radius: 10px;
+  position: relative;
+  height: 60px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+
+  span {
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+
+  &_current_tasks {
+    margin-left: 20px;
+    margin-top: 11px;
+    position: relative;
+    width: 80%;
+    font-size: 0.8rem;
+  }
+
+  &_buttons {
+    display: flex;
+    align-items: center;
+    /* stylelint-disable-next-line no-descending-specificity */
+    & button {
+      border: none;
+      background-color: transparent;
+      font-size: 0.6rem;
+      transition: 0.2s linear;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &_circle {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    bottom: 0%;
+    left: 0;
+    border-radius: 20px;
+    opacity: 0.8;
+  }
+}
+
+.update_input {
+  width: 680px;
+  max-width: 680px;
+
+  &_inp {
+    font-size: 0.7rem;
+    padding: 7px;
+    width: 80%;
+    border: none;
+  }
+
+  &_btn {
+    display: inline-block;
+    border: 1px solid green;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.6rem;
+    margin-left: 10px;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.ready {
+  font-family: cursive;
+  color: green;
+  position: absolute;
+  left: 50%;
+  font-size: 24px;
+  font-weight: 900;
+  z-index: 2;
+}
+
+.not_ready {
+  font-family: cursive;
+  color: red;
+  position: absolute;
+  left: 50%;
+  font-size: 30px;
+  font-weight: 900;
+  z-index: 2;
+}

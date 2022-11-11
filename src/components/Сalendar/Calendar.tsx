@@ -35,14 +35,12 @@ const Index = (): JSX.Element => {
     getTasks(searchDate);
     setAnyDay(true);
   };
-  // console.log(data);
 
   // eslint-disable-next-line no-console
   if (error) console.log("ErrorCalendar", error);
 
   return (
     <section className={s.calendar__container}>
-      <h4>Календарь</h4>
       <div className={s.calendar}>
         <div className={s.month}>
           <i className={s.prev} onClick={prevMonth}>
@@ -87,7 +85,7 @@ const Index = (): JSX.Element => {
           })}
         </div>
         <Modal show={anyDay} onClose={onCloseAnyDayModel}>
-          <AnyDay data={data} />
+          <AnyDay data={data} isLoading={isLoading} />
         </Modal>
       </div>
     </section>

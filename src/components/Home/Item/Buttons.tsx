@@ -2,9 +2,10 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faPencilAlt, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { taskApi } from "../../../service/taskService";
-import s from "../Home.module.scss";
 import { Button } from "../../UI/BaseComponent";
 import { categoriesApi } from "../../../service/categoriesService";
+import s from "./Item.module.scss";
+
 interface ItemButtonsProps {
   status: null | boolean;
   upDate: (id: number) => void;
@@ -45,7 +46,7 @@ export default function ItemButtons({ status, upDate, id }: ItemButtonsProps): J
 
   return (
     <div
-      className={s.tasks_list_item_buttons}
+      className={s.item_buttons}
       style={{
         opacity: status !== null ? "0.5" : "1",
         pointerEvents: status !== null ? "none" : "inherit",
@@ -65,7 +66,7 @@ export default function ItemButtons({ status, upDate, id }: ItemButtonsProps): J
       <Button
         name="Провал"
         onClick={upDateStatusFalse}
-        style={{ fontSize: "20px", color: "white" }}
+        style={{ fontSize: "0.9rem", color: "white" }}
         title="Провал"
       >
         &times;

@@ -5,12 +5,9 @@ import { HOME_ROUTE } from "../../routes/pathRoutes";
 import { registration } from "../../service/userService";
 import { TRegisterUser } from "../../types/TypeUser";
 import { Button, InputGroup } from "../UI/BaseComponent";
-import Loading from "../UI/Preloader/Loading";
+import Spinner from "../UI/Loaders/LoaderSpinner";
 import s from "./Auth.module.scss";
-let count = 0;
 function RegForm(): JSX.Element {
-  console.log("RENDER_REG_FORM", count++);
-
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
@@ -42,12 +39,10 @@ function RegForm(): JSX.Element {
 
         if (res.payload.statusCode || Array.isArray(res.payload)) {
           if (Array.isArray(res.payload)) {
-            // console.log(res.payload, "////////");
             res.payload.forEach((el: string) => {
               const msg = el.split("-");
               obj[msg[0].trim()] = msg[1].trim();
             });
-            // console.log(obj, "[[[[[[[[");
             setErrors(obj);
           } else {
             obj["message"] = res.payload.message;
@@ -59,8 +54,6 @@ function RegForm(): JSX.Element {
       })
       .finally(() => setLoading(false));
   };
-
-  console.log(errors, "**********");
 
   return (
     <form>
@@ -98,7 +91,7 @@ function RegForm(): JSX.Element {
       />
 
       {loading ? (
-        <Loading />
+        <Spinner />
       ) : (
         <Button
           onClick={onSubmit}

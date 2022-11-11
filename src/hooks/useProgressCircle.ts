@@ -16,10 +16,8 @@ function useProgressCircle(tasks: DataTypeTasks[]): Array<number> {
     const sum = tr + fl;
     const ready = (tr * 100) / +sum;
     const notReady = (fl * 100) / +sum;
-    // console.log(tr, fl, ready, notReady, sum);
     setReady(ready);
     setNotReady(notReady);
-    // console.log(tasks, "##3##");
   });
 
   return [ready, notReady];

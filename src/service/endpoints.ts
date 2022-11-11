@@ -7,7 +7,7 @@ export enum TasksPaths {
   tasksCUD = "/task",
   taskSetStatusPatch = "/task",
   getTask = "/date",
-  checkCreateDate = "date/check_date",
+  checkCreateDate = "/date/check_date",
 }
 
 export enum UserPaths {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { categoriesApi } from "../../service/categoriesService";
-import Loading from "../UI/Preloader/Loading";
+import Spinner from "../UI/Loaders/LoaderSpinner";
 import s from "./Categories.module.scss";
 interface CategoriesListProps {
   classNameList?: string;
@@ -31,7 +31,7 @@ function CategoriesList({
   return (
     <ul className={classNameList}>
       {isLoading ? (
-        <Loading />
+        <Spinner />
       ) : (
         <>
           {categories?.map(
@@ -54,6 +54,7 @@ function CategoriesList({
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function TopHeaderPropsAreEqual(prevProps: any, nextProps: any) {
   return prevProps !== nextProps;
 }

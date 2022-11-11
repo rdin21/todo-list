@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import Header from "../components/Header/Header";
 import Statistics from "../components/Home/Statistics";
-import TasksList from "../components/Home/TasksList";
+import TasksList from "../components/Home/TaskList/TasksList";
 import AddTask from "../components/AddTask/AddTask";
 import Modal from "../components/UI/Modal/Modal";
 import CreateCategories from "../components/Categories/CreateCategories";
 import DeleteCategories from "../components/Categories/DeleteCategories";
 import UpdateCategories from "../components/Categories/UpdateCategories";
-import s from "../components/Home/Home.module.scss";
-import Buttons from "../components/Home/Buttons";
+import Buttons from "../components/Home/AddTaskBtn";
 
 function Home(): JSX.Element {
   const [createTask, setCreateTask] = useState<boolean>(false);
@@ -28,12 +27,7 @@ function Home(): JSX.Element {
           <Statistics />
         </section>
 
-        <Buttons
-          setCreateTask={setCreateTask}
-          setCreateCategory={setCreateCategory}
-          setDeleteCategory={setDeleteCategory}
-          setUpDateCategory={setUpDateCategory}
-        />
+        <Buttons setCreateTask={setCreateTask} />
 
         <Modal show={createTask} onClose={onCloseTaskModel}>
           <AddTask onCloseModal={onCloseTaskModel} />
@@ -47,6 +41,7 @@ function Home(): JSX.Element {
         <Modal show={upDateCategory} onClose={onCloseUpDateCategoryModel}>
           <UpdateCategories />
         </Modal>
+
         <TasksList />
       </div>
     </main>

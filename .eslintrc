@@ -61,7 +61,7 @@
     "react/no-array-index-key": "warn",
     "react/react-in-jsx-scope": "off",
     "react/prefer-stateless-function": "warn",
-    "react/jsx-props-no-spreading": "warn",
+    "react/jsx-props-no-spreading": "off",
 
     //import  ???
     "import/no-extraneous-dependencies": "warn",

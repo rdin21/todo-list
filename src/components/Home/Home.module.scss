@@ -3,7 +3,7 @@
 
 .progress {
   display: flex;
-  margin-top: 40px;
+  justify-content: space-between;
   width: 100%;
   height: 200px;
   @include breakpoint(sm) {
@@ -12,7 +12,7 @@
   }
 
   & section {
-    width: 50%;
+    // width: 50%;
     @include breakpoint(sm) {
       width: 100%;
     }
@@ -20,103 +20,32 @@
 }
 
 .tasks_for_day {
-  width: 90%;
+  width: 100%;
   margin: 40px auto;
+  display: flex;
+  position: relative;
+  padding-left: 80px;
+  align-items: center;
 
   h3 {
     text-align: center;
     font-size: 1.1rem;
-    font-family: "Roboto sans-serif";
   }
 
   .tasks_list {
     list-style-type: none;
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
-    border-left: 2px solid #167e56;
-
-    &_item {
-      background-color: #120608;
-      border-radius: 10px;
-      position: relative;
-
-      span {
-        margin-top: 10px;
-        font-size: 0.9rem;
-      }
-
-      display: flex;
-      justify-content: space-between;
-      margin: 15px 0;
-      padding: 15px;
-
-      &_current_tasks {
-        margin-left: 20px;
-        margin-top: 11px;
-        position: relative;
-        width: 80%;
-        font-size: 0.8rem;
-      }
-
-      &_update_input {
-        width: 680px;
-        max-width: 680px;
-
-        input {
-          font-size: 0.8rem;
-          padding: 10px;
-          width: 80%;
-          border: none;
-        }
-
-        button {
-          display: inline-block;
-          border: none;
-          cursor: pointer;
-          font-size: 0.7rem;
-
-          &:hover {
-            color: greenyellow;
-          }
-        }
-      }
-
-      &_buttons {
-        display: flex;
-        align-items: flex-start;
-
-        & button {
-          border: none;
-          background-color: transparent;
-          font-size: 0.6rem;
-          transition: 0.2s linear;
-
-          &:hover {
-            opacity: 0.5;
-          }
-        }
-      }
-
-      &_circle {
-        position: absolute;
-        width: 12px;
-        height: 12px;
-        background-color: white;
-        top: 25px;
-        left: -47px;
-        border-radius: 50%;
-      }
-    }
+    width: 100%;
+    margin: 0;
 
     &::before {
-      content: "00:00";
       transform: translate(-60px, -30px);
       font-size: 0.85rem;
       letter-spacing: 1px;
     }
 
     &::after {
-      content: "24:00";
       transform: translate(-60px, 30px);
       font-size: 0.85rem;
       letter-spacing: 1px;
@@ -124,37 +53,19 @@
   }
 }
 
-.create_buttons {
-  margin: 20px;
-  list-style-type: none;
+.home_add_task_btn {
+  border: 2px solid gray;
+  width: 40px;
+  height: 40px;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
+  margin: 0 auto;
+  border-radius: 50%;
+  cursor: pointer;
 
-  &_btn {
-    margin: 0.4rem 1rem;
-    padding: 0.4rem 0.3rem;
-    font-weight: 300;
-    text-transform: uppercase;
-    border-radius: 10px;
-    font-size: 0.6rem;
-    font-family: Roboto;
-    letter-spacing: 1px;
-    background: transparent;
-    cursor: pointer;
-    color: $fontColor;
-    transition: 0.3s linear;
-    border: 1px solid $accent;
-    width: 10.5rem;
-    box-shadow: 1px 1px red;
-
-    &:hover {
-      opacity: 0.7;
-    }
-
-    &_icon {
-      margin-right: 5px;
-    }
+  &:hover {
+    border: 2px solid green;
   }
 }
 
@@ -167,22 +78,73 @@
   }
 }
 
-.ready {
-  font-family: cursive;
-  color: $green;
+.show_all_line {
   position: absolute;
-  left: 50%;
-  font-size: 24px;
-  font-weight: 900;
-  z-index: 2;
+  right: 0;
+  top: -20px;
+
+  &_btn {
+    background: transparent;
+    border: none;
+    font-size: 0.6rem;
+    color: gray;
+    cursor: pointer;
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
-.not_ready {
-  font-family: cursive;
-  color: $red;
-  position: absolute;
-  left: 50%;
-  font-size: 30px;
-  font-weight: 900;
-  z-index: 2;
+.list_buttons {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  &_btn {
+    font-size: 0.55rem;
+    margin: 10px auto;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    display: block;
+    width: 9rem;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.categories_settings {
+  text-align: right;
+  position: relative;
+
+  &_btn {
+    border: none;
+    background: transparent;
+    transition: 0.3s linear;
+    cursor: pointer;
+
+    &_icon {
+      width: 19px;
+      height: 19px;
+      stroke: white;
+
+      &:hover {
+        animation: spin 3s linear 0s infinite;
+      }
+    }
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
 }

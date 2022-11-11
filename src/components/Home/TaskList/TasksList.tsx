@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, memo } from "react";
 import { categoriesApi } from "../../../service/categoriesService";
 import { taskApi } from "../../../service/taskService";
 import { formatDate } from "../../../utils/utils";
@@ -8,7 +8,6 @@ import Spinner from "../../UI/Loaders/LoaderSpinner";
 import TimeLine from "../../TimeLine/TimeLine";
 import LongList from "./LongList";
 import ShortList from "./ShortList";
-import ErrorMessage from "../../UI/Error/ErrorMessage";
 import ChangeLengthListBtn from "./ChangeLengthListBtn";
 import s from "../Home.module.scss";
 
@@ -46,8 +45,8 @@ function TasksList(): JSX.Element {
     <section className={s.tasks_for_day}>
       <TimeLine hours={hours} lengthLineValue={lengthLineValue} />
       <ChangeLengthListBtn setLengthLine={setLengthLine} lengthLineValue={lengthLineValue} />
-      {getTaskError ? <ErrorMessage errorObject={getTaskError} /> : ""}
-      {getCategoriesError ? <ErrorMessage errorObject={getCategoriesError} /> : ""}
+      {getTaskError ? getTaskError : ""}
+      {getCategoriesError ? getCategoriesError : ""}
       <ul className={s.tasks_list}>
         {loadingTasks ? (
           <Spinner message="Загрузка..." />
@@ -65,4 +64,4 @@ function TasksList(): JSX.Element {
   );
 }
 
-export default TasksList;
+export default memo(TasksList);

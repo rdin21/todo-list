@@ -35,6 +35,7 @@ export const registration = createAsyncThunk(
     }
   }
 );
+// eslint-disable-next-line consistent-return
 export const check = createAsyncThunk("USER/CHECK", async (_, thunkApi) => {
   try {
     const token = localStorage.getItem("access_token");

@@ -2,6 +2,7 @@ import s from "./ProgressColumn.module.scss";
 import { categoriesApi } from "../../../service/categoriesService";
 import { TCategoriesAndTask } from "../../../types/TypeCategories";
 import Columns from "./Columns";
+import CategoriesSettings from "../CategoriesSettings";
 
 export default function ProgressColumn(): JSX.Element {
   const date = new Date().toLocaleDateString();
@@ -13,7 +14,7 @@ export default function ProgressColumn(): JSX.Element {
 
   return (
     <section className={s.progress__column}>
-      <h1>Категорий</h1>
+      <CategoriesSettings />
       <Columns data={categories} isLoading={isLoading} />
       {error ? <b className="error-message">Не удалось загрузить компонент </b> : <></>}
     </section>

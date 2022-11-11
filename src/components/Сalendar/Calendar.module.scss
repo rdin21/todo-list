@@ -14,7 +14,7 @@
 
   .calendar {
     max-width: 500px;
-    height: 620px;
+    height: 645px;
     background-color: $calendarBackground;
     box-shadow: 0 0.8px 48px $calendarBackgroundShadow;
     margin: 0 auto;
@@ -128,4 +128,10 @@
       margin-right: 15px;
     }
   }
+}
+
+.empty_list {
+  text-align: center;
+  display: block;
+  font-size: 0.9rem;
 }

@@ -24,7 +24,7 @@ function LongList({
               return (
                 <TaskItem
                   id={el.id}
-                  key={`${el.date}$${el.time}`}
+                  key={uuidv4()}
                   status={el.status}
                   time={`${el.time}`}
                   task={el.text}
