@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import MobileMenu from "../UI/ToggleMenu/Menu";
+import MobileMenu from "../UI/MobileMenu/Menu";
 import { CALENDAR_ROUTE, HOME_ROUTE, LOGIN_ROUTE } from "../../routes/pathRoutes";
 import s from "./Header.module.scss";
 

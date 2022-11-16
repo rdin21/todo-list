@@ -16,10 +16,10 @@ html {
   font-family: Roboto, sans-serif;
   font-weight: 300;
   @include breakpoint(lg) {
-    font-size: 16px;
+    font-size: 18px;
   }
   @include breakpoint(sm) {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 
@@ -42,10 +42,7 @@ h6 {
 
 body {
   margin: 0;
-  // background: $htmlBackgroundColor;
   color: $fontColor;
-  // background: linear-gradient(171deg, #121212, #181818);
-  // background: linear-gradient(171deg, #121212, #181818);
   background: linear-gradient(90deg, #000, #230b10, #331016, #230b10, #000);
 }
 
@@ -57,7 +54,6 @@ main {
   max-width: 1200px;
   margin: 0 auto;
   padding: 50px 15px;
-  // height: 100vh;
 }
 
 .error_text {

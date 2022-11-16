@@ -11,7 +11,7 @@ function RegForm(): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<any>({});
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const [signUp, setSignUp] = useState<TRegisterUser>({
     name: "",
@@ -31,9 +31,10 @@ function RegForm(): JSX.Element {
   const onSubmit = (): void => {
     setErrors({});
     setLoading(true);
-    const obj: any = {};
+    const obj: { [key: string]: string } = {};
 
     dispatch(registration(signUp))
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .then((res: any) => {
         setLoading(false);
 

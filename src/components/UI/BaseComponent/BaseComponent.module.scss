@@ -24,7 +24,6 @@
   pointer-events: none;
 }
 
-//---------------------input
 .input_group {
   margin-bottom: 16px;
   width: 100%;
@@ -37,11 +36,11 @@
     display: block;
     margin-bottom: 8px;
 
+    /* stylelint-disable-next-line no-duplicate-selectors */
     & {
       + span {
         background: #f4f4f4;
         border-radius: 4px;
-        // display: inline-block;
         color: red;
         letter-spacing: 1px;
         padding: 4px 8px;
@@ -67,4 +66,3 @@
     }
   }
 }
-//---------------------input

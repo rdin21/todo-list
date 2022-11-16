@@ -1,24 +1,20 @@
 @import "../../../scss/mixins";
 
-//vars
 $fg: #f90000f7;
 
-//config
 $menu-items: 4;
 $open-distance: 105px;
 
 %ball {
   background: $fg;
   border-radius: 100%;
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
   position: absolute;
   color: white;
   text-align: center;
-  line-height: 80px;
-  transform: translate3d(0, 0, 0);
   transition: transform ease-out 200ms;
-  z-index: 111;
+  z-index: 11;
 }
 
 .menu-open {
@@ -26,12 +22,12 @@ $open-distance: 105px;
 }
 
 .hamburger {
-  $width: 15px;
-  $height: 3px;
+  $width: 13px;
+  $height: 2px;
 
   width: $width;
   height: $height;
-  background: black;
+  background: white;
   display: block;
   position: absolute;
   top: 50%;
@@ -70,7 +66,7 @@ $hamburger-spacing: 5px;
 
 .menu {
   display: none;
-  width: 35px;
+  width: 30px;
   height: 30px;
   @include breakpoint(lg) {
     display: block;
@@ -80,13 +76,10 @@ $hamburger-spacing: 5px;
 .menu-item {
   @extend %ball;
 
-  & svg {
-    position: absolute;
-    left: 7px;
-    top: 7px;
-    width: 20px;
-    height: 20px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
 
   &:hover {
     background: transparent;
@@ -99,6 +92,7 @@ $hamburger-spacing: 5px;
   }
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .menu-open-button {
   @extend %ball;
 
@@ -109,10 +103,12 @@ $hamburger-spacing: 5px;
   cursor: pointer;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .menu-open-button:hover {
   transform: scale(1.2, 1.2) translate3d(0, 0, 0);
 }
 
+/* stylelint-disable-next-line no-duplicate-selectors */
 .menu-open:checked + .menu-open-button {
   transition-timing-function: linear;
   transition-duration: 200ms;
@@ -124,7 +120,7 @@ $hamburger-spacing: 5px;
   @for $i from 1 through $menu-items {
     &:nth-child(#{$i + 2}) {
       transition-duration: 90ms + (100ms * $i);
-      transform: translate3d(0, 40px * $i, 0);
+      transform: translate3d(0, 36px * $i, 0);
     }
   }
 }

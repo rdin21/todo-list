@@ -45,35 +45,37 @@ export default function ItemButtons({ status, upDate, id }: ItemButtonsProps): J
   if (deleteErrorTask) console.log("DeleteErrorTask", deleteErrorTask);
 
   return (
-    <div
-      className={s.item_buttons}
-      style={{
-        opacity: status !== null ? "0.5" : "1",
-        pointerEvents: status !== null ? "none" : "inherit",
-      }}
-    >
-      <Button name="Готово" onClick={upDateStatusTrue}>
-        <FontAwesomeIcon icon={faCheck} color="green" title="Готово" />
-      </Button>
-      <Button name="edit">
-        <FontAwesomeIcon
-          icon={faPencilAlt}
-          title="Редактировать"
-          onClick={() => upDate(id)}
-          color="white"
-        />
-      </Button>
-      <Button
-        name="Провал"
-        onClick={upDateStatusFalse}
-        style={{ fontSize: "0.9rem", color: "white" }}
-        title="Провал"
+    <>
+      <div
+        className={s.item_block_buttons}
+        style={{
+          opacity: status !== null ? "0.5" : "1",
+          pointerEvents: status !== null ? "none" : "inherit",
+        }}
       >
-        &times;
-      </Button>
-      <Button name="Удалить" onClick={deleteTask}>
-        <FontAwesomeIcon icon={faTrashAlt} color="red" title="Удалить" />
-      </Button>
-    </div>
+        <Button name="Готово" onClick={upDateStatusTrue}>
+          <FontAwesomeIcon icon={faCheck} color="green" title="Готово" />
+        </Button>
+        <Button name="edit">
+          <FontAwesomeIcon
+            icon={faPencilAlt}
+            title="Редактировать"
+            onClick={() => upDate(id)}
+            color="white"
+          />
+        </Button>
+        <Button
+          name="Провал"
+          onClick={upDateStatusFalse}
+          style={{ fontSize: "0.9rem", color: "white" }}
+          title="Провал"
+        >
+          &times;
+        </Button>
+        <Button name="Удалить" onClick={deleteTask}>
+          <FontAwesomeIcon icon={faTrashAlt} color="red" title="Удалить" />
+        </Button>
+      </div>
+    </>
   );
 }

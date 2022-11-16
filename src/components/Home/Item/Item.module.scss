@@ -1,39 +1,60 @@
+@import "../../../scss/mixins";
+
 .item {
   background-color: #120608;
   border-radius: 10px;
   position: relative;
-  height: 60px;
-  margin-bottom: 10px;
+  height: 3rem;
+  margin-bottom: 0.6rem;
   display: flex;
   justify-content: space-between;
-  padding: 10px 20px;
+  padding: 0.5rem 1rem;
 
-  span {
-    margin-top: 10px;
+  &_time {
+    margin-top: 0.5rem;
     font-size: 1rem;
   }
 
   &_current_tasks {
-    margin-left: 20px;
+    margin-left: 1rem;
     margin-top: 11px;
     position: relative;
     width: 80%;
     font-size: 0.8rem;
+
+    @include breakpoint(sm) {
+      width: 95%;
+    }
   }
 
-  &_buttons {
-    display: flex;
-    align-items: center;
-    /* stylelint-disable-next-line no-descending-specificity */
-    & button {
-      border: none;
-      background-color: transparent;
-      font-size: 0.6rem;
-      transition: 0.2s linear;
-      cursor: pointer;
+  &_block {
+    @include breakpoint(sm) {
+      display: none;
+    }
 
-      &:hover {
-        opacity: 0.5;
+    &_buttons {
+      display: flex;
+      align-items: center;
+
+      @include breakpoint(sm) {
+        left: -85px;
+        top: 0;
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* stylelint-disable-next-line no-descending-specificity */
+      & button {
+        border: none;
+        background-color: transparent;
+        font-size: 0.6rem;
+        transition: 0.2s linear;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.5;
+        }
       }
     }
   }
@@ -47,6 +68,24 @@
     left: 0;
     border-radius: 20px;
     opacity: 0.8;
+  }
+}
+
+.mobile_menu {
+  display: none;
+  position: relative;
+
+  @include breakpoint(sm) {
+    display: block;
+  }
+
+  &_ellipsis_v {
+    border: none;
+    background: transparent;
+
+    &_icon {
+      font-size: 1rem;
+    }
   }
 }
 
@@ -80,7 +119,7 @@
   color: green;
   position: absolute;
   left: 50%;
-  font-size: 24px;
+  font-size: 1.2rem;
   font-weight: 900;
   z-index: 2;
 }
@@ -90,7 +129,7 @@
   color: red;
   position: absolute;
   left: 50%;
-  font-size: 30px;
+  font-size: 1.5rem;
   font-weight: 900;
   z-index: 2;
 }

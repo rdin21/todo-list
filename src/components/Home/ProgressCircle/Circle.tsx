@@ -8,7 +8,7 @@ interface CircleProps {
 
 function Circle({ ready = 0, notReady = 0 }: CircleProps): JSX.Element {
   return (
-    <svg className={s.progress__circle} width="150" height="150" viewBox="0 0 50 50">
+    <svg className={s.progress__circle} viewBox="0 0 50 50">
       <circle
         style={{ strokeDasharray: `${ready} 100` }}
         className={s.progress__circle__arc}

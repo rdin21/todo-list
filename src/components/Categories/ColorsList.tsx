@@ -1,4 +1,4 @@
-import { useState, MouseEvent, memo } from "react";
+import React, { useState, MouseEvent, memo } from "react";
 import { categoriesApi } from "../../service/categoriesService";
 import { TCreateCategories, TColorsCategories, TUpDateCategory } from "../../types/TypeCategories";
 import { Button } from "../UI/BaseComponent";

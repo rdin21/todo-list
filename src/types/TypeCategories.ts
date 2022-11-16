@@ -9,11 +9,6 @@ export interface ICategories {
 
 export type TCreateCategories = Pick<ICategories, "color" | "name">;
 
-// export type TColorsCategories = {
-//   id?: number;
-//   color: string;
-//   name: string;
-// };
 export type TColorsCategories = Pick<ICategories, "id" | "color" | "name">;
 export type TCategoriesAndTask = ICategories & { tasks: Task[] };
 export type TUpDateCategory = Pick<ICategories, "id" | "name" | "color">;

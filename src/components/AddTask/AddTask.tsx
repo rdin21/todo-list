@@ -1,7 +1,6 @@
 import { useState, ChangeEvent } from "react";
 import { useAppSelector } from "../../hooks/redux";
 import { TUserFromAccessToken } from "../../types/TypeUser";
-import { selectUser } from "../../store/selectors";
 import { taskApi } from "../../service/taskService";
 import { formatDate } from "../../utils/utils";
 import { Input, Button } from "../UI/BaseComponent";
@@ -18,7 +17,7 @@ interface AddTaskProps {
 
 function AddTask({ onCloseModal }: AddTaskProps): JSX.Element {
   const currentDate = new Date().toLocaleDateString();
-  const { data } = useAppSelector(selectUser);
+  const { data } = useAppSelector((s) => s.user);
   const { data: dateData, error: dateError } = taskApi.useCheckCreateDateQuery(formatDate);
   const [createTask, { error: createTaskError, isLoading: loadingTask }] =
     taskApi.useCreateTaskMutation();

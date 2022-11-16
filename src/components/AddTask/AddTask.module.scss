@@ -1,6 +1,3 @@
-//==================================================
-//Add-Tasks
-//==================================================
 @import "../../scss/variables";
 
 .add_tasks {
@@ -12,11 +9,11 @@
 
   &_error_message {
     font-size: 0.7rem;
-    color: white;
+    color: $fontColor;
     background-color: red;
-    padding: 10px;
-    border-radius: 20px;
-    margin-bottom: 20px;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
   }
 
   &_text {
@@ -46,9 +43,9 @@
       position: relative;
 
       &::-webkit-calendar-picker-indicator {
-        width: 30px;
-        height: 30px;
-        margin-right: 10px;
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 0.5rem;
         cursor: pointer;
         z-index: 2;
         background: transparent;
@@ -56,14 +53,14 @@
 
       &::after {
         content: attr(data-date);
-        width: 22px;
-        height: 22px;
+        width: 1.1rem;
+        height: 1.1rem;
         font-size: 0.7rem;
         position: absolute;
         right: 16px;
         border: 2px solid grey;
         border-radius: 50%;
-        padding: 2px;
+        padding: 0.1rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -76,11 +73,11 @@
     }
 
     &_separator {
-      margin-left: 5px;
+      margin-left: 0.2rem;
     }
 
     &_clear_time {
-      margin-left: 5px;
+      margin-left: 0.3rem;
       cursor: pointer;
 
       &:hover {
@@ -117,7 +114,7 @@
     font-size: 0.6rem;
     font-weight: 300;
     border-radius: 5px;
-    background-color: #024c02;
+    background-color: #023202;
     max-width: 6rem;
     width: 6rem;
     border: none;
@@ -130,10 +127,6 @@
     }
   }
 }
-
-//==================================================
-//Delete-List
-//==================================================
 
 .delete_list {
   display: flex;
@@ -171,4 +164,3 @@
     }
   }
 }
-//================================

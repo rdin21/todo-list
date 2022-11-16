@@ -12,7 +12,7 @@ export default function LoginForm(): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [loading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState<any>({});
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const [signIn, setSignIn] = useState<TLoginUser>({
     email: "",
@@ -30,9 +30,10 @@ export default function LoginForm(): JSX.Element {
   const onSubmit = (): void => {
     setErrors({});
     setIsLoading(true);
-    const obj: any = {};
+    const obj: { [key: string]: string } = {};
 
     dispatch(login(signIn))
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .then((res: any) => {
         setIsLoading(false);
         if (res?.payload?.statusCode || Array.isArray(res.payload)) {

@@ -1,6 +1,7 @@
-import s from "./ProgressCircle.module.scss";
 import React from "react";
 import classNames from "classnames";
+import s from "./ProgressCircle.module.scss";
+
 interface InfoProps {
   ready: number;
   notReady: number;

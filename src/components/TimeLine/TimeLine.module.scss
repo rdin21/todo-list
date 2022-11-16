@@ -1,8 +1,17 @@
+@import "../../scss/mixins";
+
 .time_line {
   display: inline-block;
   border-right: 5px solid red;
   position: relative;
   opacity: 0.8;
+  @include breakpoint(lg) {
+    border-right: 4px solid red;
+  }
+
+  @include breakpoint(sm) {
+    display: none;
+  }
 
   &_current_time {
     position: absolute;
@@ -11,6 +20,24 @@
     transition: 1s linear;
     height: 0;
     border: 2px solid red;
+    border-right: 5px solid red;
+
+    @include breakpoint(lg) {
+      width: 100px;
+      left: -70px;
+
+      div {
+        font-size: 0.8rem;
+      }
+    }
+    @include breakpoint(lg) {
+      width: 83px;
+      left: -60px;
+
+      div {
+        font-size: 0.8rem;
+      }
+    }
   }
 
   &_hours {
@@ -21,6 +48,9 @@
       position: absolute;
       left: -20px;
       top: -4px;
+      @include breakpoint(lg) {
+        font-size: 0.8rem;
+      }
     }
 
     &::before {
@@ -32,6 +62,11 @@
       border-radius: 50%;
       position: absolute;
       left: 5px;
+      @include breakpoint(lg) {
+        width: 12px;
+        height: 12px;
+        left: 6px;
+      }
     }
   }
 }

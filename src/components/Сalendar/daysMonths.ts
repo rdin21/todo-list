@@ -12,4 +12,4 @@ export const months: string[] = [
   "Ноябрь",
   "Декабрь",
 ];
-export const weekdays: string[] = ["Пн", "Вн", "Ср", "Чт", "Пт", "Сб", "Вс"];
+export const weekdays: string[] = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];

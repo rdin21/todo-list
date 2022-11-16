@@ -1,7 +1,6 @@
 import React, { memo } from "react";
 import { useAppSelector } from "../../hooks/redux";
 import { TUserFromAccessToken } from "../../types/TypeUser";
-import { selectUser } from "../../store/selectors";
 import { IUserState } from "../../types/TypeState";
 import { formatDate } from "../../utils/utils";
 import Clock from "./Clock";
@@ -9,10 +8,10 @@ import { taskApi } from "../../service/taskService";
 import s from "./Header.module.scss";
 import Navigation from "./Navigation";
 
-const days = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+const days = ["Воскресение", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
 
 function Header(): JSX.Element {
-  const { data } = useAppSelector<IUserState>(selectUser);
+  const { data } = useAppSelector<IUserState>((s) => s.user);
   // const mediaQuery = window.matchMedia("(max-width: 992px)");
   const date = new Date();
   const user = data as TUserFromAccessToken;
@@ -38,7 +37,7 @@ function Header(): JSX.Element {
           {error ? <span className="error_text"> Ошибка загрузки</span> : ""}
         </span>
       </div>
-      <div className={s.header_time} title={date.toLocaleDateString()}>
+      <div className={s.header_day} title={date.toLocaleDateString()}>
         {days[date.getDay()] + ": "}
         <Clock style={{ display: "inline-block", fontSize: "0.8rem", color: "gray" }} />
       </div>

@@ -6,6 +6,11 @@
   justify-content: space-between;
   align-items: center;
 
+  &_day {
+    font-size: 0.8rem;
+    color: gray;
+  }
+
   &_title {
     font-weight: 300;
     font-size: 0.9rem;
@@ -22,9 +27,6 @@
   }
 }
 
-/* ----------------------------*\
-	<NAV_COMPONENT>
-\*---------------------------- */
 .nav {
   ul {
     margin: 0;
@@ -53,7 +55,3 @@
     visibility: hidden;
   }
 }
-
-/* ----------------------------*\
-	</NAV_COMPONENT>
-\*---------------------------- */

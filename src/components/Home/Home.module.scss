@@ -8,11 +8,10 @@
   height: 200px;
   @include breakpoint(sm) {
     height: 130px;
-    margin: 20px auto;
+    margin: 1rem auto;
   }
 
   & section {
-    // width: 50%;
     @include breakpoint(sm) {
       width: 100%;
     }
@@ -21,11 +20,15 @@
 
 .tasks_for_day {
   width: 100%;
-  margin: 40px auto;
+  margin: 2rem auto;
   display: flex;
   position: relative;
   padding-left: 80px;
   align-items: center;
+
+  @include breakpoint(sm) {
+    padding: 0;
+  }
 
   h3 {
     text-align: center;
@@ -55,14 +58,18 @@
 
 .home_add_task_btn {
   border: 2px solid gray;
-  width: 40px;
-  height: 40px;
+  width: 2rem;
+  height: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
   border-radius: 50%;
   cursor: pointer;
+
+  svg {
+    font-size: 1rem;
+  }
 
   &:hover {
     border: 2px solid green;
@@ -82,6 +89,10 @@
   position: absolute;
   right: 0;
   top: -20px;
+
+  @include breakpoint(sm) {
+    display: none;
+  }
 
   &_btn {
     background: transparent;
@@ -119,8 +130,8 @@
 }
 
 .categories_settings {
-  text-align: right;
-  position: relative;
+  position: absolute;
+  right: 10px;
 
   &_btn {
     border: none;

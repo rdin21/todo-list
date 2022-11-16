@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import { Button } from "../../UI/BaseComponent";
 import s from "../Home.module.scss";
 interface IChangeLengthListBtnProps {
   setLengthLine: () => void;
@@ -11,9 +12,9 @@ function ChangeLengthListBtn({
 }: IChangeLengthListBtnProps): JSX.Element {
   return (
     <div className={s.show_all_line}>
-      <button onClick={setLengthLine} className={s.show_all_line_btn} title="Изменить линию">
+      <Button onClick={setLengthLine} className={s.show_all_line_btn} title="Изменить линию">
         {lengthLineValue === "all" ? "Показать всю линию" : "Показать короткую линию"}
-      </button>
+      </Button>
     </div>
   );
 }

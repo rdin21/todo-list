@@ -3,6 +3,9 @@ import Buttons from "./Buttons";
 import Status from "./Status";
 import UpDate from "./UpDate";
 import s from "./Item.module.scss";
+import { Button } from "../../UI/BaseComponent";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 type TasksItemProps = {
   id: number;
   status: boolean | null;
@@ -35,7 +38,7 @@ export default function TimeLineItem({
           background: status !== null ? trueAndFalseColor : color,
         }}
       ></div>
-      <span>{time}</span>
+      <span className={s.item_time}>{time}</span>
 
       <div
         className={s.item_current_tasks}
@@ -50,7 +53,23 @@ export default function TimeLineItem({
         setUpDateTask={setUpDateTask}
         task={task}
       />
-      <Buttons id={id} status={status} upDate={upDate} />
+      <div className={s.item_block}>
+        <Buttons id={id} status={status} upDate={upDate} />
+      </div>
+      <div className={s.mobile_menu}>
+        <Button name="ellipsis_vertical" className={s.mobile_menu_ellipsis_v}>
+          <FontAwesomeIcon
+            icon={faEllipsisV}
+            title="Открыть"
+            className={s.mobile_menu_ellipsis_v_icon}
+            // onClick={() => upDate(id)}
+            color={"red"}
+          />
+        </Button>
+        <div className={s.menu}>
+          <Buttons id={id} status={status} upDate={upDate} />
+        </div>
+      </div>
     </li>
   );
 }

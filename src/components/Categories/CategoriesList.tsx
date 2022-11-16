@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import classNames from "classnames";
-import { categoriesApi } from "../../service/categoriesService";
 import Spinner from "../UI/Loaders/LoaderSpinner";
+import { categoriesApi } from "../../service/categoriesService";
+import ErrorMessage from "../UI/Error/ErrorMessage";
 import s from "./Categories.module.scss";
+
 interface CategoriesListProps {
   classNameList?: string;
   classNameItem?: string;
@@ -21,7 +23,7 @@ function CategoriesList({
   const { data: categories, error, isLoading } = categoriesApi.useGetCategoriesQuery(NaN);
   const [active, setActive] = useState<number | null>(null);
   // eslint-disable-next-line no-console
-  if (error) console.log("CategoriesListError", error);
+  if (error) console.log("CategoriesList.tsx file", error);
 
   const chooseCategory = (id: number) => {
     onClick(id);
@@ -30,6 +32,7 @@ function CategoriesList({
 
   return (
     <ul className={classNameList}>
+      {error ? <ErrorMessage message={"Не удалось загрузить категории"} /> : ""}
       {isLoading ? (
         <Spinner />
       ) : (

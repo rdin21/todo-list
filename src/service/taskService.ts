@@ -39,13 +39,7 @@ export const taskApi = createApi({
   baseQuery: axiosBaseQuery({
     baseUrl: URL ? URL : "",
   }),
-  // baseQuery: fetchBaseQuery({
-  //   baseUrl: URL,
-  //   prepareHeaders: (headers) => {
-  //     // headers.set("Authorization", `Bearer ${localStorage.getItem("access_token")}`);
-  //     return headers;
-  //   },
-  // }) as BaseQueryFn<string | FetchArgs, unknown, ErrorType, Record<string, unknown>>,
+
   tagTypes: ["Task"],
   endpoints: (build) => ({
     getTask: build.query<DataTypeTasks[], string>({

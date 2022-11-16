@@ -11,15 +11,9 @@ interface User {
 }
 
 export type TLoginUser = Pick<User, "email" | "password">;
-export type TRegisterUser = Pick<
-  User,
-  "email" | "password" | "name" | "lastname"
->;
-// export type TUserFromAccessToken = User & { iat: number; exp: string };
-export type TUserFromAccessToken = Pick<
-  User,
-  "email" | "name" | "lastname" | "id"
-> & {
+export type TRegisterUser = Pick<User, "email" | "password" | "name" | "lastname">;
+
+export type TUserFromAccessToken = Pick<User, "email" | "name" | "lastname" | "id"> & {
   iat: number;
   exp: number;
 };

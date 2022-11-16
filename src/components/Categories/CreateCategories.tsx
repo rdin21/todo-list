@@ -1,10 +1,10 @@
-import s from "./Categories.module.scss";
-import { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent } from "react";
 import { categoriesApi } from "../../service/categoriesService";
 import { TCreateCategories } from "../../types/TypeCategories";
 import { Button, Input } from "../UI/BaseComponent";
 import CategoriesColors from "./ColorsList";
 import ErrorMessage from "../UI/Error/ErrorMessage";
+import s from "./Categories.module.scss";
 
 interface CreateCategoriesProps {
   onCloseCategoryModel: () => void;

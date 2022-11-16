@@ -19,12 +19,13 @@ $red: red;
 
 //---------CALENDAR_COLORS
 
-// $calendarBackground: #222227;
-$calendarBackground: white;
+$calendarBackground: transparent;
 $calendarBackgroundShadow: #0006;
-$calendarMonthBackground: #167e56;
+$calendarMonthBackground: #167e5617;
 $calendarBodyBackgroundShadow: #00000080;
 $dark-gray: #777;
-$calendarHoverBackground: #262626;
+$calendarColorDays: gray;
+$calendarColorDaysAndText: white;
+$calendarHoverBackground: #4f1b1b;
 
 //---------CALENDAR_COLORS////

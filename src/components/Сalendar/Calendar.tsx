@@ -1,13 +1,14 @@
-import s from "./Calendar.module.scss";
-import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { months, weekdays } from "./daysMonths";
 import useCalendar from "../../hooks/useCalendar";
 import { formatFullDate } from "../../utils/utils";
 import { taskApi } from "../../service/taskService";
 import Modal from "../UI/Modal/Modal";
 import AnyDay from "./AnyDay";
+import Month from "./Month";
+import s from "./Calendar.module.scss";
+import Weekdays from "./Weekdays";
+
+const dayMonth = new Date().getDate();
 
 const Index = (): JSX.Element => {
   const [date, setDate] = useState<Date>(new Date());
@@ -16,16 +17,6 @@ const Index = (): JSX.Element => {
   const [anyDay, setAnyDay] = useState<boolean>(false);
 
   const onCloseAnyDayModel = (): void => setAnyDay(false);
-
-  const prevMonth = (): void => {
-    const newDate = date.setMonth(date.getMonth() - 1);
-    setDate(new Date(newDate));
-  };
-
-  const nextMonth = (): void => {
-    const newDate = date.setMonth(date.getMonth() + 1);
-    setDate(new Date(newDate));
-  };
 
   const onClickOnDay = (day: string | number): void => {
     let numberDay = "";
@@ -37,30 +28,13 @@ const Index = (): JSX.Element => {
   };
 
   // eslint-disable-next-line no-console
-  if (error) console.log("ErrorCalendar", error);
+  if (error) console.log("Calendar.tsx file", error);
 
   return (
     <section className={s.calendar__container}>
       <div className={s.calendar}>
-        <div className={s.month}>
-          <i className={s.prev} onClick={prevMonth}>
-            <FontAwesomeIcon icon={faAngleLeft} />
-          </i>
-          <div className={s.date}>
-            <h1>{months[date.getMonth()]}</h1>
-            <p>{date.toDateString()}</p>
-          </div>
-          <i className={s.next} onClick={nextMonth}>
-            <FontAwesomeIcon icon={faAngleRight} />
-          </i>
-        </div>
-
-        <div className={s.weekdays}>
-          {weekdays.map((day) => (
-            <div key={day}>{day}</div>
-          ))}
-        </div>
-
+        <Month date={date} setDate={setDate} />
+        <Weekdays />
         <div className={s.days}>
           {days?.map((day: string | number) => {
             if (typeof day === "string") {
@@ -69,10 +43,14 @@ const Index = (): JSX.Element => {
                 return (
                   <div
                     key={day}
-                    className={`${s}.${numberAndClass[1]}`}
+                    className={s.days_not_this_month}
                     onClick={() => onClickOnDay(day)}
                   >
-                    {numberAndClass[0]}
+                    {+numberAndClass[0] === dayMonth ? (
+                      <span color="green">{numberAndClass[0]}</span>
+                    ) : (
+                      <span>{numberAndClass[0]}</span>
+                    )}
                   </div>
                 );
               }
