@@ -1,4 +1,5 @@
 @import "./../../scss/variables";
+@import "./../../scss/mixins";
 
 .calendar__container {
   width: 100%;
@@ -7,11 +8,15 @@
   margin: 40px auto;
 
   .calendar {
-    max-width: 500px;
-    height: 645px;
+    max-width: 25rem;
+    height: 32.25rem;
     background-color: $calendarBackground;
     box-shadow: 0 0.8px 48px $calendarBackgroundShadow;
     margin: 0 auto;
+
+    @include breakpoint(xs) {
+      max-width: 20rem;
+    }
 
     .month {
       width: 100%;
@@ -20,7 +25,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 12px;
+      padding: 0 0.6rem;
       text-align: center;
       text-shadow: 0 5px 8px $calendarBodyBackgroundShadow;
 
@@ -33,9 +38,9 @@
         font-size: 0.9rem;
         font-weight: 400;
         text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 4px;
-        margin-top: 4px;
+        letter-spacing: 0.1rem;
+        margin-bottom: 0.2rem;
+        margin-top: 0.2rem;
       }
 
       & p {
@@ -55,7 +60,7 @@
         font-size: 400;
         letter-spacing: 1px;
         color: $calendarColorDays;
-        width: calc(500px / 7);
+        width: calc(25rem / 7);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -67,25 +72,33 @@
       width: 100%;
       display: flex;
       flex-wrap: wrap;
-      padding: 2px;
+      padding: 0.1rem;
 
       &_not_this_month {
         opacity: 0.5;
         pointer-events: none;
+
+        span {
+          font-size: 0.9rem;
+        }
       }
     }
 
     .days div {
       font-size: 0.8rem;
-      margin: 3px;
-      width: calc(450px / 7);
-      height: 75px;
+      margin: 0.15rem;
+      width: calc(22.5rem / 7);
+      height: 3.75rem;
       color: $calendarColorDaysAndText;
       display: flex;
       justify-content: center;
       align-items: center;
       text-shadow: 0 4px 8px $calendarBodyBackgroundShadow;
       transition: background-color 0.2s;
+      @include breakpoint(xs) {
+        width: calc(21rem / 7);
+        height: 2.75rem;
+      }
     }
 
     .days div:hover:not(.today) {
@@ -122,6 +135,7 @@
     border-radius: 10px;
     margin: 0.5rem;
 
+    /* stylelint-disable-next-line no-descending-specificity */
     span {
       margin-right: 0.75rem;
     }

@@ -23,11 +23,14 @@ export default function TimeLineItem({
 }: TasksItemProps): JSX.Element {
   const [upDateTask, setUpDateTask] = useState<boolean>(false);
   const [upDateTaskId, setUpDateTaskId] = useState<number | null>(null);
+  const [showEllipsisVPanel, setShowEllipsisVPanel] = useState<boolean>(false);
 
   const upDate = (id: number) => {
     setUpDateTask(true);
     setUpDateTaskId(id);
   };
+
+  const showEllipsisVPanelFunc = (): void => setShowEllipsisVPanel(!showEllipsisVPanel);
 
   const trueAndFalseColor = status ? "green" : "red";
   return (
@@ -62,11 +65,19 @@ export default function TimeLineItem({
             icon={faEllipsisV}
             title="Открыть"
             className={s.mobile_menu_ellipsis_v_icon}
-            // onClick={() => upDate(id)}
-            color={"red"}
+            onClick={showEllipsisVPanelFunc}
+            color={"white"}
           />
         </Button>
-        <div className={s.menu}>
+        <div
+          className={s.menu}
+          style={{
+            opacity: showEllipsisVPanel ? 1 : 0,
+            pointerEvents: showEllipsisVPanel ? "inherit" : "none",
+            zIndex: showEllipsisVPanel ? 2 : 0,
+            transition: "0.3s linear",
+          }}
+        >
           <Buttons id={id} status={status} upDate={upDate} />
         </div>
       </div>

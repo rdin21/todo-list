@@ -77,7 +77,7 @@ function TasksList(): JSX.Element {
               <>
                 {tasks ? (
                   <>
-                    {tasks[0].taskDate?.map((el: Task) => {
+                    {tasks[0]?.taskDate?.map((el: Task) => {
                       const category = categories?.find(
                         (v: ICategories) => v.id === el.categoriesID
                       );

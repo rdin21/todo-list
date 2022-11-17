@@ -1,4 +1,5 @@
 @import "../../scss/variables";
+@import "../../scss/mixins";
 
 .add_tasks {
   width: 100%;
@@ -133,6 +134,7 @@
   list-style-type: none;
   flex-wrap: wrap;
   justify-content: center;
+  padding: 0;
 
   .list_item {
     border: 1px solid black;
