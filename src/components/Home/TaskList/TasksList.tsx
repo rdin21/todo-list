@@ -14,13 +14,16 @@ import ShortList from "./ShortList";
 import ChangeLengthListBtn from "./ChangeLengthListBtn";
 import s from "../Home.module.scss";
 
-function TasksList(): JSX.Element {
+function TasksList({ userId }: { userId: number }): JSX.Element {
   const {
     data: tasks,
     error: getTaskError,
     isLoading: loadingTasks,
   } = taskApi.useGetTaskQuery(formatDate);
-  const { data: categories, error: getCategoriesError } = categoriesApi.useGetCategoriesQuery(10);
+
+  const { data: categories, error: getCategoriesError } =
+    categoriesApi.useGetCategoriesQuery(userId);
+
   const { length, setLength } = useLengthTimeLine();
   const [lengthLineValue, setLengthLineValue] = useState<string>("");
   const [mobile, setMobile] = useState(false);

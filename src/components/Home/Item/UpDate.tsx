@@ -39,7 +39,7 @@ export default function UpDateTask({
   if (error) console.log("UpDate.tsx file", error);
 
   return (
-    <div style={{ display: upDateTask ? "block" : "none" }} className={s.update_input}>
+    <div style={{ display: upDateTask ? "inline-flex" : "none" }} className={s.update_input}>
       <Input
         value={upDateText}
         onChange={handlerUpDateText}

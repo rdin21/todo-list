@@ -1,6 +1,8 @@
 import React, { useState, MouseEvent, memo } from "react";
+import { useAppSelector } from "../../hooks/redux";
 import { categoriesApi } from "../../service/categoriesService";
 import { TCreateCategories, TColorsCategories, TUpDateCategory } from "../../types/TypeCategories";
+import { TUserFromAccessToken } from "../../types/TypeUser";
 import { Button } from "../UI/BaseComponent";
 import s from "./Categories.module.scss";
 
@@ -24,7 +26,8 @@ interface CategoriesColorsProps {
 }
 
 function ColorsList({ state, setState }: CategoriesColorsProps): JSX.Element {
-  const { data: categories, error, isLoading } = categoriesApi.useGetCategoriesQuery(2);
+  const user = useAppSelector((s) => s.user.data) as TUserFromAccessToken;
+  const { data: categories, error, isLoading } = categoriesApi.useGetCategoriesQuery(user.id);
   const [active, setActive] = useState<number | undefined>();
   const onClickColor = (e: MouseEvent<HTMLButtonElement>): void => {
     const { innerText } = e.currentTarget;

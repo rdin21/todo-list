@@ -25,8 +25,9 @@ export const categoriesApi = createApi({
   tagTypes: ["Categories"],
   endpoints: (build) => ({
     getCategories: build.query<ICategories[], number>({
-      query: () => ({
+      query: (id: number) => ({
         url: CategoriesPaths.categoriesCRUD,
+        params: { userId: id },
       }),
       providesTags: () => ["Categories"],
     }),
@@ -38,7 +39,7 @@ export const categoriesApi = createApi({
       }),
     }),
 
-    createCategories: build.mutation<ICategories, TCreateCategories>({
+    createCategories: build.mutation<ICategories, TCreateCategories & { userId: number }>({
       query: (post) => {
         return {
           url: CategoriesPaths.categoriesCRUD,

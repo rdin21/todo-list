@@ -9,6 +9,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 1rem;
+  margin-left: 20px;
 
   &_time {
     margin-top: 0.5rem;
@@ -93,6 +94,7 @@
 .update_input {
   width: 680px;
   max-width: 680px;
+  align-items: center;
 
   @include breakpoint(sm) {
     width: auto;
@@ -108,7 +110,11 @@
   }
 
   &_btn {
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.3rem;
+    height: 1.3rem;
     border: 1px solid green;
     border-radius: 50%;
     cursor: pointer;

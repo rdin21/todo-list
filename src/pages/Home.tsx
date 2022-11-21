@@ -8,8 +8,11 @@ import CreateCategories from "../components/Categories/CreateCategories";
 import DeleteCategories from "../components/Categories/DeleteCategories";
 import UpdateCategories from "../components/Categories/UpdateCategories";
 import Buttons from "../components/Home/AddTaskBtn";
+import { useAppSelector } from "../hooks/redux";
+import { TUserFromAccessToken } from "../types/TypeUser";
 
 function Home(): JSX.Element {
+  const user = useAppSelector((s) => s.user.data) as TUserFromAccessToken;
   const [createTask, setCreateTask] = useState<boolean>(false);
   const [createCategory, setCreateCategory] = useState<boolean>(false);
   const [deleteCategory, setDeleteCategory] = useState<boolean>(false);
@@ -42,7 +45,7 @@ function Home(): JSX.Element {
           <UpdateCategories />
         </Modal>
 
-        <TasksList />
+        {user.id ? <TasksList userId={user.id} /> : ""}
       </div>
     </main>
   );

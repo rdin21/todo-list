@@ -4,6 +4,8 @@ import { TCreateCategories } from "../../types/TypeCategories";
 import { Button, Input } from "../UI/BaseComponent";
 import CategoriesColors from "./ColorsList";
 import ErrorMessage from "../UI/Error/ErrorMessage";
+import { useAppSelector } from "../../hooks/redux";
+import { TUserFromAccessToken } from "../../types/TypeUser";
 import s from "./Categories.module.scss";
 
 interface CreateCategoriesProps {
@@ -11,6 +13,7 @@ interface CreateCategoriesProps {
 }
 
 function CreateCategories({ onCloseCategoryModel }: CreateCategoriesProps): JSX.Element {
+  const user = useAppSelector((s) => s.user.data) as TUserFromAccessToken;
   const [createCategory, { error, isLoading }] = categoriesApi.useCreateCategoriesMutation();
   const [category, setCategory] = useState<TCreateCategories>({
     name: "",
@@ -30,7 +33,7 @@ function CreateCategories({ onCloseCategoryModel }: CreateCategoriesProps): JSX.
     if (category.color === "") {
       return setErrorMessage("Категория не выбрана");
     }
-    createCategory(category).then(() => {
+    createCategory({ ...category, userId: user.id }).then(() => {
       onCloseCategoryModel();
     });
     setCategory({

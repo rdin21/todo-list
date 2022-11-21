@@ -4,6 +4,8 @@ import Spinner from "../UI/Loaders/LoaderSpinner";
 import { categoriesApi } from "../../service/categoriesService";
 import ErrorMessage from "../UI/Error/ErrorMessage";
 import s from "./Categories.module.scss";
+import { useAppSelector } from "../../hooks/redux";
+import { TUserFromAccessToken } from "../../types/TypeUser";
 
 interface CategoriesListProps {
   classNameList?: string;
@@ -20,7 +22,9 @@ function CategoriesList({
   icon,
   onClick,
 }: CategoriesListProps): JSX.Element {
-  const { data: categories, error, isLoading } = categoriesApi.useGetCategoriesQuery(NaN);
+  const user = useAppSelector((s) => s.user.data) as TUserFromAccessToken;
+
+  const { data: categories, error, isLoading } = categoriesApi.useGetCategoriesQuery(user.id);
   const [active, setActive] = useState<number | null>(null);
   // eslint-disable-next-line no-console
   if (error) console.log("CategoriesList.tsx file", error);

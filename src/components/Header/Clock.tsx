@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect, useState } from "react";
+import React, { CSSProperties, useEffect, useState } from "react";
 
 interface IClockProps {
   className?: string;
