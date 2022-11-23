@@ -1,28 +1,31 @@
 import React from "react";
-import { DataTypeTasks } from "../../../types/TypeTask";
-import { taskApi } from "../../../service/taskService";
-import { formatDate } from "../../../utils/utils";
 import useProgressCircle from "../../../hooks/useProgressCircle";
 import Spinner from "../../UI/Loaders/LoaderSpinner";
 import Info from "./Info";
 import Circle from "./Circle";
 import s from "./ProgressCircle.module.scss";
-
-export default function ProgressCircle(): JSX.Element {
-  const { data, isLoading, error } = taskApi.useGetTaskQuery(formatDate);
-
-  const tasks = data as DataTypeTasks[];
+import { DataTypeTasks } from "../../../types/TypeTask";
+interface IProgressCircleProps {
+  tasks?: DataTypeTasks[];
+  getTaskError: unknown;
+  loadingTasks: boolean;
+}
+export default function ProgressCircle({
+  tasks,
+  getTaskError,
+  loadingTasks,
+}: IProgressCircleProps): JSX.Element {
   const [ready, notReady] = useProgressCircle(tasks);
 
   // eslint-disable-next-line no-console
-  if (error) console.error("ProgressCircle.tsx", error);
+  if (getTaskError) console.error("ProgressCircle.tsx", getTaskError);
   return (
     <section className={s.progress}>
-      {isLoading ? (
+      {loadingTasks ? (
         <Spinner />
       ) : (
         <>
-          {error ? (
+          {getTaskError ? (
             <b className="error-message">Не удалось загрузить компонент </b>
           ) : (
             <>

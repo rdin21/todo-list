@@ -1,6 +1,7 @@
 import React from "react";
 import { ICategories } from "../../../types/TypeCategories";
 import { Task } from "../../../types/TypeTask";
+import { v4 as uuidv4 } from "uuid";
 import TaskItem from "../Item/TaskItem";
 function ShortList({
   hours,
@@ -13,14 +14,14 @@ function ShortList({
     <>
       {hours.map((task: Task[]) =>
         task.length > 0 ? (
-          <>
+          <div key={uuidv4()}>
             {task.map((el: Task) => {
               const category = categories?.find((v: ICategories) => v.id === el.categoriesID);
 
               return (
                 <TaskItem
                   id={el.id}
-                  key={`${el.date}$${el.time}`}
+                  key={uuidv4()}
                   status={el.status}
                   time={`${el.time}`}
                   task={el.text}
@@ -28,9 +29,9 @@ function ShortList({
                 />
               );
             })}
-          </>
+          </div>
         ) : (
-          <div style={{ height: "70px" }}></div>
+          <div key={uuidv4()} style={{ height: "70px" }}></div>
         )
       )}
     </>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Header from "../components/Header/Header";
 import Statistics from "../components/Home/Statistics";
 import TasksList from "../components/Home/TaskList/TasksList";
 import AddTask from "../components/AddTask/AddTask";
@@ -10,9 +9,16 @@ import UpdateCategories from "../components/Categories/UpdateCategories";
 import Buttons from "../components/Home/AddTaskBtn";
 import { useAppSelector } from "../hooks/redux";
 import { TUserFromAccessToken } from "../types/TypeUser";
+import { taskApi } from "../service/taskService";
+import { formatDate } from "../utils/utils";
 
 function Home(): JSX.Element {
   const user = useAppSelector((s) => s.user.data) as TUserFromAccessToken;
+  const {
+    data: tasks,
+    error: getTaskError,
+    isLoading: loadingTasks,
+  } = taskApi.useGetTaskByDateQuery(`?date=${formatDate}&userId=${user.id}`);
   const [createTask, setCreateTask] = useState<boolean>(false);
   const [createCategory, setCreateCategory] = useState<boolean>(false);
   const [deleteCategory, setDeleteCategory] = useState<boolean>(false);
@@ -22,12 +28,16 @@ function Home(): JSX.Element {
   const onCloseCategoryModel = (): void => setCreateCategory(false);
   const onCloseDeleteCategoryModel = (): void => setDeleteCategory(false);
   const onCloseUpDateCategoryModel = (): void => setUpDateCategory(false);
+
   return (
     <main className="main">
       <div className="container">
-        <Header />
         <section className="statistics__block">
-          <Statistics />
+          {user.id ? (
+            <Statistics tasks={tasks} getTaskError={getTaskError} loadingTasks={loadingTasks} />
+          ) : (
+            ""
+          )}
         </section>
 
         <Buttons setCreateTask={setCreateTask} />
@@ -45,7 +55,16 @@ function Home(): JSX.Element {
           <UpdateCategories />
         </Modal>
 
-        {user.id ? <TasksList userId={user.id} /> : ""}
+        {user.id ? (
+          <TasksList
+            userId={user.id}
+            tasks={tasks}
+            getTaskError={getTaskError}
+            loadingTasks={loadingTasks}
+          />
+        ) : (
+          ""
+        )}
       </div>
     </main>
   );

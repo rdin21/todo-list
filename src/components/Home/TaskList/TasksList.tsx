@@ -1,8 +1,6 @@
 import React, { useEffect, useMemo, useState, memo } from "react";
 import { categoriesApi } from "../../../service/categoriesService";
-import { taskApi } from "../../../service/taskService";
-import { formatDate } from "../../../utils/utils";
-import { Task } from "../../../types/TypeTask";
+import { DataTypeTasks, Task } from "../../../types/TypeTask";
 import { useLengthTimeLine } from "../../../hooks/useLengthTimeLine";
 import { ICategories } from "../../../types/TypeCategories";
 import { v4 as uuidv4 } from "uuid";
@@ -14,13 +12,14 @@ import ShortList from "./ShortList";
 import ChangeLengthListBtn from "./ChangeLengthListBtn";
 import s from "../Home.module.scss";
 
-function TasksList({ userId }: { userId: number }): JSX.Element {
-  const {
-    data: tasks,
-    error: getTaskError,
-    isLoading: loadingTasks,
-  } = taskApi.useGetTaskQuery(formatDate);
+interface ITasksListProps {
+  userId: number;
+  tasks?: DataTypeTasks[];
+  getTaskError: unknown;
+  loadingTasks: boolean;
+}
 
+function TasksList({ userId, tasks, getTaskError, loadingTasks }: ITasksListProps): JSX.Element {
   const { data: categories, error: getCategoriesError } =
     categoriesApi.useGetCategoriesQuery(userId);
 

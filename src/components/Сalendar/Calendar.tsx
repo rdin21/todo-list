@@ -2,18 +2,21 @@ import { useState } from "react";
 import useCalendar from "../../hooks/useCalendar";
 import { formatFullDate } from "../../utils/utils";
 import { taskApi } from "../../service/taskService";
+import { useAppSelector } from "../../hooks/redux";
+import { TUserFromAccessToken } from "../../types/TypeUser";
 import Modal from "../UI/Modal/Modal";
 import AnyDay from "./AnyDay";
 import Month from "./Month";
-import s from "./Calendar.module.scss";
 import Weekdays from "./Weekdays";
+import s from "./Calendar.module.scss";
 
 const dayMonth = new Date().getDate();
 
 const Index = (): JSX.Element => {
+  const user = useAppSelector((s) => s.user.data) as TUserFromAccessToken;
   const [date, setDate] = useState<Date>(new Date());
   const days = useCalendar(date);
-  const [getTasks, { data, isLoading, error }] = taskApi.useLazyGetTaskQuery();
+  const [getTasks, { data, isLoading, error }] = taskApi.useLazyGetTaskByDateQuery();
   const [anyDay, setAnyDay] = useState<boolean>(false);
 
   const onCloseAnyDayModel = (): void => setAnyDay(false);
@@ -23,7 +26,7 @@ const Index = (): JSX.Element => {
     if (typeof day === "string") numberDay = String(day.split("|")[0]);
     else numberDay = String(day);
     const searchDate = formatFullDate(+numberDay, +date.getMonth() + 1, +date.getFullYear());
-    getTasks(searchDate);
+    getTasks(`?date=${searchDate}&userId=${user.id}`);
     setAnyDay(true);
   };
 

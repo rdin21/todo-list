@@ -1,7 +1,7 @@
 import { DataTypeTasks } from "./../types/TypeTask";
 import { useEffect, useState } from "react";
 
-function useProgressCircle(tasks: DataTypeTasks[]): Array<number> {
+function useProgressCircle(tasks?: DataTypeTasks[]): Array<number> {
   const [ready, setReady] = useState(0);
   const [notReady, setNotReady] = useState(100);
 
