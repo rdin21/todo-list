@@ -11,6 +11,7 @@ import { useAppSelector } from "../hooks/redux";
 import { TUserFromAccessToken } from "../types/TypeUser";
 import { taskApi } from "../service/taskService";
 import { formatDate } from "../utils/utils";
+import Header from "../components/Header/Header";
 
 function Home(): JSX.Element {
   const user = useAppSelector((s) => s.user.data) as TUserFromAccessToken;
@@ -32,6 +33,7 @@ function Home(): JSX.Element {
   return (
     <main className="main">
       <div className="container">
+        <Header userName={user.name} tasks={tasks} getTaskError={getTaskError} />
         <section className="statistics__block">
           {user.id ? (
             <Statistics tasks={tasks} getTaskError={getTaskError} loadingTasks={loadingTasks} />

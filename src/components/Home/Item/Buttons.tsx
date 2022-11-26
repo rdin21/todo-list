@@ -5,6 +5,8 @@ import { taskApi } from "../../../service/taskService";
 import { Button } from "../../UI/BaseComponent";
 import { categoriesApi } from "../../../service/categoriesService";
 import s from "./Item.module.scss";
+import { useAppSelector } from "../../../hooks/redux";
+import { TUserFromAccessToken } from "../../../types/TypeUser";
 
 interface ItemButtonsProps {
   status: null | boolean;
@@ -13,8 +15,11 @@ interface ItemButtonsProps {
 }
 
 export default function ItemButtons({ status, upDate, id }: ItemButtonsProps): JSX.Element {
+  const { id: userId } = useAppSelector((s) => s.user.data) as TUserFromAccessToken;
   const currentDate = new Date().toLocaleDateString();
-  const updateCategory = categoriesApi.endpoints.getAllCategoriesAndTask.useQuery(currentDate);
+  const updateCategory = categoriesApi.endpoints.getAllCategoriesAndTask.useQuery(
+    `?date=${currentDate}&userId=${userId}`
+  );
   const [deleteTaskHook, { error: deleteErrorTask }] = taskApi.useDeleteTaskMutation();
   const [setStatusTrueHook, { error: upDateStatusTrueError }] = taskApi.useSetStatusTrueMutation();
   const [setStatusFalseHook, { error: upDateStatusFalseError }] =

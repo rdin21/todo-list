@@ -33,10 +33,13 @@ export const categoriesApi = createApi({
     }),
 
     getAllCategoriesAndTask: build.query<TCategoriesAndTask[], string>({
-      query: (date: string) => ({
-        url: CategoriesPaths.getCategoriesAndTasks,
-        params: { date },
-      }),
+      query: (params: string) => {
+        console.log(params);
+
+        return {
+          url: CategoriesPaths.getCategoriesAndTasks + params,
+        };
+      },
     }),
 
     createCategories: build.mutation<ICategories, TCreateCategories & { userId: number }>({

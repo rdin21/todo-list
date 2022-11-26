@@ -17,12 +17,13 @@ interface AddTaskProps {
 
 function AddTask({ onCloseModal }: AddTaskProps): JSX.Element {
   const currentDate = new Date().toLocaleDateString();
-  const { data } = useAppSelector((s) => s.user);
+  const { id } = useAppSelector((s) => s.user.data) as TUserFromAccessToken;
   const { data: dateData, error: dateError } = taskApi.useCheckCreateDateQuery(formatDate);
   const [createTask, { error: createTaskError, isLoading: loadingTask }] =
     taskApi.useCreateTaskMutation();
-  const updateCategory = categoriesApi.endpoints.getAllCategoriesAndTask.useQuery(currentDate);
-  const user = data as TUserFromAccessToken;
+  const updateCategory = categoriesApi.endpoints.getAllCategoriesAndTask.useQuery(
+    `?date=${currentDate}&userId=${id}`
+  );
   const [text, setText] = useState<string>("");
   const [date, setDate] = useState<string>("");
   const [time, setTime] = useState<IDateTask>({
@@ -61,7 +62,7 @@ function AddTask({ onCloseModal }: AddTaskProps): JSX.Element {
       status,
       categoriesID,
       taskDateId: dateData?.id,
-      userId: +user.id,
+      userId: +id,
     };
     createTask(task).then(() => {
       onCloseModal();
