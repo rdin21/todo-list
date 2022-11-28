@@ -97,7 +97,7 @@ function AddTask({ onCloseModal }: AddTaskProps): JSX.Element {
       {createTaskError ? <ErrorMessage message={createTaskError} /> : ""}
       {validateError ? <ErrorMessage message={validateError} /> : ""}
       <Button className={s.create_btn} onClick={createdTask} isLoading={loadingTask}>
-        Создать
+        Добавить
       </Button>
     </div>
   );

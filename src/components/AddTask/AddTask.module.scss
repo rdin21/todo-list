@@ -110,18 +110,17 @@
   }
 
   .create_btn {
-    padding: 0.2rem;
+    padding: 0.4rem;
     cursor: pointer;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     font-weight: 300;
     border-radius: 5px;
     background-color: #023202;
-    max-width: 6rem;
-    width: 6rem;
+    max-width: 7rem;
+    width: 7rem;
     border: none;
     color: $fontColor;
     transition: 0.2s linear;
-    text-transform: uppercase;
 
     &:hover {
       opacity: 0.8;
@@ -134,7 +133,7 @@
   list-style-type: none;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 0;
+  padding: 0 80px;
 
   .list_item {
     border: 1px solid black;

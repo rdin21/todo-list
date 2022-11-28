@@ -10,8 +10,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 function Button({ className, isLoading = false, children, ...props }: ButtonProps): JSX.Element {
   return (
-    <button {...props} className={classNames(className, isLoading ? s.loadingButton : "")}>
-      <span className={isLoading ? s.spinner : ""}></span>
+    <button
+      style={{ position: "relative" }}
+      {...props}
+      className={classNames(className, isLoading ? s.loadingButton : "")}
+    >
+      <span className={isLoading ? s.spinner : ""} style={{ fontSize: 0 }}></span>
       {children}
     </button>
   );

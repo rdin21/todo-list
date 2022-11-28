@@ -42,11 +42,13 @@ export const taskApi = createApi({
 
   tagTypes: ["Task"],
   endpoints: (build) => ({
-    getTask: build.query<DataTypeTasks[], string>({
-      query: (date) => ({
-        url: TasksPaths.getTask + `?date=${date}`,
-        method: "GET",
-      }),
+    getTaskByDate: build.query<DataTypeTasks[], string>({
+      query: (params) => {
+        return {
+          url: TasksPaths.getTaskByDate + params,
+          method: "GET",
+        };
+      },
 
       providesTags: () => ["Task"],
     }),

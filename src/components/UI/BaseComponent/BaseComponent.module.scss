@@ -1,12 +1,14 @@
 .spinner {
   display: inline-block;
-  width: 22px;
-  height: 22px;
+  width: 19px;
+  height: 19px;
   border: 3px solid transparent;
   border-top-color: greenyellow;
   border-radius: 50%;
   animation: button-loading-spinner 1s ease infinite;
-  margin-right: 5px;
+  position: absolute;
+  left: 10%;
+  top: 15%;
 }
 
 @keyframes button-loading-spinner {

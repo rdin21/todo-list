@@ -6,7 +6,6 @@ import { TCreateCategories, TUpDateCategory } from "../../types/TypeCategories";
 import { Button, Input } from "../UI/BaseComponent";
 import ColorsList from "./ColorsList";
 import CategoriesList from "./CategoriesList";
-import Spinner from "../UI/Loaders/LoaderSpinner";
 import ErrorMessage from "../UI/Error/ErrorMessage";
 import s from "./Categories.module.scss";
 
@@ -63,10 +62,13 @@ function UpdateCategories(): JSX.Element {
       <ColorsList state={updateCategory} setState={setUpDateCategory} />
 
       {messageError ? <ErrorMessage message={messageError} /> : ""}
-      <Button className={s.update_block_button} onClick={onClickUpdateCategory}>
+      <Button
+        className={s.update_block_button}
+        onClick={onClickUpdateCategory}
+        isLoading={isLoading}
+      >
         Обновить
       </Button>
-      {isLoading ? <Spinner /> : ""}
     </section>
   );
 }

@@ -5,14 +5,15 @@
   list-style-type: none;
   flex-wrap: wrap;
   justify-content: center;
+  padding: 0 80px;
 }
 
 %item {
   border: 1px solid black;
   font-size: 0.7rem;
-  padding: 7px;
+  padding: 0.25rem;
   cursor: pointer;
-  margin: 1rem;
+  margin: 0.5rem 0.7rem;
   position: relative;
   min-width: 75px;
   text-align: center;
@@ -72,7 +73,7 @@
 }
 
 .update_block {
-  padding: 50px;
+  padding-bottom: 50px;
 
   .update_list {
     @extend %list;
@@ -118,13 +119,12 @@
   .update_block_button {
     display: block;
     margin: 0 auto;
-    padding: 7px 20px;
+    padding: 7px 40px;
     border-radius: 5px;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     background-color: green;
     color: white;
+    border: none;
     cursor: pointer;
     transition: 0.3s linear;
 
@@ -200,7 +200,7 @@
   }
 
   .create_button {
-    padding: 0.35rem;
+    padding: 0.3rem;
     cursor: pointer;
     border: none;
     background-color: green;
