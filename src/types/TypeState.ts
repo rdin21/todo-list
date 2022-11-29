@@ -2,12 +2,6 @@ import { TUserFromAccessToken } from "./TypeUser";
 import { DataTypeTasks } from "./TypeTask";
 import { ICategories } from "./TypeCategories";
 
-export interface IRootState {
-  user: IUserState;
-  category: any;
-  task: any;
-}
-
 export interface ITaskState {
   data: [] | DataTypeTasks[];
   isLoading: boolean;
@@ -20,6 +14,7 @@ export interface ICategoriesState {
 }
 
 interface UserState {
+  // eslint-disable-next-line @typescript-eslint/ban-types
   data: {} | TUserFromAccessToken;
 }
 

@@ -12,8 +12,6 @@
 }
 
 html {
-  font-size: $defaultFontSize;
-  font-family: Roboto, sans-serif;
   font-weight: 300;
   @include breakpoint(lg) {
     font-size: 18px;

@@ -34,8 +34,6 @@ export const categoriesApi = createApi({
 
     getAllCategoriesAndTask: build.query<TCategoriesAndTask[], string>({
       query: (params: string) => {
-        console.log(params);
-
         return {
           url: CategoriesPaths.getCategoriesAndTasks + params,
         };

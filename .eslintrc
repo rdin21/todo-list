@@ -61,7 +61,7 @@
     "react/prefer-stateless-function": "warn",
     "react/jsx-props-no-spreading": "off",
 
-    //import  ???
+    //import
     "import/no-extraneous-dependencies": "warn",
     "import/extensions": "off"
   }
